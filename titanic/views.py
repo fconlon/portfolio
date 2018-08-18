@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from titanic.models import Survivors
 
 # Create your views here.
 def index(request):
-    return HttpResponse('People Died Motha Fucka!')
+    firstclass = Survivors.objects.filter(pclass__exact=1)
+    context = { 'firstclass': firstclass }
+    return render(request, 'titanic/index.html', context)

@@ -1,0 +1,17 @@
+<title>Titanic Survivors</title>
+<table>
+    <th>
+        <td>pclass</td>
+        <td>name</td>
+        <td>age</td>
+        <td>sex</td>
+    </th>
+    {% for row in firstclass %}
+    <tr>
+        <td>{{ row.pclass }}</td>
+        <td>{{ row.name }}</td>
+        <td>{{ row.age }}</td>
+        <td>{{ row.sex }}</td>
+    </tr>
+    {% endfor %}
+</table>
