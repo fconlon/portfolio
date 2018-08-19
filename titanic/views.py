@@ -45,7 +45,7 @@ def build_titanic_context(filters):
             elif fltr == 'secondclass':
                 value[0] = value[0].filter(pclass__exact=2)
             elif fltr == 'thirdclass':
-                value[0] = value[0].filter(plcass__exact=3)
+                value[0] = value[0].filter(pclass__exact=3)
             elif fltr == 'female':
                 value[0] = value[0].filter(sex__exact='female')
             elif fltr == 'male':
@@ -57,7 +57,7 @@ def build_titanic_context(filters):
             elif fltr == 'child':
                 value[0] = value[0].filter(age__lt=18)
             elif fltr == 'adult':
-                value[0] = value[0].filter(age__gte=18).exclude(age__exact='')
+                value[0] = value[0].filter(age__gte=18).extra(where=["age!=''"])
         value.append(value[0].count() * HRATIO)
         value.append(value[1]/2)
         value.pop(0)
