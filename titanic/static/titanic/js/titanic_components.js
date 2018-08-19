@@ -18,6 +18,7 @@ AFRAME.registerComponent('clickablecyl', {
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4) {
                     var json = JSON.parse(this.responseText);
+                    //adjust cylinders
                     for (id in json['cyls']) {
                         var ele = document.getElementById(id)
                         if (json['cyls'][id][0] == 0) {
@@ -32,9 +33,28 @@ AFRAME.registerComponent('clickablecyl', {
                             ele.object3D.position.y = json['cyls'][id][1];
                         }
                     }
+                    //adjust cylinder labels
                     for (id in json['text']) {
                         var ele = document.getElementById(id);
                         ele.object3D.position.y = json['text'][id];
+                    }
+                    //display applied filters
+                    ele = document.getElementById('filters');
+                    while (ele.children[0]) {
+                        ele.removeChild(ele.children[0]);
+                    }
+                    if (filters) {
+                        fltrList = filters.split('_');
+                        for (i in fltrList) {
+                            tr = document.createElement('tr');
+                            tr.innerHTML = '<td>' + fltrList[i] + '</td>';
+                            ele.appendChild(tr);
+                        }
+                    }
+                    else {
+                        tr = document.createElement('tr');
+                        tr.innerHTML = '<td>None</td>';
+                        ele.appendChild(tr);
                     }
                 }
             }
