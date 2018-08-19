@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from titanic.models import Survivors
+from json import dumps
 
 HRATIO = .003
 
@@ -8,7 +9,7 @@ def index(request):
     return render(request, 'titanic/index.html', build_titanic_context(''))
 
 def fltrs(request):
-    return HttpResponse(request.GET['q'])
+    return HttpResponse(dumps(build_titanic_context(request.GET['q'])))
 
 def build_titanic_context(filters):
     #initialize context
@@ -59,20 +60,21 @@ def build_titanic_context(filters):
                 value[0] = value[0].filter(age__gte=18).exclude(age__exact='')
         value.append(value[0].count() * HRATIO)
         value.append(value[1]/2)
+        value.pop(0)
 
     #add together appropriate cyl heights
-    ctxt['scf'][2] += ctxt['fcf'][1]
-    ctxt['tcf'][2] += ctxt['fcf'][1] + ctxt['scf'][1]
-    ctxt['scm'][2] += ctxt['fcm'][1]
-    ctxt['tcm'][2] += ctxt['fcm'][1] + ctxt['scm'][1]
-    ctxt['scl'][2] += ctxt['fcl'][1]
-    ctxt['tcl'][2] += ctxt['fcl'][1] + ctxt['scl'][1]
-    ctxt['scd'][2] += ctxt['fcd'][1]
-    ctxt['tcd'][2] += ctxt['fcd'][1] + ctxt['scd'][1]
-    ctxt['scc'][2] += ctxt['fcc'][1]
-    ctxt['tcc'][2] += ctxt['fcc'][1] + ctxt['scc'][1]
-    ctxt['sca'][2] += ctxt['fca'][1]
-    ctxt['tca'][2] += ctxt['fca'][1] + ctxt['sca'][1]
+    ctxt['scf'][1] += ctxt['fcf'][0]
+    ctxt['tcf'][1] += ctxt['fcf'][0] + ctxt['scf'][0]
+    ctxt['scm'][1] += ctxt['fcm'][0]
+    ctxt['tcm'][1] += ctxt['fcm'][0] + ctxt['scm'][0]
+    ctxt['scl'][1] += ctxt['fcl'][0]
+    ctxt['tcl'][1] += ctxt['fcl'][0] + ctxt['scl'][0]
+    ctxt['scd'][1] += ctxt['fcd'][0]
+    ctxt['tcd'][1] += ctxt['fcd'][0] + ctxt['scd'][0]
+    ctxt['scc'][1] += ctxt['fcc'][0]
+    ctxt['tcc'][1] += ctxt['fcc'][0] + ctxt['scc'][0]
+    ctxt['sca'][1] += ctxt['fca'][0]
+    ctxt['tca'][1] += ctxt['fca'][0] + ctxt['sca'][0]
 
     return ctxt
 
