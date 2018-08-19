@@ -17,8 +17,22 @@ AFRAME.registerComponent('clickablecyl', {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4) {
-                    console.log(this.status);
-                    console.log(this.responseText);
+                    var json = JSON.parse(this.responseText);
+                    console.log(json);
+                    for (id in json) {
+                        var ele = document.getElementById(id)
+                        if (json[id][0] == 0) {
+                            //use small number because 0 defaults to 1
+                            ele.setAttribute('height', 0.000001);
+                            ele.setAttribute('visible', false);
+                            ele.object3D.position.y = 0;
+                        }
+                        else {
+                            ele.setAttribute('height', json[id][0]);
+                            ele.setAttribute('visible', true);
+                            ele.object3D.position.y = json[id][1];
+                        }
+                    }
                 }
             }
             xhttp.open('GET', 'fltrs/?q=' + filters, true);
@@ -30,6 +44,7 @@ AFRAME.registerComponent('clickablecyl', {
                     ele.clicked = !ele.clicked;
                 }
             }
+            
             /*
             var vis = event.currentTarget.getAttribute('visible');
             if (vis) {

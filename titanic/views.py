@@ -58,8 +58,8 @@ def build_titanic_context(filters):
                 value[0] = value[0].filter(age__lt=18)
             elif fltr == 'adult':
                 value[0] = value[0].filter(age__gte=18).extra(where=["age!=''"])
-        value.append(value[0].count() * HRATIO)
-        value.append(value[1]/2)
+        value.append(round(value[0].count() * HRATIO, 4))
+        value.append(round(value[1]/2, 4))
         value.pop(0)
 
     #add together appropriate cyl heights
