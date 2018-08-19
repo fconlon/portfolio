@@ -7,47 +7,29 @@
     <script src="{% static 'titanic/js/titanic_primitives.js' %}"></script>
 </head>
 <body>
-<a-scene cursor="rayOrigin:mouse" embedded style="width:1000px; height:500px">
-    <a-sky color="grey"></a-sky>
-    <a-plane height='8' width='8' color='teal' rotation="-90 0 0" position="0 0 -2"></a-plane>
-    <a-tcyl id="fc" color="red" height="{{ fc.1 }}" opos="-1.5 {{ fc.2 }} -3" clickablecyl></a-tcyl>
-    <a-tcyl id="sc" color="white" height="{{ sc.1 }}" opos="-1.5 {{ sc.2 }} -3.5" clickablecyl></a-tcyl>
-    <a-tcyl id="tc" color="blue" height="{{ tc.1 }}" opos="-1.5 {{ tc.2 }} -4" clickablecyl></a-tcyl>
-    <a-tcyl id="fcf" color="red" height="{{ fcf.1 }}" opos="-.5 {{ fcf.2 }} -3"></a-tcyl>
-    <a-tcyl id="scf" color="white" height="{{ scf.1 }}" opos="-.5 {{ scf.2 }} -3"></a-tcyl>
-    <a-tcyl id="tcf" color="blue" height="{{ tcf.1 }}" opos="-.5 {{ tcf.2 }} -3"></a-tcyl>
-    <a-tcyl id="fcm" color="red" height="{{ fcm.1 }}" opos="-.5 {{ fcm.2 }} -4"></a-tcyl>
-    <a-tcyl id="scm" color="white" height="{{ scm.1 }}" opos="-.5 {{ scm.2 }} -4"></a-tcyl>
-    <a-tcyl id="tcm" color="blue" height="{{ tcm.1 }}" opos="-.5 {{ tcm.2 }} -4"></a-tcyl>
-    <a-tcyl id="fcl" color="red" height="{{ fcl.1 }}" opos=".5 {{ fcl.2 }} -3"></a-tcyl>
-    <a-tcyl id="scl" color="white" height="{{ scl.1 }}" opos=".5 {{ scl.2 }} -3"></a-tcyl>
-    <a-tcyl id="tcl" color="blue" height="{{ tcl.1 }}" opos=".5 {{ tcl.2 }} -3"></a-tcyl>
-    <a-tcyl id="fcd" color="red" height="{{ fcd.1 }}" opos=".5 {{ fcd.2 }} -4"></a-tcyl>
-    <a-tcyl id="scd" color="white" height="{{ scd.1 }}" opos=".5 {{ scd.2 }} -4"></a-tcyl>
-    <a-tcyl id="tcd" color="blue" height="{{ tcd.1 }}" opos=".5 {{ tcd.2 }} -4"></a-tcyl>
-    <a-tcyl id="fcc" color="red" height="{{ fcc.1 }}" opos="1.5 {{ fcc.2 }} -3"></a-tcyl>
-    <a-tcyl id="scc" color="white" height="{{ scc.1 }}" opos="1.5 {{ scc.2 }} -3"></a-tcyl>
-    <a-tcyl id="tcc" color="blue" height="{{ tcc.1 }}" opos="1.5 {{ tcc.2 }} -3"></a-tcyl>
-    <a-tcyl id="fca" color="red" height="{{ fca.1 }}" opos="1.5 {{ fca.2 }} -4"></a-tcyl>
-    <a-tcyl id="sca" color="white" height="{{ sca.1 }}" opos="1.5 {{ sca.2 }} -4"></a-tcyl>
-    <a-tcyl id="tca" color="blue" height="{{ tca.1 }}" opos="1.5 {{ tca.2 }} -4"></a-tcyl>
+    <a-scene cursor="rayOrigin:mouse" embedded style="width:1000px; height:500px">
+        <a-sky color="grey"></a-sky>
+        <a-plane height='8' width='8' color='teal' rotation="-90 0 0" position="0 0 -2"></a-plane>
+        <a-tcyl id="fc" color="red" height="{{ fc.1 }}" opos="-1.5 {{ fc.2 }} -3" filter='firstclass'></a-tcyl>
+        <a-tcyl id="sc" color="white" height="{{ sc.1 }}" opos="-1.5 {{ sc.2 }} -3.5" filter='secondclass'></a-tcyl>
+        <a-tcyl id="tc" color="blue" height="{{ tc.1 }}" opos="-1.5 {{ tc.2 }} -4" filter='thirdclass'></a-tcyl>
+        <a-tcyl id="fcf" color="red" height="{{ fcf.1 }}" opos="-.5 {{ fcf.2 }} -3" filter='female'></a-tcyl>
+        <a-tcyl id="scf" color="white" height="{{ scf.1 }}" opos="-.5 {{ scf.2 }} -3" filter='female'></a-tcyl>
+        <a-tcyl id="tcf" color="blue" height="{{ tcf.1 }}" opos="-.5 {{ tcf.2 }} -3" filter='female'></a-tcyl>
+        <a-tcyl id="fcm" color="red" height="{{ fcm.1 }}" opos="-.5 {{ fcm.2 }} -4" filter='male'></a-tcyl>
+        <a-tcyl id="scm" color="white" height="{{ scm.1 }}" opos="-.5 {{ scm.2 }} -4" filter='male'></a-tcyl>
+        <a-tcyl id="tcm" color="blue" height="{{ tcm.1 }}" opos="-.5 {{ tcm.2 }} -4" filter='male'></a-tcyl>
+        <a-tcyl id="fcl" color="red" height="{{ fcl.1 }}" opos=".5 {{ fcl.2 }} -3" filter='lived'></a-tcyl>
+        <a-tcyl id="scl" color="white" height="{{ scl.1 }}" opos=".5 {{ scl.2 }} -3" filter='lived'></a-tcyl>
+        <a-tcyl id="tcl" color="blue" height="{{ tcl.1 }}" opos=".5 {{ tcl.2 }} -3" filter='lived'></a-tcyl>
+        <a-tcyl id="fcd" color="red" height="{{ fcd.1 }}" opos=".5 {{ fcd.2 }} -4" filter='died'></a-tcyl>
+        <a-tcyl id="scd" color="white" height="{{ scd.1 }}" opos=".5 {{ scd.2 }} -4" filter='died'></a-tcyl>
+        <a-tcyl id="tcd" color="blue" height="{{ tcd.1 }}" opos=".5 {{ tcd.2 }} -4" filter='died'></a-tcyl>
+        <a-tcyl id="fcc" color="red" height="{{ fcc.1 }}" opos="1.5 {{ fcc.2 }} -3" filter='child'></a-tcyl>
+        <a-tcyl id="scc" color="white" height="{{ scc.1 }}" opos="1.5 {{ scc.2 }} -3" filter='child'></a-tcyl>
+        <a-tcyl id="tcc" color="blue" height="{{ tcc.1 }}" opos="1.5 {{ tcc.2 }} -3" filter='child'></a-tcyl>
+        <a-tcyl id="fca" color="red" height="{{ fca.1 }}" opos="1.5 {{ fca.2 }} -4" filter='adult'></a-tcyl>
+        <a-tcyl id="sca" color="white" height="{{ sca.1 }}" opos="1.5 {{ sca.2 }} -4" filter='adult'></a-tcyl>
+        <a-tcyl id="tca" color="blue" height="{{ tca.1 }}" opos="1.5 {{ tca.2 }} -4" filter='adult'></a-tcyl>
 </a-scene>
-{% comment %}
-<table>
-    <th>
-        <td>pclass</td>
-        <td>name</td>
-        <td>age</td>
-        <td>sex</td>
-    </th>
-    {% for row in firstclass %}
-    <tr>
-        <td>{{ row.pclass }}</td>
-        <td>{{ row.name }}</td>
-        <td>{{ row.age }}</td>
-        <td>{{ row.sex }}</td>
-    </tr>
-    {% endfor %}
-</table>
-{% endcomment %}
 </body>

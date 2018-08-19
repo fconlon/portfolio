@@ -1,7 +1,36 @@
 // JavaScript source code
+var filters = '';
 AFRAME.registerComponent('clickablecyl', {
+    schema : {
+        filter: { type: 'string', default: '_dfilter' },
+        clicked: { type: 'boolean', default: false }
+    },
     init: function () {
         this.el.addEventListener('click', function (event) {
+            clickobj = event.currentTarget.getAttribute('clickablecyl');
+            if (clickobj.clicked) {
+                filters = filters.replace('_'+clickobj.filter, '');
+            }
+            else {
+                filters += '_'+clickobj.filter;
+            }
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4) {
+                    console.log(this.status);
+                    console.log(this.responseText);
+                }
+            }
+            xhttp.open('GET', 'fltrs/?q=' + filters, true);
+            xhttp.send();
+            var elements = document.getElementsByTagName('a-tcyl');
+            for (var i = 0; i < elements.length; i++) {
+                var ele = elements[i].getAttribute('clickablecyl');
+                if ( ele.filter == clickobj.filter) {
+                    ele.clicked = !ele.clicked;
+                }
+            }
+            /*
             var vis = event.currentTarget.getAttribute('visible');
             if (vis) {
                 var mat = event.currentTarget.getAttribute('material');
@@ -15,10 +44,11 @@ AFRAME.registerComponent('clickablecyl', {
                     cyls[i].dispatchEvent(testEvent);
                 }
             }
+            */
         });
     }
 });
-
+/*
 AFRAME.registerComponent('cyllistener', {
     schema: {
         opos: { type: 'string', default: '0 0 0' },
@@ -60,3 +90,4 @@ AFRAME.registerComponent('cyllistener', {
         });
     }
 });
+*/

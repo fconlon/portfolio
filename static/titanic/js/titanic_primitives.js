@@ -7,14 +7,14 @@ AFRAME.registerPrimitive('a-tcyl', {
             radius: rad
         },
         material: {},
-        cyllistener: {}
-        //clickablecyl: {}
+        clickablecyl: {}
     },
     mappings: {
         radius: 'geometry.radius',
         color: 'material.color',
         height: 'geometry.height',
-        opos: 'cyllistener.opos'
+        opos: 'position',
+        filter: 'clickablecyl.filter'
     }
 });
 

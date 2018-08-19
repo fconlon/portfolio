@@ -1,9 +1,14 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from titanic.models import Survivors
+
 HRATIO = .003
-# Create your views here.
+
 def index(request):
     return render(request, 'titanic/index.html', build_titanic_context(''))
+
+def fltrs(request):
+    return HttpResponse(request.GET['q'])
 
 def build_titanic_context(filters):
     #initialize context
@@ -33,7 +38,7 @@ def build_titanic_context(filters):
 
     #add extra filters
     for (key, value) in ctxt.items():
-        for fltr in filters.split():
+        for fltr in filters.split('_'):
             if fltr == 'firstclass':
                 value[0] = value[0].filter(pclass__exact=1)
             elif fltr == 'secondclass':
