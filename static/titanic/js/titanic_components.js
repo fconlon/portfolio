@@ -18,7 +18,6 @@ AFRAME.registerComponent('clickablecyl', {
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4) {
                     var json = JSON.parse(this.responseText);
-                    console.log(json);
                     for (id in json['cyls']) {
                         var ele = document.getElementById(id)
                         if (json['cyls'][id][0] == 0) {
@@ -32,6 +31,10 @@ AFRAME.registerComponent('clickablecyl', {
                             ele.setAttribute('visible', true);
                             ele.object3D.position.y = json['cyls'][id][1];
                         }
+                    }
+                    for (id in json['text']) {
+                        var ele = document.getElementById(id);
+                        ele.object3D.position.y = json['text'][id];
                     }
                 }
             }

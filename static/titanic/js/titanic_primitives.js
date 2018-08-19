@@ -22,7 +22,9 @@ AFRAME.registerPrimitive('a-txt', {
     defaultComponents: {
         text: {
             width: 3,
-            align: 'center'
+            align: 'center',
+            color: 'pink',
+            side: 'double'
         }
     },
     mappings: {
