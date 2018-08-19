@@ -18,18 +18,19 @@ AFRAME.registerComponent('clickablecyl', {
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4) {
                     var json = JSON.parse(this.responseText);
-                    for (id in json) {
+                    console.log(json);
+                    for (id in json['cyls']) {
                         var ele = document.getElementById(id)
-                        if (json[id][0] == 0) {
+                        if (json['cyls'][id][0] == 0) {
                             //use small number because 0 defaults to 1
                             ele.setAttribute('height', 0.000001);
                             ele.setAttribute('visible', false);
                             ele.object3D.position.y = 0;
                         }
                         else {
-                            ele.setAttribute('height', json[id][0]);
+                            ele.setAttribute('height', json['cyls'][id][0]);
                             ele.setAttribute('visible', true);
-                            ele.object3D.position.y = json[id][1];
+                            ele.object3D.position.y = json['cyls'][id][1];
                         }
                     }
                 }

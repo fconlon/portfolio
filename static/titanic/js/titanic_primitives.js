@@ -18,6 +18,18 @@ AFRAME.registerPrimitive('a-tcyl', {
     }
 });
 
+AFRAME.registerPrimitive('a-txt', {
+    defaultComponents: {
+        text: {
+            width: 3,
+            align: 'center'
+        }
+    },
+    mappings: {
+        value: 'text.value'
+    }
+});
+
 AFRAME.registerPrimitive('a-parabola', {
     defaultComponents: {
         geometry: {

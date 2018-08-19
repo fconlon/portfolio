@@ -1,0 +1,145 @@
+*** Starting uWSGI 2.0.17.1 (64bit) on [Sun Aug 19 14:17:34 2018] ***
+compiled with version: 8.2.0 on 17 August 2018 23:27:45
+os: Linux-4.18.1-arch1-1-ARCH #1 SMP PREEMPT Wed Aug 15 21:11:55 UTC 2018
+nodename: archbox
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /home/fconlon/portfolio
+detected binary path: /usr/bin/uwsgi
+chdir() to /home/fconlon/portfolio/
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 7941
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address localhost:3031 fd 3
+Python version: 3.7.0 (default, Jul 15 2018, 10:44:58)  [GCC 8.1.1 20180531]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55ca5e6d53d0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72920 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x55ca5e6d53d0 pid: 2840 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 2840, cores: 1)
+[pid: 2840|app: 0|req: 1/1] 10.0.2.2 () {46 vars in 906 bytes} [Sun Aug 19 14:37:29 2018] GET /titanic/ => generated 2689 bytes in 23 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 2/2] 10.0.2.2 () {40 vars in 624 bytes} [Sun Aug 19 14:37:29 2018] GET /titanic/ => generated 2689 bytes in 30 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 3/3] 10.0.2.2 () {46 vars in 906 bytes} [Sun Aug 19 14:38:12 2018] GET /titanic/ => generated 2689 bytes in 12 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 4/4] 10.0.2.2 () {46 vars in 906 bytes} [Sun Aug 19 14:38:42 2018] GET /titanic/ => generated 2689 bytes in 12 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 5/5] 10.0.2.2 () {40 vars in 624 bytes} [Sun Aug 19 14:38:42 2018] GET /titanic/ => generated 2689 bytes in 23 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 6/6] 10.0.2.2 () {46 vars in 906 bytes} [Sun Aug 19 14:38:56 2018] GET /titanic/ => generated 2689 bytes in 13 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 7/7] 10.0.2.2 () {40 vars in 624 bytes} [Sun Aug 19 14:38:56 2018] GET /titanic/ => generated 2689 bytes in 26 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 8/8] 10.0.2.2 () {46 vars in 906 bytes} [Sun Aug 19 14:39:34 2018] GET /titanic/ => generated 2689 bytes in 17 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 9/9] 10.0.2.2 () {40 vars in 624 bytes} [Sun Aug 19 14:39:34 2018] GET /titanic/ => generated 2689 bytes in 17 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 10/10] 10.0.2.2 () {46 vars in 906 bytes} [Sun Aug 19 14:40:11 2018] GET /titanic/ => generated 2613 bytes in 12 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 11/11] 10.0.2.2 () {46 vars in 906 bytes} [Sun Aug 19 14:41:16 2018] GET /titanic/ => generated 2655 bytes in 25 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 12/12] 10.0.2.2 () {46 vars in 906 bytes} [Sun Aug 19 14:42:01 2018] GET /titanic/ => generated 2669 bytes in 13 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 13/13] 10.0.2.2 () {46 vars in 906 bytes} [Sun Aug 19 14:43:18 2018] GET /titanic/ => generated 2674 bytes in 29 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 14/14] 10.0.2.2 () {40 vars in 624 bytes} [Sun Aug 19 14:43:18 2018] GET /titanic/ => generated 2674 bytes in 32 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 15/15] 10.0.2.2 () {46 vars in 906 bytes} [Sun Aug 19 14:44:43 2018] GET /titanic/ => generated 2674 bytes in 27 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 16/16] 10.0.2.2 () {40 vars in 624 bytes} [Sun Aug 19 14:44:43 2018] GET /titanic/ => generated 2674 bytes in 26 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 17/17] 10.0.2.2 () {46 vars in 906 bytes} [Sun Aug 19 14:45:59 2018] GET /titanic/ => generated 2676 bytes in 38 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 18/18] 10.0.2.2 () {40 vars in 624 bytes} [Sun Aug 19 14:45:59 2018] GET /titanic/ => generated 2676 bytes in 32 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 19/19] 10.0.2.2 () {46 vars in 906 bytes} [Sun Aug 19 14:46:21 2018] GET /titanic/ => generated 2678 bytes in 13 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 20/20] 10.0.2.2 () {40 vars in 624 bytes} [Sun Aug 19 14:50:42 2018] GET /titanic/ => generated 2687 bytes in 26 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 21/21] 10.0.2.2 () {46 vars in 906 bytes} [Sun Aug 19 14:50:42 2018] GET /titanic/ => generated 2687 bytes in 28 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 22/22] 10.0.2.2 () {46 vars in 906 bytes} [Sun Aug 19 14:51:24 2018] GET /titanic/ => generated 2687 bytes in 12 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 23/23] 10.0.2.2 () {46 vars in 906 bytes} [Sun Aug 19 14:54:09 2018] GET /titanic/ => generated 2702 bytes in 22 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 24/24] 10.0.2.2 () {46 vars in 906 bytes} [Sun Aug 19 14:56:21 2018] GET /titanic/ => generated 2702 bytes in 43 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 25/25] 10.0.2.2 () {40 vars in 624 bytes} [Sun Aug 19 14:56:21 2018] GET /titanic/ => generated 2702 bytes in 33 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 26/26] 10.0.2.2 () {44 vars in 761 bytes} [Sun Aug 19 15:00:22 2018] GET /titanic => generated 0 bytes in 1 msecs (HTTP/1.1 301) 3 headers in 114 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 27/27] 10.0.2.2 () {44 vars in 763 bytes} [Sun Aug 19 15:00:22 2018] GET /titanic/ => generated 2702 bytes in 24 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 28/28] 10.0.2.2 () {46 vars in 794 bytes} [Sun Aug 19 15:32:17 2018] GET /titanic/ => generated 2810 bytes in 38 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 29/29] 10.0.2.2 () {46 vars in 794 bytes} [Sun Aug 19 15:45:55 2018] GET /titanic/ => generated 2666 bytes in 68 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 30/30] 10.0.2.2 () {46 vars in 794 bytes} [Sun Aug 19 15:46:32 2018] GET /titanic/ => generated 2666 bytes in 19 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 31/31] 10.0.2.2 () {46 vars in 794 bytes} [Sun Aug 19 15:56:38 2018] GET /titanic/ => generated 2675 bytes in 45 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 2840|app: 0|req: 32/32] 10.0.2.2 () {46 vars in 794 bytes} [Sun Aug 19 15:59:27 2018] GET /titanic/ => generated 2694 bytes in 49 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.17.1 (64bit) on [Sun Aug 19 16:12:06 2018] ***
+compiled with version: 8.2.0 on 17 August 2018 23:27:45
+os: Linux-4.18.1-arch1-1-ARCH #1 SMP PREEMPT Wed Aug 15 21:11:55 UTC 2018
+nodename: archbox
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /home/fconlon/portfolio
+detected binary path: /usr/bin/uwsgi
+chdir() to /home/fconlon/portfolio/
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 7941
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address localhost:3031 fd 3
+Python version: 3.7.0 (default, Jul 15 2018, 10:44:58)  [GCC 8.1.1 20180531]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x5590343fe3d0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72920 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x5590343fe3d0 pid: 3776 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 3776, cores: 1)
+[pid: 3776|app: 0|req: 1/1] 10.0.2.2 () {46 vars in 794 bytes} [Sun Aug 19 16:12:11 2018] GET /titanic/ => generated 2694 bytes in 68 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 2/2] 10.0.2.2 () {42 vars in 685 bytes} [Sun Aug 19 16:12:29 2018] GET /titanic/fltrs/?q=_female => generated 532 bytes in 15 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 3/3] 10.0.2.2 () {46 vars in 794 bytes} [Sun Aug 19 16:13:29 2018] GET /titanic/ => generated 2694 bytes in 32 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 4/4] 10.0.2.2 () {42 vars in 693 bytes} [Sun Aug 19 16:13:34 2018] GET /titanic/fltrs/?q=_thirdclass => generated 438 bytes in 15 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 5/5] 10.0.2.2 () {42 vars in 715 bytes} [Sun Aug 19 16:13:40 2018] GET /titanic/fltrs/?q=_thirdclass_firstclass => generated 406 bytes in 17 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 6/6] 10.0.2.2 () {46 vars in 794 bytes} [Sun Aug 19 16:14:17 2018] GET /titanic/ => generated 2694 bytes in 15 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 7/7] 10.0.2.2 () {42 vars in 693 bytes} [Sun Aug 19 16:14:19 2018] GET /titanic/fltrs/?q=_thirdclass => generated 438 bytes in 15 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 8/8] 10.0.2.2 () {46 vars in 794 bytes} [Sun Aug 19 16:15:04 2018] GET /titanic/ => generated 2694 bytes in 15 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 9/9] 10.0.2.2 () {42 vars in 693 bytes} [Sun Aug 19 16:15:09 2018] GET /titanic/fltrs/?q=_thirdclass => generated 438 bytes in 15 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 10/10] 10.0.2.2 () {46 vars in 794 bytes} [Sun Aug 19 16:15:25 2018] GET /titanic/ => generated 2694 bytes in 25 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 11/11] 10.0.2.2 () {46 vars in 906 bytes} [Sun Aug 19 16:15:46 2018] GET /titanic/ => generated 2694 bytes in 15 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 12/12] 10.0.2.2 () {44 vars in 858 bytes} [Sun Aug 19 16:15:49 2018] GET /titanic/fltrs/?q=_thirdclass => generated 438 bytes in 13 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 13/13] 10.0.2.2 () {44 vars in 836 bytes} [Sun Aug 19 16:15:59 2018] GET /titanic/fltrs/?q= => generated 523 bytes in 13 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 14/14] 10.0.2.2 () {46 vars in 906 bytes} [Sun Aug 19 16:17:08 2018] GET /titanic/ => generated 2694 bytes in 12 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 15/15] 10.0.2.2 () {44 vars in 858 bytes} [Sun Aug 19 16:17:11 2018] GET /titanic/fltrs/?q=_thirdclass => generated 438 bytes in 13 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 16/16] 10.0.2.2 () {46 vars in 906 bytes} [Sun Aug 19 16:17:46 2018] GET /titanic/ => generated 2694 bytes in 23 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 17/17] 10.0.2.2 () {40 vars in 624 bytes} [Sun Aug 19 16:17:47 2018] GET /titanic/ => generated 2694 bytes in 28 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 18/18] 10.0.2.2 () {44 vars in 860 bytes} [Sun Aug 19 16:17:51 2018] GET /titanic/fltrs/?q=_secondclass => generated 450 bytes in 12 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 19/19] 10.0.2.2 () {46 vars in 794 bytes} [Sun Aug 19 16:18:04 2018] GET /titanic/ => generated 2694 bytes in 48 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 20/20] 10.0.2.2 () {42 vars in 693 bytes} [Sun Aug 19 16:18:09 2018] GET /titanic/fltrs/?q=_thirdclass => generated 438 bytes in 15 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 21/21] 10.0.2.2 () {44 vars in 763 bytes} [Sun Aug 19 16:18:27 2018] GET /titanic/ => generated 2694 bytes in 14 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 22/22] 10.0.2.2 () {48 vars in 816 bytes} [Sun Aug 19 16:19:17 2018] GET /titanic/ => generated 2694 bytes in 12 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 23/23] 10.0.2.2 () {42 vars in 693 bytes} [Sun Aug 19 16:19:31 2018] GET /titanic/fltrs/?q=_thirdclass => generated 438 bytes in 13 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 24/24] 10.0.2.2 () {48 vars in 816 bytes} [Sun Aug 19 16:20:53 2018] GET /titanic/ => generated 2694 bytes in 38 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 25/25] 10.0.2.2 () {42 vars in 693 bytes} [Sun Aug 19 16:21:00 2018] GET /titanic/fltrs/?q=_thirdclass => generated 438 bytes in 13 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 26/26] 10.0.2.2 () {48 vars in 816 bytes} [Sun Aug 19 16:24:35 2018] GET /titanic/ => generated 2694 bytes in 23 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 27/27] 10.0.2.2 () {42 vars in 693 bytes} [Sun Aug 19 16:24:39 2018] GET /titanic/fltrs/?q=_thirdclass => generated 438 bytes in 28 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 28/28] 10.0.2.2 () {42 vars in 671 bytes} [Sun Aug 19 16:24:40 2018] GET /titanic/fltrs/?q= => generated 523 bytes in 10 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 29/29] 10.0.2.2 () {42 vars in 681 bytes} [Sun Aug 19 16:24:42 2018] GET /titanic/fltrs/?q=_male => generated 500 bytes in 22 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 30/30] 10.0.2.2 () {42 vars in 671 bytes} [Sun Aug 19 16:24:44 2018] GET /titanic/fltrs/?q= => generated 523 bytes in 10 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 31/31] 10.0.2.2 () {42 vars in 683 bytes} [Sun Aug 19 16:24:47 2018] GET /titanic/fltrs/?q=_adult => generated 486 bytes in 16 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 32/32] 10.0.2.2 () {42 vars in 693 bytes} [Sun Aug 19 16:24:49 2018] GET /titanic/fltrs/?q=_adult_died => generated 489 bytes in 19 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 33/33] 10.0.2.2 () {42 vars in 683 bytes} [Sun Aug 19 16:24:51 2018] GET /titanic/fltrs/?q=_adult => generated 486 bytes in 23 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 34/34] 10.0.2.2 () {42 vars in 671 bytes} [Sun Aug 19 16:24:52 2018] GET /titanic/fltrs/?q= => generated 523 bytes in 20 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 35/35] 10.0.2.2 () {48 vars in 816 bytes} [Sun Aug 19 16:27:46 2018] GET /titanic/ => generated 2932 bytes in 13 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 36/36] 10.0.2.2 () {42 vars in 683 bytes} [Sun Aug 19 16:28:13 2018] GET /titanic/fltrs/?q=_lived => generated 520 bytes in 13 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 37/37] 10.0.2.2 () {42 vars in 671 bytes} [Sun Aug 19 16:28:14 2018] GET /titanic/fltrs/?q= => generated 523 bytes in 10 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 38/38] 10.0.2.2 () {42 vars in 681 bytes} [Sun Aug 19 16:28:15 2018] GET /titanic/fltrs/?q=_died => generated 496 bytes in 13 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 39/39] 10.0.2.2 () {42 vars in 671 bytes} [Sun Aug 19 16:28:16 2018] GET /titanic/fltrs/?q= => generated 523 bytes in 10 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 40/40] 10.0.2.2 () {42 vars in 681 bytes} [Sun Aug 19 16:28:17 2018] GET /titanic/fltrs/?q=_male => generated 500 bytes in 14 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 41/41] 10.0.2.2 () {42 vars in 693 bytes} [Sun Aug 19 16:28:19 2018] GET /titanic/fltrs/?q=_male_adult => generated 503 bytes in 24 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 42/42] 10.0.2.2 () {42 vars in 703 bytes} [Sun Aug 19 16:28:22 2018] GET /titanic/fltrs/?q=_male_adult_died => generated 501 bytes in 17 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 43/43] 10.0.2.2 () {42 vars in 693 bytes} [Sun Aug 19 16:28:27 2018] GET /titanic/fltrs/?q=_adult_died => generated 489 bytes in 15 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 44/44] 10.0.2.2 () {42 vars in 683 bytes} [Sun Aug 19 16:28:30 2018] GET /titanic/fltrs/?q=_adult => generated 486 bytes in 15 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 45/45] 10.0.2.2 () {42 vars in 671 bytes} [Sun Aug 19 16:28:34 2018] GET /titanic/fltrs/?q= => generated 523 bytes in 10 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 46/46] 10.0.2.2 () {42 vars in 683 bytes} [Sun Aug 19 16:28:54 2018] GET /titanic/fltrs/?q=_lived => generated 520 bytes in 13 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 47/47] 10.0.2.2 () {42 vars in 671 bytes} [Sun Aug 19 16:28:56 2018] GET /titanic/fltrs/?q= => generated 523 bytes in 10 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 48/48] 10.0.2.2 () {42 vars in 681 bytes} [Sun Aug 19 16:28:59 2018] GET /titanic/fltrs/?q=_male => generated 500 bytes in 12 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 49/49] 10.0.2.2 () {42 vars in 703 bytes} [Sun Aug 19 16:29:00 2018] GET /titanic/fltrs/?q=_male_thirdclass => generated 432 bytes in 15 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 50/50] 10.0.2.2 () {42 vars in 713 bytes} [Sun Aug 19 16:29:02 2018] GET /titanic/fltrs/?q=_male_thirdclass_died => generated 426 bytes in 17 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 51/51] 10.0.2.2 () {42 vars in 725 bytes} [Sun Aug 19 16:29:06 2018] GET /titanic/fltrs/?q=_male_thirdclass_died_adult => generated 422 bytes in 19 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 52/52] 10.0.2.2 () {42 vars in 713 bytes} [Sun Aug 19 16:29:08 2018] GET /titanic/fltrs/?q=_male_thirdclass_died => generated 426 bytes in 17 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 53/53] 10.0.2.2 () {42 vars in 703 bytes} [Sun Aug 19 16:29:11 2018] GET /titanic/fltrs/?q=_male_thirdclass => generated 432 bytes in 14 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 54/54] 10.0.2.2 () {42 vars in 693 bytes} [Sun Aug 19 16:29:16 2018] GET /titanic/fltrs/?q=_thirdclass => generated 438 bytes in 13 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 55/55] 10.0.2.2 () {42 vars in 671 bytes} [Sun Aug 19 16:29:18 2018] GET /titanic/fltrs/?q= => generated 523 bytes in 10 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 56/56] 10.0.2.2 () {42 vars in 683 bytes} [Sun Aug 19 16:29:43 2018] GET /titanic/fltrs/?q=_child => generated 556 bytes in 13 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 57/57] 10.0.2.2 () {42 vars in 671 bytes} [Sun Aug 19 16:29:45 2018] GET /titanic/fltrs/?q= => generated 523 bytes in 10 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)

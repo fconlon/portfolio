@@ -2,34 +2,38 @@
 <!DOCTYPE html>
 <head>
     <title>Titanic Survivors</title>
-    <script src="{% static 'titanic/js/aframe.min.js' %}"></script>
-    <script src="{% static 'titanic/js/titanic_components.js' %}"></script>
-    <script src="{% static 'titanic/js/titanic_primitives.js' %}"></script>
+    <script src="{% static "titanic/js/aframe.min.js" %}"></script>
+    <script src="{% static "titanic/js/titanic_components.js" %}"></script>
+    <script src="{% static "titanic/js/titanic_primitives.js" %}"></script>
 </head>
 <body>
     <a-scene cursor="rayOrigin:mouse" embedded style="width:1000px; height:500px">
         <a-sky color="grey"></a-sky>
-        <a-plane height='8' width='8' color='teal' rotation="-90 0 0" position="0 0 -2"></a-plane>
-        <a-tcyl id="fc" color="red" height="{{ fc.0 }}" opos="-1.5 {{ fc.1 }} -3" filter='firstclass'></a-tcyl>
-        <a-tcyl id="sc" color="white" height="{{ sc.0 }}" opos="-1.5 {{ sc.1 }} -3.5" filter='secondclass'></a-tcyl>
-        <a-tcyl id="tc" color="blue" height="{{ tc.0 }}" opos="-1.5 {{ tc.1 }} -4" filter='thirdclass'></a-tcyl>
-        <a-tcyl id="fcf" color="red" height="{{ fcf.0 }}" opos="-.5 {{ fcf.1 }} -3" filter='female'></a-tcyl>
-        <a-tcyl id="scf" color="white" height="{{ scf.0 }}" opos="-.5 {{ scf.1 }} -3" filter='female'></a-tcyl>
-        <a-tcyl id="tcf" color="blue" height="{{ tcf.0 }}" opos="-.5 {{ tcf.1 }} -3" filter='female'></a-tcyl>
-        <a-tcyl id="fcm" color="red" height="{{ fcm.0 }}" opos="-.5 {{ fcm.1 }} -4" filter='male'></a-tcyl>
-        <a-tcyl id="scm" color="white" height="{{ scm.0 }}" opos="-.5 {{ scm.1 }} -4" filter='male'></a-tcyl>
-        <a-tcyl id="tcm" color="blue" height="{{ tcm.0 }}" opos="-.5 {{ tcm.1 }} -4" filter='male'></a-tcyl>
-        <a-tcyl id="fcl" color="red" height="{{ fcl.0 }}" opos=".5 {{ fcl.1 }} -3" filter='lived'></a-tcyl>
-        <a-tcyl id="scl" color="white" height="{{ scl.0 }}" opos=".5 {{ scl.1 }} -3" filter='lived'></a-tcyl>
-        <a-tcyl id="tcl" color="blue" height="{{ tcl.0 }}" opos=".5 {{ tcl.1 }} -3" filter='lived'></a-tcyl>
-        <a-tcyl id="fcd" color="red" height="{{ fcd.0 }}" opos=".5 {{ fcd.1 }} -4" filter='died'></a-tcyl>
-        <a-tcyl id="scd" color="white" height="{{ scd.0 }}" opos=".5 {{ scd.1 }} -4" filter='died'></a-tcyl>
-        <a-tcyl id="tcd" color="blue" height="{{ tcd.0 }}" opos=".5 {{ tcd.1 }} -4" filter='died'></a-tcyl>
-        <a-tcyl id="fcc" color="red" height="{{ fcc.0 }}" opos="1.5 {{ fcc.1 }} -3" filter='child'></a-tcyl>
-        <a-tcyl id="scc" color="white" height="{{ scc.0 }}" opos="1.5 {{ scc.1 }} -3" filter='child'></a-tcyl>
-        <a-tcyl id="tcc" color="blue" height="{{ tcc.0 }}" opos="1.5 {{ tcc.1 }} -3" filter='child'></a-tcyl>
-        <a-tcyl id="fca" color="red" height="{{ fca.0 }}" opos="1.5 {{ fca.1 }} -4" filter='adult'></a-tcyl>
-        <a-tcyl id="sca" color="white" height="{{ sca.0 }}" opos="1.5 {{ sca.1 }} -4" filter='adult'></a-tcyl>
-        <a-tcyl id="tca" color="blue" height="{{ tca.0 }}" opos="1.5 {{ tca.1 }} -4" filter='adult'></a-tcyl>
+        <a-plane height="8" width="8" color="teal" rotation="-90 0 0" position="0 0 -2"></a-plane>
+        <a-txt value="Class" position="-1.5 0 -2.75" rotation="-90 0 0"></a-txt>
+        <a-txt value="Sex" position="-.5 0 -2.75" rotation="-90 0 0"></a-txt>
+        <a-txt value="Survived" position=".5 0 -2.75" rotation="-90 0 0"></a-txt>
+        <a-txt value="Age" position="1.5 0 -2.75" rotation="-90 0 0"></a-txt>
+        <a-tcyl id="fc" color="red" height="{{ cyls.fc.0 }}" opos="-1.5 {{ cyls.fc.1 }} -3" filter="firstclass"></a-tcyl>
+        <a-tcyl id="sc" color="white" height="{{ cyls.sc.0 }}" opos="-1.5 {{ cyls.sc.1 }} -3.5" filter="secondclass"></a-tcyl>
+        <a-tcyl id="tc" color="blue" height="{{ cyls.tc.0 }}" opos="-1.5 {{ cyls.tc.1 }} -4" filter="thirdclass"></a-tcyl>
+        <a-tcyl id="fcf" color="red" height="{{ cyls.fcf.0 }}" opos="-.5 {{ cyls.fcf.1 }} -3" filter="female"></a-tcyl>
+        <a-tcyl id="scf" color="white" height="{{ cyls.scf.0 }}" opos="-.5 {{ cyls.scf.1 }} -3" filter="female"></a-tcyl>
+        <a-tcyl id="tcf" color="blue" height="{{ cyls.tcf.0 }}" opos="-.5 {{ cyls.tcf.1 }} -3" filter="female"></a-tcyl>
+        <a-tcyl id="fcm" color="red" height="{{ cyls.fcm.0 }}" opos="-.5 {{ cyls.fcm.1 }} -4" filter="male"></a-tcyl>
+        <a-tcyl id="scm" color="white" height="{{ cyls.scm.0 }}" opos="-.5 {{ cyls.scm.1 }} -4" filter="male"></a-tcyl>
+        <a-tcyl id="tcm" color="blue" height="{{ cyls.tcm.0 }}" opos="-.5 {{ cyls.tcm.1 }} -4" filter="male"></a-tcyl>
+        <a-tcyl id="fcl" color="red" height="{{ cyls.fcl.0 }}" opos=".5 {{ cyls.fcl.1 }} -3" filter="lived"></a-tcyl>
+        <a-tcyl id="scl" color="white" height="{{ cyls.scl.0 }}" opos=".5 {{ cyls.scl.1 }} -3" filter="lived"></a-tcyl>
+        <a-tcyl id="tcl" color="blue" height="{{ cyls.tcl.0 }}" opos=".5 {{ cyls.tcl.1 }} -3" filter="lived"></a-tcyl>
+        <a-tcyl id="fcd" color="red" height="{{ cyls.fcd.0 }}" opos=".5 {{ cyls.fcd.1 }} -4" filter="died"></a-tcyl>
+        <a-tcyl id="scd" color="white" height="{{ cyls.scd.0 }}" opos=".5 {{ cyls.scd.1 }} -4" filter="died"></a-tcyl>
+        <a-tcyl id="tcd" color="blue" height="{{ cyls.tcd.0 }}" opos=".5 {{ cyls.tcd.1 }} -4" filter="died"></a-tcyl>
+        <a-tcyl id="fcc" color="red" height="{{ cyls.fcc.0 }}" opos="1.5 {{ cyls.fcc.1 }} -3" filter="child"></a-tcyl>
+        <a-tcyl id="scc" color="white" height="{{ cyls.scc.0 }}" opos="1.5 {{ cyls.scc.1 }} -3" filter="child"></a-tcyl>
+        <a-tcyl id="tcc" color="blue" height="{{ cyls.tcc.0 }}" opos="1.5 {{ cyls.tcc.1 }} -3" filter="child"></a-tcyl>
+        <a-tcyl id="fca" color="red" height="{{ cyls.fca.0 }}" opos="1.5 {{ cyls.fca.1 }} -4" filter="adult"></a-tcyl>
+        <a-tcyl id="sca" color="white" height="{{ cyls.sca.0 }}" opos="1.5 {{ cyls.sca.1 }} -4" filter="adult"></a-tcyl>
+        <a-tcyl id="tca" color="blue" height="{{ cyls.tca.0 }}" opos="1.5 {{ cyls.tca.1 }} -4" filter="adult"></a-tcyl>
 </a-scene>
 </body>
