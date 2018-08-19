@@ -10,10 +10,13 @@
     <a-scene cursor="rayOrigin:mouse" embedded style="width:1000px; height:500px">
         <a-sky color="grey"></a-sky>
         <a-plane height="8" width="8" color="teal" rotation="-90 0 0" position="0 0 -2"></a-plane>
+        <!--Base Labels-->
         <a-txt value="Class" position="-1.5 0 -2.75" rotation="-90 0 0"></a-txt>
         <a-txt value="Sex" position="-.5 0 -2.75" rotation="-90 0 0"></a-txt>
         <a-txt value="Survived" position=".5 0 -2.75" rotation="-90 0 0"></a-txt>
         <a-txt value="Age" position="1.5 0 -2.75" rotation="-90 0 0"></a-txt>
+
+        <!--Cylinders-->
         <a-tcyl id="fc" color="red" height="{{ cyls.fc.0 }}" opos="-1.5 {{ cyls.fc.1 }} -3" filter="firstclass"></a-tcyl>
         <a-tcyl id="sc" color="white" height="{{ cyls.sc.0 }}" opos="-1.5 {{ cyls.sc.1 }} -3.5" filter="secondclass"></a-tcyl>
         <a-tcyl id="tc" color="blue" height="{{ cyls.tc.0 }}" opos="-1.5 {{ cyls.tc.1 }} -4" filter="thirdclass"></a-tcyl>
@@ -35,5 +38,16 @@
         <a-tcyl id="fca" color="red" height="{{ cyls.fca.0 }}" opos="1.5 {{ cyls.fca.1 }} -4" filter="adult"></a-tcyl>
         <a-tcyl id="sca" color="white" height="{{ cyls.sca.0 }}" opos="1.5 {{ cyls.sca.1 }} -4" filter="adult"></a-tcyl>
         <a-tcyl id="tca" color="blue" height="{{ cyls.tca.0 }}" opos="1.5 {{ cyls.tca.1 }} -4" filter="adult"></a-tcyl>
+
+        <!--Cylinder Labels-->
+        <a-txt id="fct" value="First" position="-1.5 {{ text.fct }} -3"></a-txt>
+        <a-txt id="sct" value="Second" position="-1.5 {{ text.sct }} -3.5"></a-txt>
+        <a-txt id="tct" value="Third" position="-1.5 {{ text.tct }} -4"></a-txt>
+        <a-txt id="ft" value="Female" position="-.5 {{ text.ft }} -3"></a-txt>
+        <a-txt id="mt" value="Male" position="-.5 {{ text.mt }} -4"></a-txt>
+        <a-txt id="lt" value="Lived" position=".5 {{ text.lt }} -3"></a-txt>
+        <a-txt id="dt" value="Died" position=".5 {{ text.dt }} -4"></a-txt>
+        <a-txt id="ct" value="Child" position="1.5 {{ text.ct }} -3"></a-txt>
+        <a-txt id="at" value="Adult" position="1.5 {{ text.at }} -4"></a-txt>
 </a-scene>
 </body>

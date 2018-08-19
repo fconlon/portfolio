@@ -143,3 +143,99 @@ spawned uWSGI worker 1 (and the only) (pid: 3776, cores: 1)
 [pid: 3776|app: 0|req: 55/55] 10.0.2.2 () {42 vars in 671 bytes} [Sun Aug 19 16:29:18 2018] GET /titanic/fltrs/?q= => generated 523 bytes in 10 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
 [pid: 3776|app: 0|req: 56/56] 10.0.2.2 () {42 vars in 683 bytes} [Sun Aug 19 16:29:43 2018] GET /titanic/fltrs/?q=_child => generated 556 bytes in 13 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
 [pid: 3776|app: 0|req: 57/57] 10.0.2.2 () {42 vars in 671 bytes} [Sun Aug 19 16:29:45 2018] GET /titanic/fltrs/?q= => generated 523 bytes in 10 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 3776|app: 0|req: 58/58] 10.0.2.2 () {48 vars in 816 bytes} [Sun Aug 19 16:41:30 2018] GET /titanic/ => generated 2960 bytes in 54 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.17.1 (64bit) on [Sun Aug 19 16:44:22 2018] ***
+compiled with version: 8.2.0 on 17 August 2018 23:27:45
+os: Linux-4.18.1-arch1-1-ARCH #1 SMP PREEMPT Wed Aug 15 21:11:55 UTC 2018
+nodename: archbox
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /home/fconlon/portfolio
+detected binary path: /usr/bin/uwsgi
+chdir() to /home/fconlon/portfolio/
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 7941
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address localhost:3031 fd 3
+Python version: 3.7.0 (default, Jul 15 2018, 10:44:58)  [GCC 8.1.1 20180531]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x56090f46d3d0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72920 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x56090f46d3d0 pid: 4211 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 4211, cores: 1)
+[pid: 4211|app: 0|req: 1/1] 10.0.2.2 () {48 vars in 816 bytes} [Sun Aug 19 16:44:31 2018] GET /titanic/ => generated 3080 bytes in 68 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.17.1 (64bit) on [Sun Aug 19 16:56:48 2018] ***
+compiled with version: 8.2.0 on 17 August 2018 23:27:45
+os: Linux-4.18.1-arch1-1-ARCH #1 SMP PREEMPT Wed Aug 15 21:11:55 UTC 2018
+nodename: archbox
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /home/fconlon/portfolio
+detected binary path: /usr/bin/uwsgi
+chdir() to /home/fconlon/portfolio/
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 7941
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address localhost:3031 fd 3
+Python version: 3.7.0 (default, Jul 15 2018, 10:44:58)  [GCC 8.1.1 20180531]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x564dbd3993d0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72920 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x564dbd3993d0 pid: 4223 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 4223, cores: 1)
+[pid: 4223|app: 0|req: 1/1] 10.0.2.2 () {48 vars in 816 bytes} [Sun Aug 19 16:56:53 2018] GET /titanic/ => generated 3389 bytes in 73 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 4223|app: 0|req: 2/2] 10.0.2.2 () {42 vars in 683 bytes} [Sun Aug 19 16:57:06 2018] GET /titanic/fltrs/?q=_adult => generated 603 bytes in 26 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 4223|app: 0|req: 3/3] 10.0.2.2 () {42 vars in 671 bytes} [Sun Aug 19 16:57:10 2018] GET /titanic/fltrs/?q= => generated 614 bytes in 12 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 4223|app: 0|req: 4/4] 10.0.2.2 () {42 vars in 683 bytes} [Sun Aug 19 16:57:12 2018] GET /titanic/fltrs/?q=_lived => generated 623 bytes in 20 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 4223|app: 0|req: 5/5] 10.0.2.2 () {42 vars in 671 bytes} [Sun Aug 19 16:57:15 2018] GET /titanic/fltrs/?q= => generated 614 bytes in 12 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 4223|app: 0|req: 6/6] 10.0.2.2 () {42 vars in 683 bytes} [Sun Aug 19 16:58:07 2018] GET /titanic/fltrs/?q=_lived => generated 623 bytes in 15 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 4223|app: 0|req: 7/7] 10.0.2.2 () {42 vars in 671 bytes} [Sun Aug 19 16:58:09 2018] GET /titanic/fltrs/?q= => generated 614 bytes in 13 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 4223|app: 0|req: 8/8] 10.0.2.2 () {42 vars in 693 bytes} [Sun Aug 19 16:58:11 2018] GET /titanic/fltrs/?q=_thirdclass => generated 527 bytes in 16 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 4223|app: 0|req: 9/9] 10.0.2.2 () {42 vars in 671 bytes} [Sun Aug 19 16:58:13 2018] GET /titanic/fltrs/?q= => generated 614 bytes in 14 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.17.1 (64bit) on [Sun Aug 19 17:01:58 2018] ***
+compiled with version: 8.2.0 on 17 August 2018 23:27:45
+os: Linux-4.18.1-arch1-1-ARCH #1 SMP PREEMPT Wed Aug 15 21:11:55 UTC 2018
+nodename: archbox
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /home/fconlon/portfolio
+detected binary path: /usr/bin/uwsgi
+chdir() to /home/fconlon/portfolio/
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 7941
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address localhost:3031 fd 3
+Python version: 3.7.0 (default, Jul 15 2018, 10:44:58)  [GCC 8.1.1 20180531]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x5598cc85c3d0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72920 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x5598cc85c3d0 pid: 4233 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 4233, cores: 1)
+[pid: 4233|app: 0|req: 1/1] 10.0.2.2 () {48 vars in 816 bytes} [Sun Aug 19 17:02:07 2018] GET /titanic/ => generated 3678 bytes in 75 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)

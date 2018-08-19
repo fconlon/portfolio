@@ -36,7 +36,8 @@ def build_titanic_context(filters):
             'fca': [Survivors.objects.filter(pclass__exact=1).filter(age__gte=18)],
             'sca': [Survivors.objects.filter(pclass__exact=2).filter(age__gte=18)],
             'tca': [Survivors.objects.filter(pclass__exact=3).filter(age__gte=18)],
-        }
+        },
+        "text": {}
     }
 
     #add extra filters
@@ -64,7 +65,7 @@ def build_titanic_context(filters):
         value.append(round(value[1]/2, 4))
         value.pop(0)
 
-    #add together appropriate cyl heights
+    #calculate cyl y position heights
     ctxt['cyls']['scf'][1] += ctxt['cyls']['fcf'][0]
     ctxt['cyls']['tcf'][1] += ctxt['cyls']['fcf'][0] + ctxt['cyls']['scf'][0]
     ctxt['cyls']['scm'][1] += ctxt['cyls']['fcm'][0]
@@ -77,6 +78,17 @@ def build_titanic_context(filters):
     ctxt['cyls']['tcc'][1] += ctxt['cyls']['fcc'][0] + ctxt['cyls']['scc'][0]
     ctxt['cyls']['sca'][1] += ctxt['cyls']['fca'][0]
     ctxt['cyls']['tca'][1] += ctxt['cyls']['fca'][0] + ctxt['cyls']['sca'][0]
+
+    #calculate cyl text label heights
+    ctxt['text']['fct'] = ctxt['cyls']['fc'][0] + .15
+    ctxt['text']['sct'] = ctxt['cyls']['sc'][0] + .15
+    ctxt['text']['tct'] = ctxt['cyls']['tc'][0] + .15
+    ctxt['text']['ft'] = ctxt['cyls']['fcf'][0] + ctxt['cyls']['scf'][0] + ctxt['cyls']['tcf'][0] + .15
+    ctxt['text']['mt'] = ctxt['cyls']['fcm'][0] + ctxt['cyls']['scm'][0] + ctxt['cyls']['tcm'][0] + .15
+    ctxt['text']['lt'] = ctxt['cyls']['fcl'][0] + ctxt['cyls']['scl'][0] + ctxt['cyls']['tcl'][0] + .15
+    ctxt['text']['dt'] = ctxt['cyls']['fcd'][0] + ctxt['cyls']['scd'][0] + ctxt['cyls']['tcd'][0] + .15
+    ctxt['text']['ct'] = ctxt['cyls']['fcc'][0] + ctxt['cyls']['scc'][0] + ctxt['cyls']['tcc'][0] + .15
+    ctxt['text']['at'] = ctxt['cyls']['fca'][0] + ctxt['cyls']['sca'][0] + ctxt['cyls']['tca'][0] + .15
 
     return ctxt
 
