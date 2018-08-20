@@ -38,6 +38,14 @@ AFRAME.registerComponent('clickablecyl', {
                         var ele = document.getElementById(id);
                         ele.object3D.position.y = json['text'][id];
                     }
+                    //adjust parabolas
+                    for (id in json['parab']) {
+                      var ele = document.getElementById(id);
+                      ele.setAttribute('top', json['parab'][id][0]);
+                      if (json['parab'][id][1] != 0) {
+                        ele.setAttribute('bot', json['parab'][json['parab'][id][1]][0]);
+                      }
+                    }
                     //display applied filters
                     ele = document.getElementById('filters');
                     while (ele.children[0]) {
@@ -67,7 +75,7 @@ AFRAME.registerComponent('clickablecyl', {
                     ele.clicked = !ele.clicked;
                 }
             }
-            
+
             /*
             var vis = event.currentTarget.getAttribute('visible');
             if (vis) {

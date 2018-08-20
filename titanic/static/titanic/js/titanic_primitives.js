@@ -57,14 +57,14 @@ AFRAME.registerGeometry('parabola', {
         bot: { type: 'number', default: 1 },
         start: { type: 'string', default: '-2 0 0' },
         end: { type: 'string', default: '2 0 0' },
-        segments: { type: 'int', default: 50 }
+        segments: { type: 'int', default: 49 }
     },
 
     init: function (data) {
         var geometry = new THREE.Geometry();
         geometry.vertices = points(data.start, data.end, data.segments, data.top, data.bot);
         geometry.computeBoundingBox();
-        
+
         geometry.faces.push(new THREE.Face3(0, data.segments, 1));
         var topi = 1;
         var boti = data.segments;
@@ -81,11 +81,6 @@ AFRAME.registerGeometry('parabola', {
             i++;
         }
         geometry.faces.push(new THREE.Face3(topi, boti, geometry.vertices.length-1));
-        /*
-        for (i = geometry.vertices.length - 1; i > 1; i--) {
-            geometry.faces.push(new THREE.Face3(0, i - 1, i));
-        }
-        */
         geometry.mergeVertices();
         geometry.computeFaceNormals();
         geometry.computeVertexNormals();
