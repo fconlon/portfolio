@@ -6,6 +6,7 @@ AFRAME.registerPrimitive('a-tcyl', {
             primitive: 'cylinder',
             radius: rad
         },
+        shadow: {},
         material: {},
         clickablecyl: {}
     },
@@ -32,11 +33,26 @@ AFRAME.registerPrimitive('a-txt', {
     }
 });
 
+AFRAME.registerPrimitive('a-lght', {
+  defaultComponents: {
+    light: {
+      type: 'directional',
+      color: '#FFF',
+      intensity: .6,
+      castShadow: true,
+      shadowMapHeight: 4096,
+      shadowMapWidth: 4096
+    }
+  },
+  mappings: {}
+});
+
 AFRAME.registerPrimitive('a-parabola', {
     defaultComponents: {
         geometry: {
             primitive: 'parabola'
         },
+        shadow: {},
         material: {
             side: 'double'
         }
