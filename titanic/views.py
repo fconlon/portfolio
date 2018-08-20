@@ -37,10 +37,14 @@ def build_titanic_context(filters):
             'sca': [Survivors.objects.filter(pclass__exact=2).filter(age__gte=18)],
             'tca': [Survivors.objects.filter(pclass__exact=3).filter(age__gte=18)],
         },
-        "text": {}
+        'parab': {
+            'fcmp': [Survivors.objects.filter(pclass__exact=1).filter(sex__exact='male')],
+            'fcfp': [Survivors.objects.filter(pclass__exact=1).filter(sex__exact='female')],
+        },
+        'text': {}
     }
 
-    #add extra filters
+    #fliter cylinders
     for (key, value) in ctxt['cyls'].items():
         for fltr in filters.split('_'):
             if fltr == 'firstclass':
@@ -64,6 +68,29 @@ def build_titanic_context(filters):
         value.append(round(value[0].count() * HRATIO, 4))
         value.append(round(value[1]/2, 4))
         value.pop(0)
+
+    #filter parabolas
+    for (key, value) in ctxt['parab'].items():
+        for fltr in filters.split('_'):
+            if fltr == 'firstclass':
+                value[0] = value[0].filter(pclass__exact=1)
+            elif fltr == 'secondclass':
+                value[0] = value[0].filter(pclass__exact=2)
+            elif fltr == 'thirdclass':
+                value[0] = value[0].filter(pclass__exact=3)
+            elif fltr == 'female':
+                value[0] = value[0].filter(sex__exact='female')
+            elif fltr == 'male':
+                value[0] = value[0].filter(sex__exact='male')
+            elif fltr == 'lived':
+                value[0] = value[0].filter(survived__exact=True)
+            elif fltr == 'died':
+                value[0] = value[0].filter(survived__exact=False)
+            elif fltr == 'child':
+                value[0] = value[0].filter(age__lt=18)
+            elif fltr == 'adult':
+                value[0] = value[0].filter(age__gte=18).extra(where=["age!=''"])
+        ctxt['parab'][key] = round(value[0].count() * HRATIO, 4)
 
     #calculate cyl y position heights
     ctxt['cyls']['scf'][1] += ctxt['cyls']['fcf'][0]
@@ -91,4 +118,3 @@ def build_titanic_context(filters):
     ctxt['text']['at'] = ctxt['cyls']['fca'][0] + ctxt['cyls']['sca'][0] + ctxt['cyls']['tca'][0] + .15
 
     return ctxt
-
