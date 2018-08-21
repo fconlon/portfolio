@@ -11,11 +11,11 @@
 }
 
 .header {
-     border-radius: 10px 10px 0px 0px;
-     background-color: #007bff;
-     border-color: #007bff !important;
+     color: black !important;
+     font-weight: bold;
+     border-radius: 10px 10px 0px 0px !important;
 }
 
-tbody tr:last-child td {
-    border-radius: 0px 0px 10px 10px;
+ul li:last-child {
+    border-radius: 0px 0px 10px 10px !important;
 }

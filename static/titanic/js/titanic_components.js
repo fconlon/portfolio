@@ -48,23 +48,25 @@ AFRAME.registerComponent('clickablecyl', {
                     }
                     //display applied filters
                     ele = document.getElementById('filters');
-                    while (ele.children[0]) {
-                        ele.removeChild(ele.children[0]);
+                    while (ele.children[1]) {
+                        ele.removeChild(ele.children[1]);
                     }
                     if (filters) {
                         fltrList = filters.split('_');
                         for (i in fltrList) {
                             if (fltrList[i]){
-                               tr = document.createElement('tr');
-                               tr.innerHTML = '<td>' + fltrList[i] + '</td>';
-                               ele.appendChild(tr);
+                               li = document.createElement('li');
+                               li.classList.add('list-group-item');
+                               li.innerHTML=fltrList[i];
+                               ele.appendChild(li);
                             }
                         }
                     }
                     else {
-                        tr = document.createElement('tr');
-                        tr.innerHTML = '<td>None</td>';
-                        ele.appendChild(tr);
+                      li = document.createElement('li');
+                      li.classList.add('list-group-item');
+                      li.innerHTML="None";
+                      ele.appendChild(li);
                     }
                 }
             }
