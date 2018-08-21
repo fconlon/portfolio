@@ -1,0 +1,21 @@
+.scene-div {
+    width:1000px;
+    height:500px;
+    margin: 0 auto;
+}
+
+.custom-table {
+    width: 250px;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.header {
+     border-radius: 10px 10px 0px 0px;
+     background-color: #007bff;
+     border-color: #007bff !important;
+}
+
+tbody tr:last-child td {
+    border-radius: 0px 0px 10px 10px;
+}

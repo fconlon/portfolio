@@ -2,117 +2,121 @@
 <!DOCTYPE html>
 <head>
     <title>Titanic Survivors</title>
-    <script src="{% static "titanic/js/aframe.min.js" %}"></script>
-    <script src="{% static "titanic/js/titanic_components.js" %}"></script>
-    <script src="{% static "titanic/js/titanic_primitives.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'titanic/css/index.css' %}">
+    <script src="{% static 'titanic/js/aframe.min.js' %}"></script>
+    <script src="{% static 'titanic/js/titanic_components.js' %}"></script>
+    <script src="{% static 'titanic/js/titanic_primitives.js' %}"></script>
 </head>
 <body>
-    <a-scene cursor="rayOrigin:mouse" embedded style="width:1000px; height:500px" shadow="type: pcfsoft">
-        <!--Environment-->
-        <a-entity light="type: ambient; color: lightgray"></a-entity>
-        <a-lght id='lght' position="-0.5 1 1"></a-lght>
-        <a-sky color="grey"></a-sky>
-        <a-plane height="8" width="8" color="teal" rotation="-90 0 0" position="0 0 -2" shadow></a-plane>
+    <div class="scene-div">
+        <a-scene cursor="rayOrigin:mouse" embedded  shadow="type: pcfsoft">
+            <!--Environment-->
+            <a-entity light="type: ambient; color: lightgray"></a-entity>
+            <a-lght id='lght' position="-0.5 1 1"></a-lght>
+            <a-sky color="grey"></a-sky>
+            <a-plane height="8" width="8" color="teal" rotation="-90 0 0" position="0 0 -2" shadow></a-plane>
 
-        <!--Base Labels-->
-        <a-txt value="Class" position="-1.5 0 -2.75" rotation="-90 0 0"></a-txt>
-        <a-txt value="Sex" position="-.5 0 -2.75" rotation="-90 0 0"></a-txt>
-        <a-txt value="Survived" position=".5 0 -2.75" rotation="-90 0 0"></a-txt>
-        <a-txt value="Age" position="1.5 0 -2.75" rotation="-90 0 0"></a-txt>
+            <!--Base Labels-->
+            <a-txt value="Class" position="-1.5 0 -2.75" rotation="-90 0 0"></a-txt>
+            <a-txt value="Sex" position="-.5 0 -2.75" rotation="-90 0 0"></a-txt>
+            <a-txt value="Survived" position=".5 0 -2.75" rotation="-90 0 0"></a-txt>
+            <a-txt value="Age" position="1.5 0 -2.75" rotation="-90 0 0"></a-txt>
 
-        <!--Cylinders-->
-        <!--Class-->
-        <a-tcyl id="fc" color="red" height="{{ cyls.fc.0 }}" opos="-1.5 {{ cyls.fc.1 }} -3" filter="firstclass"></a-tcyl>
-        <a-tcyl id="sc" color="lightgray" height="{{ cyls.sc.0 }}" opos="-1.5 {{ cyls.sc.1 }} -3.5" filter="secondclass"></a-tcyl>
-        <a-tcyl id="tc" color="blue" height="{{ cyls.tc.0 }}" opos="-1.5 {{ cyls.tc.1 }} -4" filter="thirdclass"></a-tcyl>
-        <!--Female-->
-        <a-tcyl id="fcf" color="red" height="{{ cyls.fcf.0 }}" opos="-.5 {{ cyls.fcf.1 }} -3" filter="female"></a-tcyl>
-        <a-tcyl id="scf" color="lightgray" height="{{ cyls.scf.0 }}" opos="-.5 {{ cyls.scf.1 }} -3" filter="female"></a-tcyl>
-        <a-tcyl id="tcf" color="blue" height="{{ cyls.tcf.0 }}" opos="-.5 {{ cyls.tcf.1 }} -3" filter="female"></a-tcyl>
-        <!--Male-->
-        <a-tcyl id="fcm" color="red" height="{{ cyls.fcm.0 }}" opos="-.5 {{ cyls.fcm.1 }} -4" filter="male"></a-tcyl>
-        <a-tcyl id="scm" color="lightgray" height="{{ cyls.scm.0 }}" opos="-.5 {{ cyls.scm.1 }} -4" filter="male"></a-tcyl>
-        <a-tcyl id="tcm" color="blue" height="{{ cyls.tcm.0 }}" opos="-.5 {{ cyls.tcm.1 }} -4" filter="male"></a-tcyl>
-        <!--Lived-->
-        <a-tcyl id="fcl" color="red" height="{{ cyls.fcl.0 }}" opos=".5 {{ cyls.fcl.1 }} -3" filter="lived"></a-tcyl>
-        <a-tcyl id="scl" color="lightgray" height="{{ cyls.scl.0 }}" opos=".5 {{ cyls.scl.1 }} -3" filter="lived"></a-tcyl>
-        <a-tcyl id="tcl" color="blue" height="{{ cyls.tcl.0 }}" opos=".5 {{ cyls.tcl.1 }} -3" filter="lived"></a-tcyl>
-        <!--Died-->
-        <a-tcyl id="fcd" color="red" height="{{ cyls.fcd.0 }}" opos=".5 {{ cyls.fcd.1 }} -4" filter="died"></a-tcyl>
-        <a-tcyl id="scd" color="lightgray" height="{{ cyls.scd.0 }}" opos=".5 {{ cyls.scd.1 }} -4" filter="died"></a-tcyl>
-        <a-tcyl id="tcd" color="blue" height="{{ cyls.tcd.0 }}" opos=".5 {{ cyls.tcd.1 }} -4" filter="died"></a-tcyl>
-        <!--Child-->
-        <a-tcyl id="fcc" color="red" height="{{ cyls.fcc.0 }}" opos="1.5 {{ cyls.fcc.1 }} -3" filter="child"></a-tcyl>
-        <a-tcyl id="scc" color="lightgray" height="{{ cyls.scc.0 }}" opos="1.5 {{ cyls.scc.1 }} -3" filter="child"></a-tcyl>
-        <a-tcyl id="tcc" color="blue" height="{{ cyls.tcc.0 }}" opos="1.5 {{ cyls.tcc.1 }} -3" filter="child"></a-tcyl>
-        <!--Adult-->
-        <a-tcyl id="fca" color="red" height="{{ cyls.fca.0 }}" opos="1.5 {{ cyls.fca.1 }} -4" filter="adult"></a-tcyl>
-        <a-tcyl id="sca" color="lightgray" height="{{ cyls.sca.0 }}" opos="1.5 {{ cyls.sca.1 }} -4" filter="adult"></a-tcyl>
-        <a-tcyl id="tca" color="blue" height="{{ cyls.tca.0 }}" opos="1.5 {{ cyls.tca.1 }} -4" filter="adult"></a-tcyl>
+            <!--Cylinders-->
+            <!--Class-->
+            <a-tcyl id="fc" color="red" height="{{ cyls.fc.0 }}" opos="-1.5 {{ cyls.fc.1 }} -3" filter="First Class"></a-tcyl>
+            <a-tcyl id="sc" color="lightgray" height="{{ cyls.sc.0 }}" opos="-1.5 {{ cyls.sc.1 }} -3.5" filter="Second Class"></a-tcyl>
+            <a-tcyl id="tc" color="blue" height="{{ cyls.tc.0 }}" opos="-1.5 {{ cyls.tc.1 }} -4" filter="Third Class"></a-tcyl>
+            <!--Female-->
+            <a-tcyl id="fcf" color="red" height="{{ cyls.fcf.0 }}" opos="-.5 {{ cyls.fcf.1 }} -3" filter="Female"></a-tcyl>
+            <a-tcyl id="scf" color="lightgray" height="{{ cyls.scf.0 }}" opos="-.5 {{ cyls.scf.1 }} -3" filter="Female"></a-tcyl>
+            <a-tcyl id="tcf" color="blue" height="{{ cyls.tcf.0 }}" opos="-.5 {{ cyls.tcf.1 }} -3" filter="Female"></a-tcyl>
+            <!--Male-->
+            <a-tcyl id="fcm" color="red" height="{{ cyls.fcm.0 }}" opos="-.5 {{ cyls.fcm.1 }} -4" filter="Male"></a-tcyl>
+            <a-tcyl id="scm" color="lightgray" height="{{ cyls.scm.0 }}" opos="-.5 {{ cyls.scm.1 }} -4" filter="Male"></a-tcyl>
+            <a-tcyl id="tcm" color="blue" height="{{ cyls.tcm.0 }}" opos="-.5 {{ cyls.tcm.1 }} -4" filter="Male"></a-tcyl>
+            <!--Lived-->
+            <a-tcyl id="fcl" color="red" height="{{ cyls.fcl.0 }}" opos=".5 {{ cyls.fcl.1 }} -3" filter="Lived"></a-tcyl>
+            <a-tcyl id="scl" color="lightgray" height="{{ cyls.scl.0 }}" opos=".5 {{ cyls.scl.1 }} -3" filter="Lived"></a-tcyl>
+            <a-tcyl id="tcl" color="blue" height="{{ cyls.tcl.0 }}" opos=".5 {{ cyls.tcl.1 }} -3" filter="Lived"></a-tcyl>
+            <!--Died-->
+            <a-tcyl id="fcd" color="red" height="{{ cyls.fcd.0 }}" opos=".5 {{ cyls.fcd.1 }} -4" filter="Died"></a-tcyl>
+            <a-tcyl id="scd" color="lightgray" height="{{ cyls.scd.0 }}" opos=".5 {{ cyls.scd.1 }} -4" filter="Died"></a-tcyl>
+            <a-tcyl id="tcd" color="blue" height="{{ cyls.tcd.0 }}" opos=".5 {{ cyls.tcd.1 }} -4" filter="Died"></a-tcyl>
+            <!--Child-->
+            <a-tcyl id="fcc" color="red" height="{{ cyls.fcc.0 }}" opos="1.5 {{ cyls.fcc.1 }} -3" filter="Child"></a-tcyl>
+            <a-tcyl id="scc" color="lightgray" height="{{ cyls.scc.0 }}" opos="1.5 {{ cyls.scc.1 }} -3" filter="Child"></a-tcyl>
+            <a-tcyl id="tcc" color="blue" height="{{ cyls.tcc.0 }}" opos="1.5 {{ cyls.tcc.1 }} -3" filter="Child"></a-tcyl>
+            <!--Adult-->
+            <a-tcyl id="fca" color="red" height="{{ cyls.fca.0 }}" opos="1.5 {{ cyls.fca.1 }} -4" filter="Adult"></a-tcyl>
+            <a-tcyl id="sca" color="lightgray" height="{{ cyls.sca.0 }}" opos="1.5 {{ cyls.sca.1 }} -4" filter="Adult"></a-tcyl>
+            <a-tcyl id="tca" color="blue" height="{{ cyls.tca.0 }}" opos="1.5 {{ cyls.tca.1 }} -4" filter="Adult"></a-tcyl>
 
-        <!--Cylinder Labels-->
-        <!--Class-->
-        <a-txt id="fct" value="First" position="-1.5 {{ text.fct }} -3"></a-txt>
-        <a-txt id="sct" value="Second" position="-1.5 {{ text.sct }} -3.5"></a-txt>
-        <a-txt id="tct" value="Third" position="-1.5 {{ text.tct }} -4"></a-txt>
-        <!--Sex-->
-        <a-txt id="ft" value="Female" position="-.5 {{ text.ft }} -3"></a-txt>
-        <a-txt id="mt" value="Male" position="-.5 {{ text.mt }} -4"></a-txt>
-        <!--Survived-->
-        <a-txt id="lt" value="Lived" position=".5 {{ text.lt }} -3"></a-txt>
-        <a-txt id="dt" value="Died" position=".5 {{ text.dt }} -4"></a-txt>
-        <!--Age-->
-        <a-txt id="ct" value="Child" position="1.5 {{ text.ct }} -3"></a-txt>
-        <a-txt id="at" value="Adult" position="1.5 {{ text.at }} -4"></a-txt>
+            <!--Cylinder Labels-->
+            <!--Class-->
+            <a-txt id="fct" value="First" position="-1.5 {{ text.fct }} -3"></a-txt>
+            <a-txt id="sct" value="Second" position="-1.5 {{ text.sct }} -3.5"></a-txt>
+            <a-txt id="tct" value="Third" position="-1.5 {{ text.tct }} -4"></a-txt>
+            <!--Sex-->
+            <a-txt id="ft" value="Female" position="-.5 {{ text.ft }} -3"></a-txt>
+            <a-txt id="mt" value="Male" position="-.5 {{ text.mt }} -4"></a-txt>
+            <!--Survived-->
+            <a-txt id="lt" value="Lived" position=".5 {{ text.lt }} -3"></a-txt>
+            <a-txt id="dt" value="Died" position=".5 {{ text.dt }} -4"></a-txt>
+            <!--Age-->
+            <a-txt id="ct" value="Child" position="1.5 {{ text.ct }} -3"></a-txt>
+            <a-txt id="at" value="Adult" position="1.5 {{ text.at }} -4"></a-txt>
 
-        <!--Parabolas-->
-        <!--First Class-->
-        <a-parabola id='fcmp' color="red" top={{ parab.fcmp.0 }} bot=0 start="-1.5 0 -3" end="-.5 0 -4"></a-parabola>
-        <a-parabola id='fcfp' color="red" top={{ parab.fcfp.0 }} bot=0 start="-1.5 0 -3" end="-.5 0 -3"></a-parabola>
-        <!--Second Class-->
-        <a-parabola id='scmp' color="lightgray" top={{ parab.scmp.0 }} bot=0 start="-1.5 0 -3.5" end="-.5 0 -4"></a-parabola>
-        <a-parabola id='scfp' color="lightgray" top={{ parab.scfp.0 }} bot=0 start="-1.5 0 -3.5" end="-.5 0 -3"></a-parabola>
-        <!--Third Class-->
-        <a-parabola id='tcmp' color="blue" top={{ parab.tcmp.0 }} bot=0 start="-1.5 0 -4" end="-.5 0 -4"></a-parabola>
-        <a-parabola id='tcfp' color="blue" top={{ parab.tcfp.0 }} bot=0 start="-1.5 0 -4" end="-.5 0 -3"></a-parabola>
-        <!--Female Lived-->
-        <a-parabola id='fcflp' color="red" top={{ parab.fcflp.0 }} bot=0 start="-.5 0 -3" end=".5 0 -3"></a-parabola>
-        <a-parabola id='scflp' color="lightgray" top={{ parab.scflp.0 }} bot={{ parab.fcflp.0 }} start="-.5 0 -3" end=".5 0 -3"></a-parabola>
-        <a-parabola id='tcflp' color="blue" top={{ parab.tcflp.0 }} bot={{ parab.scflp.0 }} start="-.5 0 -3" end=".5 0 -3"></a-parabola>
-        <!--Female Died-->
-        <a-parabola id='fcfdp' color="red" top={{ parab.fcfdp.0 }} bot=0 start="-.5 0 -3" end=".5 0 -4"></a-parabola>
-        <a-parabola id='scfdp' color="lightgray" top={{ parab.scfdp.0 }} bot={{ parab.fcfdp.0 }} start="-.5 0 -3" end=".5 0 -4"></a-parabola>
-        <a-parabola id='tcfdp' color="blue" top={{ parab.tcfdp.0 }} bot={{ parab.scfdp.0 }} start="-.5 0 -3" end=".5 0 -4"></a-parabola>
-        <!--Male Lived-->
-        <a-parabola id='fcmlp' color="red" top={{ parab.fcmlp.0 }} bot=0 start="-.5 0 -4" end=".5 0 -3"></a-parabola>
-        <a-parabola id='scmlp' color="lightgray" top={{ parab.scmlp.0 }} bot={{ parab.fcmlp.0 }} start="-.5 0 -4" end=".5 0 -3"></a-parabola>
-        <a-parabola id='tcmlp' color="blue" top={{ parab.tcmlp.0 }} bot={{ parab.scmlp.0 }} start="-.5 0 -4" end=".5 0 -3"></a-parabola>
-        <!--Male Died-->
-        <a-parabola id='fcmdp' color="red" top={{ parab.fcmdp.0 }} bot=0 start="-.5 0 -4" end=".5 0 -4"></a-parabola>
-        <a-parabola id='scmdp' color="lightgray" top={{ parab.scmdp.0 }} bot={{ parab.fcmdp.0 }} start="-.5 0 -4" end=".5 0 -4"></a-parabola>
-        <a-parabola id='tcmdp' color="blue" top={{ parab.tcmdp.0 }} bot={{ parab.scmdp.0 }} start="-.5 0 -4" end=".5 0 -4"></a-parabola>
-        <!--Child Lived-->
-        <a-parabola id='fcclp' color='red' top={{ parab.fcclp.0 }} bot=0 start=".5 0 -3" end="1.5 0 -3"></a-parabola>
-        <a-parabola id='scclp' color="lightgray" top={{ parab.scclp.0 }} bot={{ parab.fcclp.0 }} start=".5 0 -3" end="1.5 0 -3"></a-parabola>
-        <a-parabola id='tcclp' color="blue" top={{ parab.tcclp.0 }} bot={{ parab.scclp.0 }} start=".5 0 -3" end="1.5 0 -3"></a-parabola>
-        <!--Child Died-->
-        <a-parabola id='fccdp' color='red' top={{ parab.fccdp.0 }} bot=0 start=".5 0 -4" end="1.5 0 -3"></a-parabola>
-        <a-parabola id='sccdp' color="lightgray" top={{ parab.sccdp.0 }} bot={{ parab.fccdp.0 }} start=".5 0 -4" end="1.5 0 -3"></a-parabola>
-        <a-parabola id='tccdp' color="blue" top={{ parab.tccdp.0 }} bot={{ parab.sccdp.0 }} start=".5 0 -4" end="1.5 0 -3"></a-parabola>
-        <!--Adult Lived-->
-        <a-parabola id='fcalp' color='red' top={{ parab.fcalp.0 }} bot=0 start=".5 0 -3" end="1.5 0 -4"></a-parabola>
-        <a-parabola id='scalp' color="lightgray" top={{ parab.scalp.0 }} bot={{ parab.fcalp.0 }} start=".5 0 -3" end="1.5 0 -4"></a-parabola>
-        <a-parabola id='tcalp' color="blue" top={{ parab.tcalp.0 }} bot={{ parab.scalp.0 }} start=".5 0 -3" end="1.5 0 -4"></a-parabola>
-        <!--Adult Died-->
-        <a-parabola id='fcadp' color='red' top={{ parab.fcadp.0 }} bot=0 start=".5 0 -4" end="1.5 0 -4"></a-parabola>
-        <a-parabola id='scadp' color="lightgray" top={{ parab.scadp.0 }} bot={{ parab.fcadp.0 }} start=".5 0 -4" end="1.5 0 -4"></a-parabola>
-        <a-parabola id='tcadp' color="blue" top={{ parab.tcadp.0 }} bot={{ parab.scadp.0 }} start=".5 0 -4" end="1.5 0 -4"></a-parabola>
-    </a-scene>
+            <!--Parabolas-->
+            <!--First Class-->
+            <a-parabola id='fcmp' color="red" top={{ parab.fcmp.0 }} bot=0 start="-1.5 0 -3" end="-.5 0 -4"></a-parabola>
+            <a-parabola id='fcfp' color="red" top={{ parab.fcfp.0 }} bot=0 start="-1.5 0 -3" end="-.5 0 -3"></a-parabola>
+            <!--Second Class-->
+            <a-parabola id='scmp' color="lightgray" top={{ parab.scmp.0 }} bot=0 start="-1.5 0 -3.5" end="-.5 0 -4"></a-parabola>
+            <a-parabola id='scfp' color="lightgray" top={{ parab.scfp.0 }} bot=0 start="-1.5 0 -3.5" end="-.5 0 -3"></a-parabola>
+            <!--Third Class-->
+            <a-parabola id='tcmp' color="blue" top={{ parab.tcmp.0 }} bot=0 start="-1.5 0 -4" end="-.5 0 -4"></a-parabola>
+            <a-parabola id='tcfp' color="blue" top={{ parab.tcfp.0 }} bot=0 start="-1.5 0 -4" end="-.5 0 -3"></a-parabola>
+            <!--Female Lived-->
+            <a-parabola id='fcflp' color="red" top={{ parab.fcflp.0 }} bot=0 start="-.5 0 -3" end=".5 0 -3"></a-parabola>
+            <a-parabola id='scflp' color="lightgray" top={{ parab.scflp.0 }} bot={{ parab.fcflp.0 }} start="-.5 0 -3" end=".5 0 -3"></a-parabola>
+            <a-parabola id='tcflp' color="blue" top={{ parab.tcflp.0 }} bot={{ parab.scflp.0 }} start="-.5 0 -3" end=".5 0 -3"></a-parabola>
+            <!--Female Died-->
+            <a-parabola id='fcfdp' color="red" top={{ parab.fcfdp.0 }} bot=0 start="-.5 0 -3" end=".5 0 -4"></a-parabola>
+            <a-parabola id='scfdp' color="lightgray" top={{ parab.scfdp.0 }} bot={{ parab.fcfdp.0 }} start="-.5 0 -3" end=".5 0 -4"></a-parabola>
+            <a-parabola id='tcfdp' color="blue" top={{ parab.tcfdp.0 }} bot={{ parab.scfdp.0 }} start="-.5 0 -3" end=".5 0 -4"></a-parabola>
+            <!--Male Lived-->
+            <a-parabola id='fcmlp' color="red" top={{ parab.fcmlp.0 }} bot=0 start="-.5 0 -4" end=".5 0 -3"></a-parabola>
+            <a-parabola id='scmlp' color="lightgray" top={{ parab.scmlp.0 }} bot={{ parab.fcmlp.0 }} start="-.5 0 -4" end=".5 0 -3"></a-parabola>
+            <a-parabola id='tcmlp' color="blue" top={{ parab.tcmlp.0 }} bot={{ parab.scmlp.0 }} start="-.5 0 -4" end=".5 0 -3"></a-parabola>
+            <!--Male Died-->
+            <a-parabola id='fcmdp' color="red" top={{ parab.fcmdp.0 }} bot=0 start="-.5 0 -4" end=".5 0 -4"></a-parabola>
+            <a-parabola id='scmdp' color="lightgray" top={{ parab.scmdp.0 }} bot={{ parab.fcmdp.0 }} start="-.5 0 -4" end=".5 0 -4"></a-parabola>
+            <a-parabola id='tcmdp' color="blue" top={{ parab.tcmdp.0 }} bot={{ parab.scmdp.0 }} start="-.5 0 -4" end=".5 0 -4"></a-parabola>
+            <!--Child Lived-->
+            <a-parabola id='fcclp' color='red' top={{ parab.fcclp.0 }} bot=0 start=".5 0 -3" end="1.5 0 -3"></a-parabola>
+            <a-parabola id='scclp' color="lightgray" top={{ parab.scclp.0 }} bot={{ parab.fcclp.0 }} start=".5 0 -3" end="1.5 0 -3"></a-parabola>
+            <a-parabola id='tcclp' color="blue" top={{ parab.tcclp.0 }} bot={{ parab.scclp.0 }} start=".5 0 -3" end="1.5 0 -3"></a-parabola>
+            <!--Child Died-->
+            <a-parabola id='fccdp' color='red' top={{ parab.fccdp.0 }} bot=0 start=".5 0 -4" end="1.5 0 -3"></a-parabola>
+            <a-parabola id='sccdp' color="lightgray" top={{ parab.sccdp.0 }} bot={{ parab.fccdp.0 }} start=".5 0 -4" end="1.5 0 -3"></a-parabola>
+            <a-parabola id='tccdp' color="blue" top={{ parab.tccdp.0 }} bot={{ parab.sccdp.0 }} start=".5 0 -4" end="1.5 0 -3"></a-parabola>
+            <!--Adult Lived-->
+            <a-parabola id='fcalp' color='red' top={{ parab.fcalp.0 }} bot=0 start=".5 0 -3" end="1.5 0 -4"></a-parabola>
+            <a-parabola id='scalp' color="lightgray" top={{ parab.scalp.0 }} bot={{ parab.fcalp.0 }} start=".5 0 -3" end="1.5 0 -4"></a-parabola>
+            <a-parabola id='tcalp' color="blue" top={{ parab.tcalp.0 }} bot={{ parab.scalp.0 }} start=".5 0 -3" end="1.5 0 -4"></a-parabola>
+            <!--Adult Died-->
+            <a-parabola id='fcadp' color='red' top={{ parab.fcadp.0 }} bot=0 start=".5 0 -4" end="1.5 0 -4"></a-parabola>
+            <a-parabola id='scadp' color="lightgray" top={{ parab.scadp.0 }} bot={{ parab.fcadp.0 }} start=".5 0 -4" end="1.5 0 -4"></a-parabola>
+            <a-parabola id='tcadp' color="blue" top={{ parab.tcadp.0 }} bot={{ parab.scadp.0 }} start=".5 0 -4" end="1.5 0 -4"></a-parabola>
+        </a-scene>
+    </div>
     <!--Filters Display-->
-    <table>
+    <table class="table table-bordered custom-table" >
         <thead>
             <tr>
-                <th>Filters</th>
+                <th class="header">Filters</th>
             </tr>
         </thead>
         <tbody id='filters'>

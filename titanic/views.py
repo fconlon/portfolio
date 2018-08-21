@@ -93,23 +93,23 @@ def build_titanic_context(filters):
     #fliter cylinders
     for (key, value) in ctxt['cyls'].items():
         for fltr in filters.split('_'):
-            if fltr == 'firstclass':
+            if fltr == 'First Class':
                 value[0] = value[0].filter(pclass__exact=1)
-            elif fltr == 'secondclass':
+            elif fltr == 'Second Class':
                 value[0] = value[0].filter(pclass__exact=2)
-            elif fltr == 'thirdclass':
+            elif fltr == 'Third Class':
                 value[0] = value[0].filter(pclass__exact=3)
-            elif fltr == 'female':
+            elif fltr == 'Female':
                 value[0] = value[0].filter(sex__exact='female')
-            elif fltr == 'male':
+            elif fltr == 'Male':
                 value[0] = value[0].filter(sex__exact='male')
-            elif fltr == 'lived':
+            elif fltr == 'Lived':
                 value[0] = value[0].filter(survived__exact=True)
-            elif fltr == 'died':
+            elif fltr == 'Died':
                 value[0] = value[0].filter(survived__exact=False)
-            elif fltr == 'child':
+            elif fltr == 'Child':
                 value[0] = value[0].filter(age__lt=18)
-            elif fltr == 'adult':
+            elif fltr == 'Adult':
                 value[0] = value[0].filter(age__gte=18).extra(where=["age!=''"])
         value.append(round(value[0].count() * HRATIO, 4))
         value.append(round(value[1]/2, 4))
@@ -118,23 +118,23 @@ def build_titanic_context(filters):
     #filter parabolas
     for (key, value) in ctxt['parab'].items():
         for fltr in filters.split('_'):
-            if fltr == 'firstclass':
+            if fltr == 'First Class':
                 value[0] = value[0].filter(pclass__exact=1)
-            elif fltr == 'secondclass':
+            elif fltr == 'Second Class':
                 value[0] = value[0].filter(pclass__exact=2)
-            elif fltr == 'thirdclass':
+            elif fltr == 'Third Class':
                 value[0] = value[0].filter(pclass__exact=3)
-            elif fltr == 'female':
+            elif fltr == 'Female':
                 value[0] = value[0].filter(sex__exact='female')
-            elif fltr == 'male':
+            elif fltr == 'Male':
                 value[0] = value[0].filter(sex__exact='male')
-            elif fltr == 'lived':
+            elif fltr == 'Lived':
                 value[0] = value[0].filter(survived__exact=True)
-            elif fltr == 'died':
+            elif fltr == 'Died':
                 value[0] = value[0].filter(survived__exact=False)
-            elif fltr == 'child':
+            elif fltr == 'Child':
                 value[0] = value[0].filter(age__lt=18)
-            elif fltr == 'adult':
+            elif fltr == 'Adult':
                 value[0] = value[0].filter(age__gte=18).extra(where=["age!=''"])
         value.append(round(value[0].count() * HRATIO, 4))
         value.pop(0)

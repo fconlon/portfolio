@@ -54,9 +54,11 @@ AFRAME.registerComponent('clickablecyl', {
                     if (filters) {
                         fltrList = filters.split('_');
                         for (i in fltrList) {
-                            tr = document.createElement('tr');
-                            tr.innerHTML = '<td>' + fltrList[i] + '</td>';
-                            ele.appendChild(tr);
+                            if (fltrList[i]){
+                               tr = document.createElement('tr');
+                               tr.innerHTML = '<td>' + fltrList[i] + '</td>';
+                               ele.appendChild(tr);
+                            }
                         }
                     }
                     else {
