@@ -7,7 +7,19 @@ AFRAME.registerComponent('clickablecyl', {
     },
     init: function () {
         this.el.addEventListener('click', function (event) {
-            clickobj = event.currentTarget.getAttribute('clickablecyl');
+            elrc = event.detail.cursorEl.getAttribute('raycaster');
+            rc = new THREE.Raycaster(elrc.origin, elrc.direction, elrc.near, elrc.far);
+            cyls = document.getElementsByTagName('a-tcyl');
+            mindist = rc.intersectObject(this.object3D, true)[0].distance;
+            var minindex;
+            for (var i = 0; i < 21; i++){
+                var arr = rc.intersectObject(cyls[i].object3D, true);
+                if (arr.length && arr[0].distance <= mindist) {
+                    minindex = i;
+                    mindist = arr[0].distance;
+                }
+            }
+            clickobj = cyls[minindex].getAttribute('clickablecyl');
             if (clickobj.clicked) {
                 filters = filters.replace('_'+clickobj.filter, '');
             }
