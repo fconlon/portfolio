@@ -9,7 +9,7 @@ def index(request):
     return render(request, 'titanic/index.html', build_titanic_context(''))
 
 def fltrs(request):
-    return HttpResponse(dumps(build_titanic_context(request.GET['q'])))
+    return HttpResponse(dumps(build_titanic_context(request.body.decode('UTF-8'))))
 
 def build_titanic_context(filters):
     #initialize context
