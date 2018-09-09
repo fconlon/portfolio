@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver', 'frankconlon.asuscomm.c
 # Application definition
 
 INSTALLED_APPS = [
+    'react.apps.ReactConfig',
     'titanic.apps.TitanicConfig',
     'polls.apps.PollsConfig',
     'django.contrib.admin',
