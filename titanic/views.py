@@ -2,12 +2,14 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from titanic.models import Survivors
 from json import dumps
+from django.views.decorators.csrf import csrf_exempt
 
 HRATIO = .003
 
 def index(request):
     return render(request, 'titanic/index.html', build_titanic_context(''))
 
+@csrf_exempt
 def fltrs(request):
     return HttpResponse(dumps(build_titanic_context(request.body.decode('UTF-8'))))
 
