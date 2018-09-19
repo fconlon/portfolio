@@ -1,5 +1,127 @@
-<h1>Welcome to Frank's portfolio</h2>
-<a href="react">React Tutorial App</a><br/>
-<a href="titanic">Titanic Survivors Visualization App</a><br/>
-<a href="polls">Django Tutorial Polls App</a><br/>
-<a href="admin">Admin Page For Polls App</a>
+<!DOCTYPE html>
+<head>
+  <title>Frank's Portfolio</title>
+  <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+  <script type="text/javascript" src="/static/jquery/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="/static/bootstrap/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+  <div style="width: 1080px; margin: auto;">
+     <div style="text-align: center">
+       <h1>Welcome to Frank's portfolio</h1>
+    </div>
+    <!--
+    <a href="react">React Tutorial App</a><br/>
+    <a href="titanic">Titanic Survivors Visualization App</a><br/>
+    <a href="polls">Django Tutorial Polls App</a><br/>
+    <a href="admin">Admin Page For Polls App</a>
+    -->
+    <div class="row">
+      <div class="col-3">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+          <a class="nav-link" id="v-pills-titanic-tab" data-toggle="pill" href="#v-pills-titanic" role="tab" aria-controls="v-pills-titanic" aria-selected="false">Titanic App</a>
+          <a class="nav-link" id="v-pills-polls-tab" data-toggle="pill" href="#v-pills-polls" role="tab" aria-controls="v-pills-polls" aria-selected="false">Django Polls App</a>
+          <a class="nav-link" id="v-pills-admin-tab" data-toggle="pill" href="#v-pills-admin" role="tab" aria-controls="v-pills-admin" aria-selected="false">Django AdminApp</a>
+          <a class="nav-link" id="v-pills-react-tab" data-toggle="pill" href="#v-pills-react" role="tab" aria-controls="v-pills-react" aria-selected="false">React Tutorial App</a>
+        </div>
+      </div>
+      <div class="col-9">
+        <div class="tab-content" id="v-pills-tabContent">
+          <!--home-->
+          <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <div style="text-align: center">
+              <h2>About Me</h2>
+              <img src="frank.jpg" height=400 width=300>
+            </div>
+
+            <p style="text-indent: 20px">
+              Hello my name is Frank Conlon. I created this page both as a place for me to practice web
+              development and as a portfolio of things that I have done. I hope this gives me an opportunity
+              to share a bit about myself and demonstrate my work.
+            </p>
+            <p style="text-indent: 20px">
+              I am a 32 year old instructor at Texas Tech University. As an instructor I  have taught
+              introductory Computer Science courses as well as Data Structures and Software
+              Engineering. I am currently working on a Masters Degree in Computer Science and
+              am simultaneously enrolled in the CS PhD program at Texas Tech. I have also Served
+              as an Amunition Sergeant in the United States Army and I am a disabled combat
+              Veteran. Other places that I have worked include Texas Instruments and Sandia
+              National Labs. At Texas instruments I worked on FAB automation as an intern and
+              at Sandia I worked on several projects as a research intern
+            </p>
+            <div style="text-align: center">
+              <h2>About This Website</h2>
+            </div>
+            <p style="text-indent: 20px">
+              This website is hosted on an Asus Tinkerboard S in my personal home. Development
+              for the website is done in an Arch Linux virtual machine before it is migrated to the
+              Tinkerboard host. The front end is developed with varying technologies (Angular, React
+              Bootstrap, etc). The variety is due to the fact that I use this platform as a test bed to teach
+              myself different technologies. The backend of this sever uses NGINX and Django to serve
+              content with a Sqlite database. I am also familiar with the Apache, PHP, MySql paradigm
+              as well.
+            </p>
+          </div>
+          <!--titanic-->
+          <div class="tab-pane fade" id="v-pills-titanic" role="tabpanel" aria-labelledby="v-pills-titanic-tab">
+            <div style="text-align: center">
+              <h2>Titanic Disaster Visualization</h2>
+            </div>
+            <p style="text-indent: 20px">
+              This app uses the Aframe javascript library to provide a Virtual Reality visualization of
+              the survivor data from the titanic disaster. Clicking on any cylinder will apply a filter to
+              the data and adjust the heights of all of the cylinders in the visualization. For example,
+              clicking on the cylinder labeled "Died" will filter the data to show only the passengers that
+              died in the disaster. Clicking the cylinder a second time will remove the filter from the data.
+            </p>
+            <div style="text-align:center">
+              <a href="titanic">Go To App</a>
+            </div>
+          </div>
+          <!--polls-->
+          <div class="tab-pane fade" id="v-pills-polls" role="tabpanel" aria-labelledby="v-pills-polls-tab">
+            <div style="text-align: center">
+              <h2>Django Tutorial Polls App</h2>
+            </div>
+            <p style="text-indent: 20px">
+              This app is the Polls app that Django uses for their tutorial on their website. I used this
+              app to teach myself the Django framework.
+            </p>
+            <div style="text-align:center">
+              <a href="polls">Go To App</a>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="v-pills-admin" role="tabpanel" aria-labelledby="v-pills-admin-tab">
+            <div style="text-align: center">
+              <h2>Django Polls Admin App</h2>
+            </div>
+            <p style="text-indent: 20px">
+              This app is the Admin app that is automatically generated by the Django framework when
+              a project is started. This admin page allows an adminstrator to create and edit questions
+              for the Polls Tutorial app. If you would like to try it out the username is guest and the
+              password is "djangoisfun". The database is regularly reset once a week so the changes
+              will not be permanent, but you can post a question and see how the polls app is affected.
+            </p>
+            <div style="text-align:center">
+              <a href="react">Go To App</a>
+            </div>
+          </div>
+          <!--react-->
+          <div class="tab-pane fade" id="v-pills-react" role="tabpanel" aria-labelledby="v-pills-react-tab">
+            <div style="text-align: center">
+              <h2>Django Tutorial Polls App</h2>
+            </div>
+            <p style="text-indent: 20px">
+              This app is the Tic Tac Toe app that ReactJS uses for their tutorial on their website. I used this
+              app to teach myself the ReactJS framework.
+            </p>
+            <div style="text-align:center">
+              <a href="react">Go To App</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
