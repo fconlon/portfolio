@@ -124,7 +124,10 @@ class Game extends React.Component {
 
 function Construction (props) {
   return (
-    <h1>Under Construction</h1>
+    <div>
+      <h1>Under Construction</h1>
+      <p>This page is being built from the ground up. If you check back later it may be finished</p>
+    </div>
   );
 }
 ReactDOM.render(
