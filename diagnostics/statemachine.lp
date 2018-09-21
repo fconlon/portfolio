@@ -42,8 +42,8 @@ action(turnoff).
 
 
 %inertia axioms
-hd(F, I2) :- hd(F, I), fluent(inertial, F), not -hd(F, I2), step(I), +(I,1,I2), not ab(F, I).
--hd(F, I2) :- -hd(F, I), fluent(inertial, F), not hd(F, I2), step(I), +(I,1,I2), not ab(F, I).
+hd(F, I2) :- hd(F, I), fluent(inertial, F), not -hd(F, I2), step(I), I2 = I+1, not ab(F, I).
+-hd(F, I2) :- -hd(F, I), fluent(inertial, F), not hd(F, I2), step(I), I2 = I+1, not ab(F, I).
 
 %CWA
 -hd(F, I) :- not hd(F, I), step(I), fluent(defined, F).
@@ -55,78 +55,78 @@ hd(F, I2) :- hd(F, I), fluent(inertial, F), not -hd(F, I2), step(I), +(I,1,I2), 
 %%%%%%%%%%%%%%%%%%%%%
 %describe turning on%
 %%%%%%%%%%%%%%%%%%%%%
-hd(hs(idle), I2) :- occ(turnon, I), hd(hs(off), I), step(I), +(I, 1, I2).
+hd(hs(idle), I2) :- occ(turnon, I), hd(hs(off), I), step(I), I2 = I+1.
 ab(hs(off), I):- occ(turnon, I), hd(hs(off), I), step(I).
 
-hd(ls(notready), I2) :- occ(turnon, I), hd(ls(off), I), step(I), +(I, 1, I2).
+hd(ls(notready), I2) :- occ(turnon, I), hd(ls(off), I), step(I), I2 = I+1.
 ab(ls(off), I):- occ(turnon, I), hd(ls(off), I), step(I).
 
-hd(t(70), I2) :- occ(turnon, I), hd(t(off), I), step(I), +(I, 1, I2).
+hd(t(70), I2) :- occ(turnon, I), hd(t(off), I), step(I), I2 = I+1.
 ab(t(off), I):- occ(turnon, I), hd(t(off), I), step(I).
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %place pod on the tool%
 %%%%%%%%%%%%%%%%%%%%%%%
-hd(ls(ready), I2) :- occ(place, I), hd(ls(notready), I), step(I), +(I, 1, I2).
+hd(ls(ready), I2) :- occ(place, I), hd(ls(notready), I), step(I), I2 = I+1.
 ab(ls(notready), I) :- occ(place, I), hd(ls(notready), I), step(I).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 %describe heating process%
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-hd(hs(preheating), I2) :- occ(heat(X), I), hd(hs(idle), I), step(I), +(I, 1, I2).
+hd(hs(preheating), I2) :- occ(heat(X), I), hd(hs(idle), I), step(I), I2 = I+1.
 ab(hs(idle), I) :- occ(heat(X), I), hd(hs(idle), I), step(I).
 
 %timepassed will be added by the listener or the simulator
-hd(hs(heated), I2) :- occ(timepassed, I), occ(heat(X), I3), hd(hs(preheating), I), step(I), +(I, 1, I2), -(I, 1, I3).
-ab(hs(preheating), I) :- occ(timepassed, I), occ(heat(X), I2), hd(hs(preheating), I), step(I), -(I, 1, I2).
-hd(t(X), I2) :- occ(timepassed, I), occ(heat(X), I3), hd(hs(preheating), I), step(I), +(I, 1, I2), -(I, 1, I3).
-ab(t(Y), I) :- occ(timepassed, I), occ(heat(X), I2), hd(t(Y), I), step(I), -(I, 1, I2).
+hd(hs(heated), I2) :- occ(timepassed, I), occ(heat(X), I3), hd(hs(preheating), I), step(I), I2 = I+1, I3 = I-1.
+ab(hs(preheating), I) :- occ(timepassed, I), occ(heat(X), I2), hd(hs(preheating), I), step(I), I2 = I-1.
+hd(t(X), I2) :- occ(timepassed, I), occ(heat(X), I3), hd(hs(preheating), I), step(I), I2 = I+1, I3 = I-1.
+ab(t(Y), I) :- occ(timepassed, I), occ(heat(X), I2), hd(t(Y), I), step(I), I2 = I-1.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %describe loading and baking process%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-hd(ls(loading), I2) :- occ(load, I), hd(hs(heated), I), step(I), +(I, 1, I2).
+hd(ls(loading), I2) :- occ(load, I), hd(hs(heated), I), step(I), I2 = I+1.
 ab(ls(ready), I) :- occ(load, I), hd(hs(heated), I), step(I).
 
 %baking
-hd(hs(baking), I2) :- occ(timepassed, I), occ(load, I3), hd(ls(loading), I), step(I), +(I, 1, I2), -(I, 1, I3).
-ab(hs(heated), I) :- occ(timepassed, I), occ(load, I2), hd(ls(loading), I), step(I), -(I, 1, I2).
-hd(ls(loaded), I2) :- occ(timepassed, I), occ(load, I3), hd(ls(loading), I), step(I), +(I, 1, I2), -(I, 1, I3).
-ab(ls(loading), I) :- occ(timepassed, I), occ(load, I2), hd(ls(loading), I), step(I), -(I, 1, I2).
+hd(hs(baking), I2) :- occ(timepassed, I), occ(load, I3), hd(ls(loading), I), step(I), I2 = I+1, I3 = I-1.
+ab(hs(heated), I) :- occ(timepassed, I), occ(load, I2), hd(ls(loading), I), step(I), I2 = I-1.
+hd(ls(loaded), I2) :- occ(timepassed, I), occ(load, I3), hd(ls(loading), I), step(I), I2 = I+1, I3 = I-1.
+ab(ls(loading), I) :- occ(timepassed, I), occ(load, I2), hd(ls(loading), I), step(I), I2 = I-1.
 
 %finished baking
-hd(hs(finished), I2) :- occ(timepassed, I), hd(hs(baking), I), step(I), +(I, 1, I2).
+hd(hs(finished), I2) :- occ(timepassed, I), hd(hs(baking), I), step(I), I2 = I+1.
 ab(hs(baking), I) :- occ(timepassed, I), hd(hs(baking), I), step(I).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %describe unloading process%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-hd(ls(unloading), I2) :- occ(unload, I), hd(hs(finished), I), hd(ls(loaded), I), step(I), +(I, 1, I2).
+hd(ls(unloading), I2) :- occ(unload, I), hd(hs(finished), I), hd(ls(loaded), I), step(I), I2 = I+1.
 ab(ls(loaded), I) :- occ(unload, I), hd(hs(finished), I), hd(ls(loaded), I), step(I).
 
 %unloading time has passed
-hd(ls(unloaded), I2) :- occ(timepassed, I), hd(hs(finished), I), hd(ls(unloading), I), step(I), +(I, 1, I2).
+hd(ls(unloaded), I2) :- occ(timepassed, I), hd(hs(finished), I), hd(ls(unloading), I), step(I), I2 = I+1.
 ab(ls(unloading), I) :- occ(timepassed, I), hd(hs(finished), I), hd(ls(unloading), I), step(I).
 
 %%%%%%%%%%%%
 %remove pod%
 %%%%%%%%%%%%
-hd(ls(notready), I2) :- occ(remove, I), hd(ls(unloaded), I), step(I), +(I, 1, I2).
+hd(ls(notready), I2) :- occ(remove, I), hd(ls(unloaded), I), step(I), I2 = I+1.
 ab(ls(unloaded), I) :- occ(remove, I), hd(ls(unloaded), I), step(I).
-hd(hs(idle), I2) :- occ(remove, I), hd(ls(unloaded), I), hd(hs(finished), I), step(I), +(I, 1, I2).
+hd(hs(idle), I2) :- occ(remove, I), hd(ls(unloaded), I), hd(hs(finished), I), step(I), I2 = I+1.
 ab(hs(finished), I) :- occ(remove, I), hd(ls(unloaded), I), hd(hs(finished), I), step(I).
 
 %%%%%%%%%%%%%%%%%%%%%
 %describe turning off%
 %%%%%%%%%%%%%%%%%%%%%
-hd(hs(off), I2) :- occ(turnoff, I), hd(hs(idle), I), step(I), +(I, 1, I2).
+hd(hs(off), I2) :- occ(turnoff, I), hd(hs(idle), I), step(I), I2 = I+1.
 ab(hs(idle), I):- occ(turnoff, I), hd(hs(idle), I), step(I).
 
-hd(ls(off), I2) :- occ(turnoff, I), hd(ls(notready), I), step(I), +(I, 1, I2).
+hd(ls(off), I2) :- occ(turnoff, I), hd(ls(notready), I), step(I), I2 = I+1.
 ab(ls(notready), I):- occ(turnoff, I), hd(ls(notready), I), step(I).
 
-hd(t(off), I2) :- occ(turnoff, I), hd(t(X), I), step(I), temp(X), +(I, 1, I2).
+hd(t(off), I2) :- occ(turnoff, I), hd(t(X), I), step(I), temp(X), I2 = I+1.
 ab(t(X), I):- occ(turnoff, I), hd(t(X), I), step(I), temp(X).
 
 %%%%%%%%%%%%%%%%%%%
