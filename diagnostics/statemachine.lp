@@ -158,7 +158,7 @@ obs(t(off), true, 1).
 %actions that occurred
 hpd(turnon, 1).
 
-obs(hs(idle), true, 2).
+obs(hs(off), true, 2).
 obs(ls(notready), true, 2).
 obs(t(70), true, 2).
 %hpd(place, 2).

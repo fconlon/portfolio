@@ -130,7 +130,28 @@ function Construction (props) {
     </div>
   );
 }
+
+
+
+class Signaler extends React.Component {
+  handleClick(text) {
+    alert(text);
+  }
+
+  render() {
+    const actions = ['turnon', 'place', 'heat', 'load', 'unload', 'remove', 'turnoff'];
+    const buttons = actions.map((action) => {
+      return (
+        <div key={action} className="btn-lg btn-primary mybtn" onClick={() => this.handleClick(action)}>{action}</div>
+      );
+    });
+    return (
+      <div className="col-2">{buttons}</div>
+    );
+  }
+}
+
 ReactDOM.render(
-  <Construction />,
+  <Signaler />,
   document.getElementById('root')
 );
