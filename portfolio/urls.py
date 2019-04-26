@@ -21,5 +21,6 @@ urlpatterns = [
     path('react/', include('react.urls')),
     path('titanic/', include('titanic.urls')),
     path('polls/', include('polls.urls')),
+    path('allowance/', include('allowance.urls')),
     path('admin/', admin.site.urls),
 ]
