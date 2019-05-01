@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'react.apps.ReactConfig',
     'titanic.apps.TitanicConfig',
     'polls.apps.PollsConfig',
+    'allowance.apps.AllowanceConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
