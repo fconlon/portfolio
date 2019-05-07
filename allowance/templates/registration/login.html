@@ -1,29 +1,38 @@
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
+{% load static %}
+<!DOCTYPE html>
+<head>
+  <title>Allowance Login</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+</head>
+<body>
+  
+  <div class='list-group' style='width: 400px; margin: auto; margin-top: 12%'>
+    <div class='list-group-item bg-info text-white'>Allowance User Login</div>
+    <div class='list-group-item'>
+      {% if form.errors %}
+        <p class='border border-danger rounded p-2 text-danger'>
+          Your username and password didn't match. Please try again.
+        </p>
+      {% endif %}
 
-{% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
-    <p>Please login to see this page.</p>
-    {% endif %}
-{% endif %}
+      <form method="post" action="{% url 'allowance:login' %}">
+        {% csrf_token %}
+        <div class='input-group mb-3'>
+          <div class='input-group-prepend'>
+            <span class='input-group-text'>Username:</span>
+          </div>
+          <input type="text" class='form-control' name="username" autofocus="" required="" id="id_username">
+        </div>
+        <div class='input-group mb-3'>
+          <div class='input-group-prepend'>
+            <span class='input-group-text'>Password:</span>
+          </div>
+          <input type="password" class='form-control' name="password" required="" id="id_password">
+        </div>
 
-<form method="post" action="{% url 'allowance:login' %}">
-{% csrf_token %}
-<table>
-<tr>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-</table>
-
-<input type="submit" value="login">
-<input type="hidden" name="next" value="{% url 'allowance:home' %}">
-</form>
+        <input type="submit" class='btn btn-info' value="login" style='float: right;'>
+        <input type="hidden" name="next" value="{% url 'allowance:home' %}">
+      </form>
+    </div>
+  </div>
+</body>

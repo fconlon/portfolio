@@ -11,12 +11,12 @@
   <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 </head>
 <body>
-  <nav class='navbar navbar-expand navbar-dark bg-info' style='font-weight: bold;'>
+  <nav class='navbar navbar-expand navbar-light bg-info' style='font-weight: bold;'>
     <ul class='navbar-nav mr-auto'>
-      <li class='nav-item'><a class='nav-link' href='#'>Add Child</a></li>
-      <li class='nav-item'><a class='nav-link' href='#'>Remove Child</a></li>
-      <li class='nav-item'><a class='nav-link' href='#'>Generate PR Code</a></li>
-      <li class='nav-item'><a class='nav-link' href='#'>Change Password</a></li>
+      <li class='nav-item nav-link' data-toggle='modal' data-target='#addChildModal' style='cursor: pointer;'>Add Child</li>
+      <li class='nav-item nav-link' data-toggle='modal' data-target='#removeChildModal' style='cursor: pointer;'>Remove Child</li>
+      <li class='nav-item nav-link' data-toggle='modal' data-target='#prCodeModal' style='cursor: pointer;'>Parent Registration Code</a></li>
+      <li class='nav-item nav-link' data-toggle='modal' data-target='#changePWModal' style='cursor: pointer;'>Change Password</a></li>
     </ul>
     <ul class='navbar-nav'>
       <li class='nav-item'>
@@ -24,9 +24,93 @@
       <li>
     </ul>
   </nav>
+  
+  <!--ADD CHILD MODAL-->
+  <div class="modal fade" id="addChildModal" tabindex="-1" role="dialog" aria-labelledby="addChildLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-info">
+          <h5 class="modal-title text-white" id="addChildLabel">Add Child</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--REMOVE CHILD MODAL-->
+  <div class="modal fade" id="removeChildModal" tabindex="-1" role="dialog" aria-labelledby="removeChildLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-info">
+          <h5 class="modal-title text-white" id="removeChildLabel">Remove Child</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--PR CODE MODAL-->
+  <div class="modal fade" id="prCodeModal" tabindex="-1" role="dialog" aria-labelledby="prCodeLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-info">
+          <h5 class="modal-title text-white" id="prCodeLabel">Parent Registration Code</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--CHANGE PASSWORD MODAL-->
+  <div class="modal fade" id="changePWModal" tabindex="-1" role="dialog" aria-labelledby="changePWLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-info">
+          <h5 class="modal-title text-white" id="changePWLabel">Change Password</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <h2 style='text-align: center;'>Welcome {{ user.first_name }}</h2>
   {% if user.allowanceuserinfo.is_parent %}
-  <div class="accordion" id="accordionExample" style='width: 60%; margin: auto;'>
+  <div class="accordion" id="childrenAccounts" style='width: 60%; margin: auto;'>
     {% for tuple in children %}
     <div class="card">
       <div class="card-header p-0" id="heading{{ forloop.counter }}">
@@ -39,9 +123,9 @@
         </h2>
       </div>
 
-      <div id="collapse{{ forloop.counter }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div id="collapse{{ forloop.counter }}" class="collapse" aria-labelledby="heading{{ foorloop.count }}" data-parent="#childrenAccounts">
         <div class="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          PlaceHolder
         </div>
       </div>
     </div>
