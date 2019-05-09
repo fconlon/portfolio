@@ -9,133 +9,24 @@
   <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
   <script type="text/javascript" src="{% static 'jquery/jquery-3.3.1.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'reactjs/react.development.js' %}"></script>
+  <script src="{% static 'reactjs/react-dom.development.js' %}"></script>
+  <script src="{% static 'reactjs/babel.min.js' %}"></script>
+  <script type="text/babel" src="{% static 'allowance/allowancecommon.jsx' %}"></script>
+  <script type="text/babel" src="{% static 'allowance/allowanceparent.jsx' %}"></script>
 </head>
 <body>
-  <nav class='navbar navbar-expand navbar-light bg-info' style='font-weight: bold;'>
-    <ul class='navbar-nav mr-auto'>
-      <li class='nav-item nav-link' data-toggle='modal' data-target='#addChildModal' style='cursor: pointer;'>Add Child</li>
-      <li class='nav-item nav-link' data-toggle='modal' data-target='#removeChildModal' style='cursor: pointer;'>Remove Child</li>
-      <li class='nav-item nav-link' data-toggle='modal' data-target='#prCodeModal' style='cursor: pointer;'>Parent Registration Code</a></li>
-      <li class='nav-item nav-link' data-toggle='modal' data-target='#changePWModal' style='cursor: pointer;'>Change Password</a></li>
-    </ul>
-    <ul class='navbar-nav'>
-      <li class='nav-item'>
-        <a class='nav-link' href="{% url 'allowance:logout' %}?next={% url 'allowance:login' %}">Logout</a>
-      <li>
-    </ul>
-  </nav>
-  
-  <!--ADD CHILD MODAL-->
-  <div class="modal fade" id="addChildModal" tabindex="-1" role="dialog" aria-labelledby="addChildLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header bg-info">
-          <h5 class="modal-title text-white" id="addChildLabel">Add Child</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <!--REMOVE CHILD MODAL-->
-  <div class="modal fade" id="removeChildModal" tabindex="-1" role="dialog" aria-labelledby="removeChildLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header bg-info">
-          <h5 class="modal-title text-white" id="removeChildLabel">Remove Child</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <!--PR CODE MODAL-->
-  <div class="modal fade" id="prCodeModal" tabindex="-1" role="dialog" aria-labelledby="prCodeLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header bg-info">
-          <h5 class="modal-title text-white" id="prCodeLabel">Parent Registration Code</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <!--CHANGE PASSWORD MODAL-->
-  <div class="modal fade" id="changePWModal" tabindex="-1" role="dialog" aria-labelledby="changePWLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header bg-info">
-          <h5 class="modal-title text-white" id="changePWLabel">Change Password</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <h2 style='text-align: center;'>Welcome {{ user.first_name }}</h2>
   {% if user.allowanceuserinfo.is_parent %}
-  <div class="accordion" id="childrenAccounts" style='width: 60%; margin: auto;'>
-    {% for tuple in children %}
-    <div class="card">
-      <div class="card-header p-0" id="heading{{ forloop.counter }}">
-        <h2 class="mb-0">
-          <button class="btn btn-info btn-lg btn-block mb-0 shadow-none collapsed" 
-                  type="button" data-toggle="collapse" data-target="#collapse{{ forloop.counter }}" 
-                  aria-expanded="false" aria-controls="collapse{{ forloop.counter }}">
-            {{ tuple.child.first_name }}
-          </button>
-        </h2>
-      </div>
-
-      <div id="collapse{{ forloop.counter }}" class="collapse" aria-labelledby="heading{{ foorloop.count }}" data-parent="#childrenAccounts">
-        <div class="card-body">
-          PlaceHolder
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
+    <div id='parent' 
+         data-link="{% url 'allowance:logout' %}?next={% url 'allowance:login' %}"
+         data-user='{{ userDict }}'
+         data-children='{{ childrenDict }}'
+    ></div>
   {% else %}
-  <ul>
-    {% for tuple in parents %}
-    <li>{{ tuple.parent.first_name }} {{ tuple.parent.last_name }}</li>
-    {% endfor %}
-  </ul>
+    <ul>
+      {% for tuple in parents %}
+      <li>{{ tuple.parent.first_name }} {{ tuple.parent.last_name }}</li>
+      {% endfor %}
+    </ul>
   {% endif %}
 </body>
