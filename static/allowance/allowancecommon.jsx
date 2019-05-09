@@ -1,8 +1,10 @@
 function AllowanceModal(props) {
   let modalID = props.modalname + "Modal";
   let modalLabel = props.modalname + "Label";
+  let modalBody = props.modalbody;
+  
   return (
-    <div className="modal fade" id={ modalID } tabindex="-1" role="dialog" 
+    <div className="modal fade" id={ modalID } tabIndex="-1" role="dialog" 
     aria-labelledby={ modalLabel } aria-hidden="true">
       <div className="modal-dialog modal-dialog-centered" role="document">
         <div className="modal-content">
@@ -13,14 +15,37 @@ function AllowanceModal(props) {
             </button>
           </div>
           <div className="modal-body">
-            ...
+            { modalBody }
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" className="btn btn-primary">Save changes</button>
+            <button type="button" className="btn btn-secondary" data-dismiss="modal" >Close</button>
+            <button type="button" className="btn btn-primary" onClick={ props.onClick }>Save changes</button>
           </div>
         </div>
       </div>
     </div>
+  );
+}
+
+function NavModalTrigger(props) {
+  return (
+    <li
+      className='nav-item nav-link'
+      data-toggle='modal'
+      data-target={ props.modallabel }
+      style={{ cursor: 'pointer' }}
+      onClick={ props.onClick }
+    >
+      { props.itemlabel }
+    </li>
+  );
+}
+
+function AllowanceNavBar(props) {
+  let classes = 'navbar navbar-expand-sm ' + props.classes;
+  return (
+    <nav className={ classes } style={{ fontWeight: 'bold' }}>
+      { props.body.props.children }
+    </nav>
   );
 }

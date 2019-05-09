@@ -24,7 +24,6 @@ def userhome(request):
                     'lastName' : tup.child.last_name,
                     'balance' : str(tup.child.allowanceuserinfo.balance)
                 }
-            ctxt['children'] = qs
             ctxt['childrenDict'] = dumps(childrenDict)
         else:
             qs = ChildToParents.objects.filter(child=request.user.username)
