@@ -50,17 +50,49 @@ function AllowanceNavBar(props) {
   );
 }
 
-function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = jQuery.trim(cookies[i]);
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
+class AllowanceHistTable extends React.Component{
+  constructor(props){
+    super(props);
+  }
+  
+  render() {
+    return (
+      <table id='hist' className='table table-striped table-bordered'>
+        <thead>
+          <tr>
+            <th>Chars</th>
+            <th>Nums</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>a</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>b</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>c</td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>
+    );
+  }
 }
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+
+$.ajaxSetup({
+  beforeSend: function(xhr, settings) {
+    let csrftoken = $('meta[name="csrf-token"]').prevObject[0].cookie.split('=')[1];
+    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+    }
+  }
+});

@@ -148,30 +148,7 @@ class Children extends React.Component {
   render() {
     let childInfoElements = [];
     let i = 1;
-    let histModalBody = (
-      <table id='hist' className='table table-striped table-bordered'>
-        <thead>
-          <tr>
-            <th>Chars</th>
-            <th>Nums</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>a</td>
-            <td>3</td>
-          </tr>
-          <tr>
-            <td>b</td>
-            <td>2</td>
-          </tr>
-          <tr>
-            <td>c</td>
-            <td>1</td>
-          </tr>
-        </tbody>
-      </table>
-    );
+    let histModalBody = ( <AllowanceHistTable /> );
     let WDModalBody = (
       <form>
         <p className='border border-danger rounded p-2 text-danger collapse' 
@@ -247,20 +224,6 @@ $('#WDModal').on('show.bs.modal', function(event) {
   $('#WDLabel').html($(event.relatedTarget).html());
 });
 
-function csrfSafeMethod(method) {
-    // these HTTP methods do not require CSRF protection
-    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-}
-
-let csrftoken = $('meta[name="csrf-token"]').prevObject[0].cookie.split('=')[1];
-$.ajaxSetup({
-    beforeSend: function(xhr, settings) {
-        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-        }
-    }
-});
-
 $(document).ready(function() {
     $('#hist').DataTable();
-} );
+});
