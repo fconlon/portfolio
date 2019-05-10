@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from allowance.models import ParentToChildren, ChildToParents, History
 from django.contrib.auth.models import User
 from decimal import Decimal
@@ -47,3 +47,17 @@ def updateBalance(request):
         History.objects.create(uname=uname, reason=reason, transaction=amount)
     u.allowanceuserinfo.save()
     return HttpResponse('Success')
+
+def childHistory(request):
+    childHist = {}
+    key = 1
+    uname = request.POST['username']
+    histList = History.objects.filter(uname=uname)
+    for item in histList:
+        childHist[key] = {
+            'reason': item.reason,
+            'date': item.date,
+            'transation': item.transaction
+        }
+        key += 1
+    return JsonResponse(childHist)

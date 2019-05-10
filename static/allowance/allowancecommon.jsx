@@ -1,12 +1,14 @@
+var rows = [];
 function AllowanceModal(props) {
   let modalID = props.modalname + "Modal";
   let modalLabel = props.modalname + "Label";
   let modalBody = props.modalbody;
+  let modalDialog = "modal-dialog modal-dialog-centered " + props.size;
   
   return (
     <div className="modal fade" id={ modalID } tabIndex="-1" role="dialog" 
     aria-labelledby={ modalLabel } aria-hidden="true">
-      <div className="modal-dialog modal-dialog-centered" role="document">
+      <div className={ modalDialog } role="document">
         <div className="modal-content">
           <div className="modal-header bg-info">
             <h5 className="modal-title text-white" id={ modalLabel }>{ props.header }</h5>
@@ -53,30 +55,48 @@ function AllowanceNavBar(props) {
 class AllowanceHistTable extends React.Component{
   constructor(props){
     super(props);
+    this.rows = [];
+    this.state = { child: this.props.child };
+  }
+  
+  buildTable(uname){
+    this.setState({ child: uname });
+  }
+  
+  responseHandler(data, status, xhttp){
+    rows = [];
+    for(var key in data){
+      let row = (
+        <tr key={ key }>
+          <td>{ data[key].reason }</td>
+          <td>{ data[key].date }</td>
+          <td>{ data[key].transation }</td>
+        </tr>
+      );
+      rows.push(row);
+    }
   }
   
   render() {
+    $.ajax({
+      type: 'POST',
+      url: '/allowance/childhistory/',
+      data: { username: this.state.child },
+      success: this.responseHandler,
+      dataType: 'json',
+      async: false
+    });
     return (
       <table id='hist' className='table table-striped table-bordered'>
         <thead>
           <tr>
-            <th>Chars</th>
-            <th>Nums</th>
+            <th>Reason</th>
+            <th>Date</th>
+            <th>Change</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>a</td>
-            <td>3</td>
-          </tr>
-          <tr>
-            <td>b</td>
-            <td>2</td>
-          </tr>
-          <tr>
-            <td>c</td>
-            <td>1</td>
-          </tr>
+          { rows }
         </tbody>
       </table>
     );

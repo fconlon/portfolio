@@ -6,6 +6,7 @@ from . import views
 app_name = 'allowance'
 urlpatterns = [
     path('', views.index, name='index'),
+    path('childhistory/', views.childHistory, name="childhistory"),
     path('update/', views.updateBalance, name='update'),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),

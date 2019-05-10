@@ -54,7 +54,7 @@ class ChildInfo extends React.Component {
     $('#reason').val('');
   }
   
-  render() {
+  render(){
     let target = "collapse" + this.props.info.childNum;
     let name = this.props.info.childName;
     let heading = "heading" + this.props.info.childNum;
@@ -63,7 +63,7 @@ class ChildInfo extends React.Component {
         <ul className='navbar-nav mr-auto' data-username={ this.props.info.username }>
           <NavModalTrigger modallabel='#WDModal' itemlabel='Withdraw' onClick={ () => this.clearModal() }/>
           <NavModalTrigger modallabel='#WDModal' itemlabel='Deposit' onClick={ () => this.clearModal() }/>
-          <NavModalTrigger modallabel='#histModal' itemlabel='History' />
+          <NavModalTrigger modallabel='#histModal' itemlabel='History' onClick={ this.props.histClick }/>
         </ul>
         <ul className='navbar-nav'>
           <li className='nav-item'>
@@ -99,6 +99,7 @@ class Children extends React.Component {
   constructor(props) {
     super(props);
     this.currChild = '';
+    this.histRef = React.createRef();
     let children = $('#parent').data('children');
     for (var child in children){
       children[child].balance = parseFloat(children[child].balance);
@@ -108,6 +109,12 @@ class Children extends React.Component {
   
   setCurrChild(child){
     this.currChild = child;
+  }
+  
+  buildHistTable(uname){
+    console.log(this.histRef.current);
+    this.histRef.current.buildTable(uname);
+    $('#hist').DataTable();
   }
   
   changeBalance(){
@@ -145,10 +152,10 @@ class Children extends React.Component {
     }
   }
   
-  render() {
+  render(){
     let childInfoElements = [];
     let i = 1;
-    let histModalBody = ( <AllowanceHistTable /> );
+    let histModalBody = ( <AllowanceHistTable ref={ this.histRef } child={ Object.keys(this.state)[0] }/> );
     let WDModalBody = (
       <form>
         <p className='border border-danger rounded p-2 text-danger collapse' 
@@ -182,14 +189,15 @@ class Children extends React.Component {
         balance : this.state[child].balance
       };
       childInfoElements.push(<ChildInfo info={ childInfo } key={ i.toString() } 
-      onClick={ () => this.setCurrChild(childInfo.username) }/>);
+      onClick={ () => this.setCurrChild(childInfo.username) }
+      histClick={ () => this.buildHistTable(childInfo.username) }/>);
       i++;
     }
     return (
       <div className="accordion" id="childrenAccounts" style={{ width: '60%', margin: 'auto' }}>
         <AllowanceModal modalname='WD' header='' modalbody={ WDModalBody }
         onClick={ () => this.changeBalance() }/>
-        <AllowanceModal modalname='hist' header='History' modalbody={ histModalBody } />
+        <AllowanceModal modalname='hist' header='History' modalbody={ histModalBody } size='modal-lg'/>
         { childInfoElements }
       </div>
     );
@@ -224,6 +232,6 @@ $('#WDModal').on('show.bs.modal', function(event) {
   $('#WDLabel').html($(event.relatedTarget).html());
 });
 
-$(document).ready(function() {
+$(document).ready(function(){
     $('#hist').DataTable();
 });
