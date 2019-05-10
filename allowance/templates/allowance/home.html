@@ -6,6 +6,13 @@
   {% else %}
     <title>{{ user.first_name }}'s Allowance Homepage</title>
   {% endifequal %}
+  <style>
+    table.dataTable thead .sorting, 
+    table.dataTable thead .sorting_asc, 
+    table.dataTable thead .sorting_desc {
+        background : none !important;
+    }
+  </style>
   <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'datatables/datatables.min.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'datatables/dataTables.bootstrap4.min.css' %}">
