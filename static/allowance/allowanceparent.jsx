@@ -49,6 +49,7 @@ class ChildInfo extends React.Component {
   
   clearModal(){
     $('#balChangeError').collapse('hide');
+    $('#reasonError').collapse('hide');
     $('#amount').val('');
     $('#reason').val('');
   }
@@ -62,6 +63,7 @@ class ChildInfo extends React.Component {
         <ul className='navbar-nav mr-auto' data-username={ this.props.info.username }>
           <NavModalTrigger modallabel='#WDModal' itemlabel='Withdraw' onClick={ () => this.clearModal() }/>
           <NavModalTrigger modallabel='#WDModal' itemlabel='Deposit' onClick={ () => this.clearModal() }/>
+          <NavModalTrigger modallabel='#histModal' itemlabel='History' />
         </ul>
         <ul className='navbar-nav'>
           <li className='nav-item'>
@@ -111,11 +113,21 @@ class Children extends React.Component {
   changeBalance(){
     let newState = this.state;
     let amount = parseFloat($('#amount').val());
+    let reason = $('#reason').val();
     if(isNaN(amount)){
       $('#balChangeError').collapse('show');
     }
     else{
-      if($('#WDLabel').html() == 'Deposit'){
+      $('#balChangeError').collapse('hide');
+    }
+    if(reason === ''){
+      $('#reasonError').collapse('show');
+    }
+    else{
+      $('#reasonError').collapse('hide');
+    }
+    if(!isNaN(amount) && reason !== ''){
+      if($('#WDLabel').html() === 'Deposit'){
         newState[this.currChild].balance += amount;
       }
       else{
@@ -141,6 +153,10 @@ class Children extends React.Component {
         style={{ textAlign : 'center' }} id='balChangeError'>
           You must enter a number
         </p>
+        <p className='border border-danger rounded p-2 text-danger collapse' 
+        style={{ textAlign : 'center' }} id='reasonError'>
+          You must enter a reason
+        </p>
         <div className='input-group'>
           
           <div className='input-group-prepend mb-3'>
@@ -152,7 +168,7 @@ class Children extends React.Component {
           <div className='input-group-prepend'>
             <span className='input-group-text'>Reason:</span>
           </div>
-          <input type="number" className='form-control' name="username" autoFocus="" id="reason" />
+          <input type="text" className='form-control' name="username" autoFocus="" id="reason" />
         </div>
       </form>
     );
@@ -169,8 +185,9 @@ class Children extends React.Component {
     }
     return (
       <div className="accordion" id="childrenAccounts" style={{ width: '60%', margin: 'auto' }}>
-        <AllowanceModal modalname='WD' header='' modalbody={ modalBody } 
+        <AllowanceModal modalname='WD' header='' modalbody={ modalBody }
         onClick={ () => this.changeBalance() }/>
+        <AllowanceModal modalname='hist' header='History' modalbody='PlaceHolder' />
         { childInfoElements }
       </div>
     );

@@ -41,5 +41,5 @@ def updateBalance(request):
         u.allowanceuserinfo.balance -= Decimal(request.POST['amt'])
     else:
         u.allowanceuserinfo.balance += Decimal(request.POST['amt'])
-    #u.allowanceuserinfo.save()
+    u.allowanceuserinfo.save()
     return HttpResponse('Success')
