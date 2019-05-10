@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from allowance.models import ParentToChildren, ChildToParents
+from allowance.models import ParentToChildren, ChildToParents, History
 from django.contrib.auth.models import User
 from decimal import Decimal
 from json import dumps
@@ -35,11 +35,15 @@ def userhome(request):
         return redirect('/allowance/login/')
 
 def updateBalance(request):
-    u = request.POST['username']
-    u = User.objects.get(username=u)
+    uname = request.POST['username']
+    reason = request.POST['rsn']
+    amount = Decimal(request.POST['amt'])
+    u = User.objects.get(username=uname)
     if request.POST['type'] == 'Withdraw':
-        u.allowanceuserinfo.balance -= Decimal(request.POST['amt'])
+        u.allowanceuserinfo.balance -= amount
+        History.objects.create(uname=uname, reason=reason, transaction=-amount)
     else:
-        u.allowanceuserinfo.balance += Decimal(request.POST['amt'])
+        u.allowanceuserinfo.balance += amount
+        History.objects.create(uname=uname, reason=reason, transaction=amount)
     u.allowanceuserinfo.save()
     return HttpResponse('Success')

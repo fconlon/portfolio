@@ -14,3 +14,9 @@ class AllowanceUserInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     is_parent = models.BooleanField()
     balance = models.DecimalField(max_digits=7, decimal_places=2)
+    
+class History(models.Model):
+    uname = models.CharField(max_length=50)
+    reason = models.CharField(max_length=100)
+    date = models.DateTimeField(auto_now_add=True)
+    transaction = models.DecimalField(max_digits=7, decimal_places=2)

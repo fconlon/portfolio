@@ -8,19 +8,21 @@
   {% endifequal %}
   <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'datatables/datatables.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'datatables/dataTables.bootstrap4.min.css' %}">
   <script type="text/javascript" src="{% static 'jquery/jquery-3.3.1.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'reactjs/react.development.js' %}"></script>
   <script type="text/javascript" src="{% static 'reactjs/react-dom.development.js' %}"></script>
   <script type="text/javascript" src="{% static 'reactjs/babel.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'datatables/datatables.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'datatables/jquery.dataTables.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'datatables/dataTables.bootstrap4.min.js' %}"></script>
   <script type="text/babel" src="{% static 'allowance/allowancecommon.jsx' %}"></script>
   <script type="text/babel" src="{% static 'allowance/allowanceparent.jsx' %}"></script>
 </head>
 <body>
   {% if user.allowanceuserinfo.is_parent %}
     <div id='parent' 
-         data-link="{% url 'allowance:logout' %}?next={% url 'allowance:login' %}"
          data-user='{{ userDict }}'
          data-children='{{ childrenDict }}'
     ></div>

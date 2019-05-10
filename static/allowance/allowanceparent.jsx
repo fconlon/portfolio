@@ -24,7 +24,7 @@ function ParentNavBar(props) {
       </ul>
       <ul className='navbar-nav'>
         <li className='nav-item'>
-          <a className='nav-link' href={ link }>Logout</a>
+          <a className='nav-link' href='/allowance/logout?next=/allowance/login'>Logout</a>
         </li>
       </ul>
     </div>
@@ -135,7 +135,8 @@ class Children extends React.Component {
       }
       this.setState(newState);
       let postInfo = { 
-        username : this.currChild, 
+        username : this.currChild,
+        rsn : reason,
         amt: amount, 
         type: $('#WDLabel').html()
       };
@@ -147,7 +148,31 @@ class Children extends React.Component {
   render() {
     let childInfoElements = [];
     let i = 1;
-    let modalBody = (
+    let histModalBody = (
+      <table id='hist' className='table table-striped table-bordered'>
+        <thead>
+          <tr>
+            <th>Chars</th>
+            <th>Nums</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>a</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>b</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>c</td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>
+    );
+    let WDModalBody = (
       <form>
         <p className='border border-danger rounded p-2 text-danger collapse' 
         style={{ textAlign : 'center' }} id='balChangeError'>
@@ -185,9 +210,9 @@ class Children extends React.Component {
     }
     return (
       <div className="accordion" id="childrenAccounts" style={{ width: '60%', margin: 'auto' }}>
-        <AllowanceModal modalname='WD' header='' modalbody={ modalBody }
+        <AllowanceModal modalname='WD' header='' modalbody={ WDModalBody }
         onClick={ () => this.changeBalance() }/>
-        <AllowanceModal modalname='hist' header='History' modalbody='PlaceHolder' />
+        <AllowanceModal modalname='hist' header='History' modalbody={ histModalBody } />
         { childInfoElements }
       </div>
     );
@@ -235,3 +260,7 @@ $.ajaxSetup({
         }
     }
 });
+
+$(document).ready(function() {
+    $('#hist').DataTable();
+} );
