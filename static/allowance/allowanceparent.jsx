@@ -122,6 +122,13 @@ class Children extends React.Component {
         newState[this.currChild].balance -= amount;
       }
       this.setState(newState);
+      let postInfo = { 
+        username : this.currChild, 
+        amt: amount, 
+        type: $('#WDLabel').html()
+      };
+      $.post('/allowance/update/', postInfo);
+      $('#WDModal').modal('hide');
     }
   }
   
@@ -196,4 +203,18 @@ ReactDOM.render(
 
 $('#WDModal').on('show.bs.modal', function(event) {
   $('#WDLabel').html($(event.relatedTarget).html());
+});
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+
+let csrftoken = $('meta[name="csrf-token"]').prevObject[0].cookie.split('=')[1];
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
 });
