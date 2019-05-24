@@ -46,14 +46,14 @@ class ChildInfo extends React.Component {
   constructor(props) {
     super(props);
   }
-  
+
   clearModal(){
     $('#balChangeError').collapse('hide');
     $('#reasonError').collapse('hide');
     $('#amount').val('');
     $('#reason').val('');
   }
-  
+
   render(){
     let target = "collapse" + this.props.info.childNum;
     let name = this.props.info.childName;
@@ -77,8 +77,8 @@ class ChildInfo extends React.Component {
       <div className="card">
         <div className="card-header p-0" id={ heading }>
           <h2 className="mb-0">
-            <button className="btn btn-info btn-lg btn-block mb-0 shadow-none collapsed" 
-                    type="button" data-toggle="collapse" data-target={ "#" + target } 
+            <button className="btn btn-info btn-lg btn-block mb-0 shadow-none collapsed"
+                    type="button" data-toggle="collapse" data-target={ "#" + target }
                     aria-expanded="false" aria-controls={ target } onClick={ this.props.onClick }>
               { name }
             </button>
@@ -106,17 +106,15 @@ class Children extends React.Component {
     }
     this.state = children;
   }
-  
+
   setCurrChild(child){
     this.currChild = child;
   }
-  
+
   buildHistTable(uname){
-    console.log(this.histRef.current);
     this.histRef.current.buildTable(uname);
-    $('#hist').DataTable();
   }
-  
+
   changeBalance(){
     let newState = this.state;
     let amount = parseFloat($('#amount').val());
@@ -141,33 +139,33 @@ class Children extends React.Component {
         newState[this.currChild].balance -= amount;
       }
       this.setState(newState);
-      let postInfo = { 
+      let postInfo = {
         username : this.currChild,
         rsn : reason,
-        amt: amount, 
+        amt: amount,
         type: $('#WDLabel').html()
       };
       $.post('/allowance/update/', postInfo);
       $('#WDModal').modal('hide');
     }
   }
-  
+
   render(){
     let childInfoElements = [];
     let i = 1;
     let histModalBody = ( <AllowanceHistTable ref={ this.histRef } child={ Object.keys(this.state)[0] }/> );
     let WDModalBody = (
       <form>
-        <p className='border border-danger rounded p-2 text-danger collapse' 
+        <p className='border border-danger rounded p-2 text-danger collapse'
         style={{ textAlign : 'center' }} id='balChangeError'>
           You must enter a number
         </p>
-        <p className='border border-danger rounded p-2 text-danger collapse' 
+        <p className='border border-danger rounded p-2 text-danger collapse'
         style={{ textAlign : 'center' }} id='reasonError'>
           You must enter a reason
         </p>
         <div className='input-group'>
-          
+
           <div className='input-group-prepend mb-3'>
             <span className='input-group-text'>Amount: $</span>
           </div>
@@ -188,7 +186,7 @@ class Children extends React.Component {
         childNum : i,
         balance : this.state[child].balance
       };
-      childInfoElements.push(<ChildInfo info={ childInfo } key={ i.toString() } 
+      childInfoElements.push(<ChildInfo info={ childInfo } key={ i.toString() }
       onClick={ () => this.setCurrChild(childInfo.username) }
       histClick={ () => this.buildHistTable(childInfo.username) }/>);
       i++;
@@ -208,9 +206,9 @@ class ParentHome extends React.Component {
   constructor(props){
     super(props);
   }
-  
+
   render (){
-    
+
     return (
       <div>
         <ParentModals />
@@ -230,8 +228,4 @@ ReactDOM.render(
 
 $('#WDModal').on('show.bs.modal', function(event) {
   $('#WDLabel').html($(event.relatedTarget).html());
-});
-
-$(document).ready(function(){
-    $('#hist').DataTable();
 });

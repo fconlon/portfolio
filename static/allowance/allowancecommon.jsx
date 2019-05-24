@@ -1,12 +1,11 @@
-var rows = [];
 function AllowanceModal(props) {
   let modalID = props.modalname + "Modal";
   let modalLabel = props.modalname + "Label";
   let modalBody = props.modalbody;
   let modalDialog = "modal-dialog modal-dialog-centered " + props.size;
-  
+
   return (
-    <div className="modal fade" id={ modalID } tabIndex="-1" role="dialog" 
+    <div className="modal fade" id={ modalID } tabIndex="-1" role="dialog"
     aria-labelledby={ modalLabel } aria-hidden="true">
       <div className={ modalDialog } role="document">
         <div className="modal-content">
@@ -56,36 +55,35 @@ class AllowanceHistTable extends React.Component{
   constructor(props){
     super(props);
     this.rows = [];
-    this.state = { child: this.props.child };
+    this.child = this.props.child;
+    //this.state = { child: this.props.child };
   }
-  
-  buildTable(uname){
-    this.setState({ child: uname });
-  }
-  
-  responseHandler(data, status, xhttp){
-    rows = [];
-    for(var key in data){
-      let row = (
-        <tr key={ key }>
-          <td>{ data[key].reason }</td>
-          <td>{ data[key].date }</td>
-          <td>{ data[key].transation }</td>
-        </tr>
-      );
-      rows.push(row);
-    }
-  }
-  
-  render() {
-    $.ajax({
-      type: 'POST',
-      url: '/allowance/childhistory/',
-      data: { username: this.state.child },
-      success: this.responseHandler,
-      dataType: 'json',
-      async: false
+
+  componentDidMount(){
+    var comp = this;
+    this.table = $('#hist').DataTable({
+      ajax: {
+        type: 'POST',
+        url: '/allowance/childhistory/',
+        data: function (d){
+          d.username = comp.child;
+        },
+        dataSrc: 'data',
+      },
+      columns: [
+        { data: 'reason' },
+        { data: 'date' },
+        { data: 'transaction' }
+      ]
     });
+  }
+
+  buildTable(uname){
+    this.child = uname;
+    this.table.ajax.reload();
+  }
+
+  render() {
     return (
       <table id='hist' className='table table-striped table-bordered'>
         <thead>
@@ -95,9 +93,6 @@ class AllowanceHistTable extends React.Component{
             <th>Change</th>
           </tr>
         </thead>
-        <tbody>
-          { rows }
-        </tbody>
       </table>
     );
   }

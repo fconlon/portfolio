@@ -49,15 +49,15 @@ def updateBalance(request):
     return HttpResponse('Success')
 
 def childHistory(request):
-    childHist = {}
+    childHist = { 'data' : [] }
     key = 1
     uname = request.POST['username']
     histList = History.objects.filter(uname=uname)
     for item in histList:
-        childHist[key] = {
+        childHist['data'].append({
             'reason': item.reason,
             'date': item.date,
-            'transation': item.transaction
-        }
+            'transaction': item.transaction
+        })
         key += 1
     return JsonResponse(childHist)
