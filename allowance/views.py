@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
-from allowance.models import ParentToChildren, ChildToParents, History
+from allowance.models import *
 from django.contrib.auth.models import User
 from decimal import Decimal
 from json import dumps
@@ -61,3 +61,12 @@ def childHistory(request):
         })
         key += 1
     return JsonResponse(childHist)
+
+def addChild(request):
+    uname = request.user.userName
+    childUname = request.POST['username']
+    childPassword = request.POST['password']
+    firstName = request.POST['firstName']
+    lastName = request.POST['lastName']
+
+    

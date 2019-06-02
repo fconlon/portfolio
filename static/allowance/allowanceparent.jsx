@@ -1,13 +1,80 @@
-function ParentModals(props){
-  let body1 = <p>Test</p>;
-  return (
-    <div>
-      <AllowanceModal modalname='addChild' header='Add Child' modalbody={ body1 } />
-      <AllowanceModal modalname='removeChild' header='Remove Child' modalbody="..." />
-      <AllowanceModal modalname='prCode' header='Parent Registration Code'  modalbody="..." />
-      <AllowanceModal modalname='changePW' header='Change Password' modalbody="..." />
-    </div>
-  );
+class ParentModals extends React.Component{
+  constructor(props){
+    super(props);
+  }
+  render(){
+    let addChildBody = (
+      <form>
+        <div className='input-group'>
+          <div className='input-group-prepend mb-3'>
+            <span className='input-group-text'>First Name</span>
+          </div>
+          <input type="text" className='form-control' autoFocus="" id="firstName" />
+        </div>
+        <div className='input-group'>
+          <div className='input-group-prepend mb-3'>
+            <span className='input-group-text'>Last Name</span>
+          </div>
+          <input type="text" className='form-control' id="lastName" />
+        </div>
+        <div className='input-group'>
+          <div className='input-group-prepend mb-3'>
+            <span className='input-group-text'>Username</span>
+          </div>
+          <input type="text" className='form-control' id="acUsername" />
+        </div>
+        <div className='input-group'>
+          <div className='input-group-prepend mb-3'>
+            <span className='input-group-text'>Password</span>
+          </div>
+          <input type="password" className='form-control' id="password" />
+        </div>
+      </form>
+    );
+    let removeChildBody = (
+      <form>
+        <div className='input-group'>
+          <div className='input-group-prepend mb-3'>
+            <span className='input-group-text'>Username</span>
+          </div>
+          <input type="text" className='form-control' autoFocus="" id="rcUsername" />
+        </div>
+      </form>
+    );
+    let prBody = (
+      "Placeholder"
+    );
+    let changePasswordBody = (
+      <form>
+        <div className='input-group'>
+          <div className='input-group-prepend mb-3'>
+            <span className='input-group-text'>Old Password</span>
+          </div>
+          <input type="password" className='form-control' autoFocus="" id="oldPW" />
+        </div>
+        <div className='input-group'>
+          <div className='input-group-prepend mb-3'>
+            <span className='input-group-text'>New Password</span>
+          </div>
+          <input type="password" className='form-control' id="newPW" />
+        </div>
+        <div className='input-group'>
+          <div className='input-group-prepend mb-3'>
+            <span className='input-group-text'>Confirm Password</span>
+          </div>
+          <input type="password" className='form-control' id="confirmPW" />
+        </div>
+      </form>
+    )
+    return (
+      <div>
+        <AllowanceModal modalname='addChild' header='Add Child' modalbody={ addChildBody } />
+        <AllowanceModal modalname='removeChild' header='Remove Child' modalbody={ removeChildBody } />
+        <AllowanceModal modalname='prCode' header='Parent Registration Code'  modalbody={ prBody } />
+        <AllowanceModal modalname='changePW' header='Change Password' modalbody={ changePasswordBody}/>
+      </div>
+    );
+  }
 }
 
 
@@ -169,13 +236,13 @@ class Children extends React.Component {
           <div className='input-group-prepend mb-3'>
             <span className='input-group-text'>Amount: $</span>
           </div>
-          <input type="number" className='form-control' name="username" autoFocus="" id="amount" />
+          <input type="number" className='form-control' autoFocus="" id="amount" />
         </div>
         <div className='input-group'>
           <div className='input-group-prepend'>
             <span className='input-group-text'>Reason:</span>
           </div>
-          <input type="text" className='form-control' name="username" autoFocus="" id="reason" />
+          <input type="text" className='form-control' autoFocus="" id="reason" />
         </div>
       </form>
     );
