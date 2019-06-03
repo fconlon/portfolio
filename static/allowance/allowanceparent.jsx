@@ -2,9 +2,32 @@ class ParentModals extends React.Component{
   constructor(props){
     super(props);
   }
+
+  addChildHandler() {
+    let postInfo = {
+      firstName: $("#firstName").val(),
+      lastName: $("#lastName").val(),
+      username: $("#acUsername").val(),
+      password: $("#password").val()
+    };
+    $.post("/allowance/addchild/", postInfo, function(data) {
+      if(data.success) {
+        $("#addChildFail").hide();
+        $("#addChildModal").modal('hide');
+      }
+      else {
+        $("#addChildFail").show();
+      }
+    });
+  }
+
   render(){
     let addChildBody = (
       <form>
+      <p className='border border-danger rounded p-2 text-danger collapse'
+      style={{ textAlign : 'center' }} id='addChildFail'>
+        That username is taken. Please choose a different username.
+      </p>
         <div className='input-group'>
           <div className='input-group-prepend mb-3'>
             <span className='input-group-text'>First Name</span>
@@ -31,6 +54,7 @@ class ParentModals extends React.Component{
         </div>
       </form>
     );
+
     let removeChildBody = (
       <form>
         <div className='input-group'>
@@ -41,9 +65,11 @@ class ParentModals extends React.Component{
         </div>
       </form>
     );
+
     let prBody = (
       "Placeholder"
     );
+
     let changePasswordBody = (
       <form>
         <div className='input-group'>
@@ -66,9 +92,10 @@ class ParentModals extends React.Component{
         </div>
       </form>
     )
+
     return (
       <div>
-        <AllowanceModal modalname='addChild' header='Add Child' modalbody={ addChildBody } />
+        <AllowanceModal modalname='addChild' header='Add Child' modalbody={ addChildBody } onClick={ () => this.addChildHandler() }/>
         <AllowanceModal modalname='removeChild' header='Remove Child' modalbody={ removeChildBody } />
         <AllowanceModal modalname='prCode' header='Parent Registration Code'  modalbody={ prBody } />
         <AllowanceModal modalname='changePW' header='Change Password' modalbody={ changePasswordBody}/>

@@ -6,9 +6,10 @@ from . import views
 app_name = 'allowance'
 urlpatterns = [
     path('', views.index, name='index'),
-    path('childhistory/', views.childHistory, name="childhistory"),
+    path('home/', views.userhome, name='home'),
     path('update/', views.updateBalance, name='update'),
+    path('childhistory/', views.childHistory, name="childhistory"),
+    path('addchild/', views.addChild, name="addChild"),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('home/', views.userhome, name='home')
 ]

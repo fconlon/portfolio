@@ -2,14 +2,17 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from allowance.models import *
 from django.contrib.auth.models import User
+from django.db.utils import IntegrityError
 from decimal import Decimal
 from json import dumps
 
 # Create your views here.
 def index(request):
+    #need to add site homepage
     return redirect('/allowance/home/')
 
 def userhome(request):
+    #refactor this using ajax requests in the components
     if request.user.is_authenticated:
         userDict = {
             'userName' : request.user.username,
@@ -63,10 +66,24 @@ def childHistory(request):
     return JsonResponse(childHist)
 
 def addChild(request):
-    uname = request.user.userName
-    childUname = request.POST['username']
-    childPassword = request.POST['password']
+    uname = request.user.username
     firstName = request.POST['firstName']
     lastName = request.POST['lastName']
+    childUname = request.POST['username']
+    childPassword = request.POST['password']
 
-    
+    try:
+        newChild = User.objects.create_user(childUname, first_name=firstName,
+                    last_name=lastName, password=childPassword)
+    except IntegrityError:
+        return JsonResponse({})
+
+    AllowanceUserInfo.objects.create(user=newChild, is_parent=False, balance=0.0)
+
+    existingChild = ParentToChildren.objects.filter(parent=request.user.username)[0].child
+    qs = ParentToChildren.objects.filter(child=existingChild)
+
+    for record in qs:
+        ParentToChildren.objects.create(parent=record.parent, child=newChild)
+
+    return JsonResponse({ 'success': True })
