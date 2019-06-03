@@ -85,5 +85,7 @@ def addChild(request):
 
     for record in qs:
         ParentToChildren.objects.create(parent=record.parent, child=newChild)
+        u = User.objects.get(username=record.parent)
+        ChildToParents.objects.create(child=childUname, parent=u)
 
     return JsonResponse({ 'success': True })
