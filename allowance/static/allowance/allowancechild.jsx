@@ -15,7 +15,7 @@ function ChildNavBar(props){
 }
 
 function Welcome(props) {
-  let childName = $('#parent').data('user').firstName;
+  let childName = $('#child').data('user').firstName;
   return (
     <h2 style={{ textAlign : 'center' }}>Welcome { childName }</h2>
   );
