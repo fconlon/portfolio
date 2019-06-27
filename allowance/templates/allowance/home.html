@@ -25,7 +25,11 @@
   <script type="text/javascript" src="{% static 'datatables/jquery.dataTables.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'datatables/dataTables.bootstrap4.min.js' %}"></script>
   <script type="text/babel" src="{% static 'allowance/allowancecommon.jsx' %}"></script>
-  <script type="text/babel" src="{% static 'allowance/allowanceparent.jsx' %}"></script>
+  {% if user.allowanceuserinfo.is_parent %}
+    <script type="text/babel" src="{% static 'allowance/allowanceparent.jsx' %}"></script>
+  {% else %}
+    <script type="text/babel" src="{% static 'allowance/allowancechild.jsx' %}"></script>
+  {% endif %}
 </head>
 <body>
   {% if user.allowanceuserinfo.is_parent %}
@@ -34,10 +38,8 @@
          data-children='{{ childrenDict }}'
     ></div>
   {% else %}
-    <ul>
-      {% for tuple in parents %}
-      <li>{{ tuple.parent.first_name }} {{ tuple.parent.last_name }}</li>
-      {% endfor %}
-    </ul>
+    <div id='child'
+         data-user='{{ userDict }}'
+    ></div>
   {% endif %}
 </body>

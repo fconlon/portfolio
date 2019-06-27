@@ -247,7 +247,7 @@ class Children extends React.Component {
   render(){
     let childInfoElements = [];
     let i = 1;
-    let histModalBody = ( <AllowanceHistTable ref={ this.histRef } child={ Object.keys(this.state)[0] }/> );
+    let histModalBody = ( <AllowanceHistTable ref={ this.histRef} child={ Object.keys(this.state)[0] }/> );
     let WDModalBody = (
       <form>
         <p className='border border-danger rounded p-2 text-danger collapse'

@@ -1,43 +1,131 @@
-function Modals(props){
-  return (
-    <div>
-      <AllowanceModal modalname='addChild' header='Add Child'/>
-      <AllowanceModal modalname='removeChild' header='Remove Child'/>
-      <AllowanceModal modalname='prCode' header='Parent Registration Code' />
-      <AllowanceModal modalname='changePW' header='Change Password' />
-    </div>
-  );
+class ParentModals extends React.Component{
+  constructor(props){
+    super(props);
+  }
+
+  addChildHandler() {
+    let postInfo = {
+      firstName: $("#firstName").val(),
+      lastName: $("#lastName").val(),
+      username: $("#acUsername").val(),
+      password: $("#password").val()
+    };
+    $.post("/allowance/addchild/", postInfo, function(data) {
+      if(data.success) {
+        $("#addChildFail").hide();
+        $("#addChildModal").modal('hide');
+      }
+      else {
+        $("#addChildFail").show();
+      }
+    });
+  }
+
+  render(){
+    let addChildBody = (
+      <form>
+      <p className='border border-danger rounded p-2 text-danger collapse'
+      style={{ textAlign : 'center' }} id='addChildFail'>
+        That username is taken. Please choose a different username.
+      </p>
+        <div className='input-group'>
+          <div className='input-group-prepend mb-3'>
+            <span className='input-group-text'>First Name</span>
+          </div>
+          <input type="text" className='form-control' autoFocus="" id="firstName" />
+        </div>
+        <div className='input-group'>
+          <div className='input-group-prepend mb-3'>
+            <span className='input-group-text'>Last Name</span>
+          </div>
+          <input type="text" className='form-control' id="lastName" />
+        </div>
+        <div className='input-group'>
+          <div className='input-group-prepend mb-3'>
+            <span className='input-group-text'>Username</span>
+          </div>
+          <input type="text" className='form-control' id="acUsername" />
+        </div>
+        <div className='input-group'>
+          <div className='input-group-prepend mb-3'>
+            <span className='input-group-text'>Password</span>
+          </div>
+          <input type="password" className='form-control' id="password" />
+        </div>
+      </form>
+    );
+
+    let removeChildBody = (
+      <form>
+        <div className='input-group'>
+          <div className='input-group-prepend mb-3'>
+            <span className='input-group-text'>Username</span>
+          </div>
+          <input type="text" className='form-control' autoFocus="" id="rcUsername" />
+        </div>
+      </form>
+    );
+
+    let prBody = (
+      "Placeholder"
+    );
+
+    let changePasswordBody = (
+      <form>
+        <div className='input-group'>
+          <div className='input-group-prepend mb-3'>
+            <span className='input-group-text'>Old Password</span>
+          </div>
+          <input type="password" className='form-control' autoFocus="" id="oldPW" />
+        </div>
+        <div className='input-group'>
+          <div className='input-group-prepend mb-3'>
+            <span className='input-group-text'>New Password</span>
+          </div>
+          <input type="password" className='form-control' id="newPW" />
+        </div>
+        <div className='input-group'>
+          <div className='input-group-prepend mb-3'>
+            <span className='input-group-text'>Confirm Password</span>
+          </div>
+          <input type="password" className='form-control' id="confirmPW" />
+        </div>
+      </form>
+    )
+
+    return (
+      <div>
+        <AllowanceModal modalname='addChild' header='Add Child' modalbody={ addChildBody } onClick={ () => this.addChildHandler() }/>
+        <AllowanceModal modalname='removeChild' header='Remove Child' modalbody={ removeChildBody } />
+        <AllowanceModal modalname='prCode' header='Parent Registration Code'  modalbody={ prBody } />
+        <AllowanceModal modalname='changePW' header='Change Password' modalbody={ changePasswordBody}/>
+      </div>
+    );
+  }
 }
 
-function NavElement(props) {
-  return (
-    <li
-      className='nav-item nav-link'
-      data-toggle='modal'
-      data-target={ props.modallabel }
-      style={{ cursor: 'pointer' }}
-    >
-      { props.itemlabel }
-    </li>
-  );
-}
+
 
 function ParentNavBar(props) {
   let link = $('#parent').data('link');
-  return (
-    <nav className='navbar navbar-expand navbar-light bg-info' style={{ fontWeight: 'bold' }}>
+  let navBody = (
+    <div>
       <ul className='navbar-nav mr-auto'>
-        <NavElement modallabel='#addChildModal' itemlabel='Add Child' />
-        <NavElement modallabel='#removeChildModal' itemlabel='Remove Child' />
-        <NavElement modallabel='#prCodeModal' itemlabel='Parent Registration Code' />
-        <NavElement modallabel='#changePWModal' itemlabel='Change Password' />
+        <NavModalTrigger modallabel='#addChildModal' itemlabel='Add Child' />
+        <NavModalTrigger modallabel='#removeChildModal' itemlabel='Remove Child' />
+        <NavModalTrigger modallabel='#prCodeModal' itemlabel='Parent Registration Code' />
+        <NavModalTrigger modallabel='#changePWModal' itemlabel='Change Password' />
       </ul>
       <ul className='navbar-nav'>
         <li className='nav-item'>
-          <a className='nav-link' href={ link }>Logout</a>
+          <a className='nav-link' href='/allowance/logout?next=/allowance/login'>Logout</a>
         </li>
       </ul>
-    </nav>
+    </div>
+  );
+  let classes = 'navbar-dark bg-info';
+  return (
+    <AllowanceNavBar classes={ classes } body={ navBody } />
   );
 }
 
@@ -48,57 +136,176 @@ function Welcome(props) {
   );
 }
 
-function ChildInfo(props) {
-  let target = "collapse" + props.childnum;
-  let name = props.childname;
-  let heading = "heading" + props.childnum;
-  return (
-    <div className="card">
-      <div className="card-header p-0" id={ heading }>
-        <h2 className="mb-0">
-          <button className="btn btn-info btn-lg btn-block mb-0 shadow-none collapsed" 
-                  type="button" data-toggle="collapse" data-target={ "#" + target } 
-                  aria-expanded="false" aria-controls={ target }>
-            { name }
-          </button>
-        </h2>
-      </div>
+class ChildInfo extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-      <div id={ target } className="collapse" aria-labelledby={ heading } data-parent="#childrenAccounts">
-        <div className="card-body">
-          PlaceHolder
+  clearModal(){
+    $('#balChangeError').collapse('hide');
+    $('#reasonError').collapse('hide');
+    $('#amount').val('');
+    $('#reason').val('');
+  }
+
+  render(){
+    let target = "collapse" + this.props.info.childNum;
+    let name = this.props.info.childName;
+    let heading = "heading" + this.props.info.childNum;
+    let navBody = (
+      <div>
+        <ul className='navbar-nav mr-auto' data-username={ this.props.info.username }>
+          <NavModalTrigger modallabel='#WDModal' itemlabel='Withdraw' onClick={ () => this.clearModal() }/>
+          <NavModalTrigger modallabel='#WDModal' itemlabel='Deposit' onClick={ () => this.clearModal() }/>
+          <NavModalTrigger modallabel='#histModal' itemlabel='History' onClick={ this.props.histClick }/>
+        </ul>
+        <ul className='navbar-nav'>
+          <li className='nav-item'>
+            ${ this.props.info.balance.toFixed(2) }
+          </li>
+        </ul>
+
+      </div>
+    );
+    return (
+      <div className="card">
+        <div className="card-header p-0" id={ heading }>
+          <h2 className="mb-0">
+            <button className="btn btn-info btn-lg btn-block mb-0 shadow-none collapsed"
+                    type="button" data-toggle="collapse" data-target={ "#" + target }
+                    aria-expanded="false" aria-controls={ target } onClick={ this.props.onClick }>
+              { name }
+            </button>
+          </h2>
+        </div>
+
+        <div id={ target } className="collapse" aria-labelledby={ heading } data-parent="#childrenAccounts">
+          <div className="card-body p-0">
+            <AllowanceNavBar classes='nav-light' body={ navBody } />
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
-function Children(props) {
-  let children = $('#parent').data('children');
-  let childInfoElements = [];
-  let i = 1;
-  for (var child in children){
-    let name = children[child].firstName;
-    childInfoElements.push(<ChildInfo childname={ name } childnum={ i } key={ i.toString() }/>);
-    i++;
+class Children extends React.Component {
+  constructor(props) {
+    super(props);
+    this.currChild = '';
+    this.histRef = React.createRef();
+    let children = $('#parent').data('children');
+    for (var child in children){
+      children[child].balance = parseFloat(children[child].balance);
+    }
+    this.state = children;
   }
-  return (
-    <div className="accordion" id="childrenAccounts" style={{ width: '60%', margin: 'auto' }}>
-      { childInfoElements }
-    </div>
-  );
+
+  setCurrChild(child){
+    this.currChild = child;
+  }
+
+  buildHistTable(uname){
+    this.histRef.current.buildTable(uname);
+  }
+
+  changeBalance(){
+    let newState = this.state;
+    let amount = parseFloat($('#amount').val());
+    let reason = $('#reason').val();
+    if(isNaN(amount)){
+      $('#balChangeError').collapse('show');
+    }
+    else{
+      $('#balChangeError').collapse('hide');
+    }
+    if(reason === ''){
+      $('#reasonError').collapse('show');
+    }
+    else{
+      $('#reasonError').collapse('hide');
+    }
+    if(!isNaN(amount) && reason !== ''){
+      if($('#WDLabel').html() === 'Deposit'){
+        newState[this.currChild].balance += amount;
+      }
+      else{
+        newState[this.currChild].balance -= amount;
+      }
+      this.setState(newState);
+      let postInfo = {
+        username : this.currChild,
+        rsn : reason,
+        amt: amount,
+        type: $('#WDLabel').html()
+      };
+      $.post('/allowance/update/', postInfo);
+      $('#WDModal').modal('hide');
+    }
+  }
+
+  render(){
+    let childInfoElements = [];
+    let i = 1;
+    let histModalBody = ( <AllowanceHistTable ref={ this.histRef} child={ Object.keys(this.state)[0] }/> );
+    let WDModalBody = (
+      <form>
+        <p className='border border-danger rounded p-2 text-danger collapse'
+        style={{ textAlign : 'center' }} id='balChangeError'>
+          You must enter a number
+        </p>
+        <p className='border border-danger rounded p-2 text-danger collapse'
+        style={{ textAlign : 'center' }} id='reasonError'>
+          You must enter a reason
+        </p>
+        <div className='input-group'>
+
+          <div className='input-group-prepend mb-3'>
+            <span className='input-group-text'>Amount: $</span>
+          </div>
+          <input type="number" className='form-control' autoFocus="" id="amount" />
+        </div>
+        <div className='input-group'>
+          <div className='input-group-prepend'>
+            <span className='input-group-text'>Reason:</span>
+          </div>
+          <input type="text" className='form-control' autoFocus="" id="reason" />
+        </div>
+      </form>
+    );
+    for (var child in this.state){
+      let childInfo = {
+        username : child,
+        childName : this.state[child].firstName,
+        childNum : i,
+        balance : this.state[child].balance
+      };
+      childInfoElements.push(<ChildInfo info={ childInfo } key={ i.toString() }
+      onClick={ () => this.setCurrChild(childInfo.username) }
+      histClick={ () => this.buildHistTable(childInfo.username) }/>);
+      i++;
+    }
+    return (
+      <div className="accordion" id="childrenAccounts" style={{ width: '60%', margin: 'auto' }}>
+        <AllowanceModal modalname='WD' header='' modalbody={ WDModalBody }
+        onClick={ () => this.changeBalance() }/>
+        <AllowanceModal modalname='hist' header='History' modalbody={ histModalBody } size='modal-lg'/>
+        { childInfoElements }
+      </div>
+    );
+  }
 }
 
 class ParentHome extends React.Component {
   constructor(props){
     super(props);
   }
-  
+
   render (){
-    
+
     return (
       <div>
-        <Modals />
+        <ParentModals />
         <ParentNavBar />
         <Welcome />
         <Children />
@@ -112,3 +319,7 @@ ReactDOM.render(
   <ParentHome />,
   parentRoot
 );
+
+$('#WDModal').on('show.bs.modal', function(event) {
+  $('#WDLabel').html($(event.relatedTarget).html());
+});
