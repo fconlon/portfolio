@@ -27,15 +27,16 @@ function ChildHist(props){
     <div>
       <AllowanceHistTable child={uname} />
     </div>
-    
   )
 }
 
 function ChildHome(props){
   return (
-    <ChildNavBar />,
-    <Welcome />,
-    <ChildHist />
+    <div>
+      <ChildNavBar />,
+      <Welcome />,
+      <ChildHist />
+    </div>
   );
 }
 ReactDOM.render(<ChildHome />, document.getElementById('child'));
