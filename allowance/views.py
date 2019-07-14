@@ -89,3 +89,13 @@ def addChild(request):
         ChildToParents.objects.create(child=childUname, parent=u)
 
     return JsonResponse({ 'success': True })
+
+def removeChild(request):
+    uname = request.POST['username']
+    try:
+        user = User.objects.get(username=uname)
+        user.delete()
+    except User.DoesNotExist:
+        return JsonResponse({})
+
+    return JsonResponse({ 'success': True })

@@ -21,13 +21,28 @@ class ParentModals extends React.Component{
     });
   }
 
+  removeChildHandler(){
+    let postInfo = {
+      username: $("#rcUsername").val()
+    };
+    $.post("/allowance/removechild/", postInfo, function(data) {
+      if(data.success) {
+        $("#removeChildFail").hide();
+        $("#removeChildModal").modal('hide');
+      }
+      else {
+        $("#removeChildFail").show();
+      }
+    });
+  }
+
   render(){
     let addChildBody = (
       <form>
-      <p className='border border-danger rounded p-2 text-danger collapse'
-      style={{ textAlign : 'center' }} id='addChildFail'>
-        That username is taken. Please choose a different username.
-      </p>
+        <p className='border border-danger rounded p-2 text-danger collapse'
+        style={{ textAlign : 'center' }} id='addChildFail'>
+          That username is taken. Please choose a different username.
+        </p>
         <div className='input-group'>
           <div className='input-group-prepend mb-3'>
             <span className='input-group-text'>First Name</span>
@@ -57,6 +72,10 @@ class ParentModals extends React.Component{
 
     let removeChildBody = (
       <form>
+        <p className='border border-danger rounded p-2 text-danger collapse'
+        style={{ textAlign : 'center' }} id='removeChildFail'>
+          That username does not exist.
+        </p>
         <div className='input-group'>
           <div className='input-group-prepend mb-3'>
             <span className='input-group-text'>Username</span>
@@ -96,7 +115,7 @@ class ParentModals extends React.Component{
     return (
       <div>
         <AllowanceModal modalname='addChild' header='Add Child' modalbody={ addChildBody } onClick={ () => this.addChildHandler() }/>
-        <AllowanceModal modalname='removeChild' header='Remove Child' modalbody={ removeChildBody } />
+        <AllowanceModal modalname='removeChild' header='Remove Child' modalbody={ removeChildBody } onClick={ () => this.removeChildHandler() }/>
         <AllowanceModal modalname='prCode' header='Parent Registration Code'  modalbody={ prBody } />
         <AllowanceModal modalname='changePW' header='Change Password' modalbody={ changePasswordBody}/>
       </div>
