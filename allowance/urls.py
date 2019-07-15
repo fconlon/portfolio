@@ -10,6 +10,7 @@ urlpatterns = [
     path('update/', views.updateBalance, name='update'),
     path('childhistory/', views.childHistory, name="childhistory"),
     path('removechild/', views.removeChild, name="removechild"),
+    path('changepassword/', views.changePassword, name="changepassword"),
     path('addchild/', views.addChild, name="addChild"),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),

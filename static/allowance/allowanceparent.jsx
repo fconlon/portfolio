@@ -36,6 +36,44 @@ class ParentModals extends React.Component{
     });
   }
 
+  changePasswordHandler(){
+    let notBlank = true;
+    let notMismatched = true;
+    if($("#newPW").val() == '' || $("#confirmPW").val() == '') {
+      $("#cpBlankPassword").collapse('show');
+      $("#cpInvalidPassword").collapse('hide');
+      notBlank = false;
+    }
+    else {
+      $("#cpBlankPassword").collapse('hide');
+    }
+    if($("#newPW").val() != $("#confirmPW").val()) {
+      $("#cpMismatchedPasswords").collapse('show');
+      $("#cpInvalidPassword").collapse('hide');
+      notMismatched = false;
+    }
+    else {
+      $("#cpMismatchedPasswords").collapse('hide');
+    }
+    if(notBlank && notMismatched) {
+      let postInfo = {
+        old_password: $("#oldPW").val(),
+        new_password1: $("#newPW").val(),
+        new_password2: $("#confirmPW").val()
+      };
+      $.post("/allowance/changepassword/", postInfo, function(data) {
+        if(data.success) {
+          $("#cpInvalidPassword").hide();
+          $("#changePWModal").modal('hide');
+        }
+        else {
+          $("#cpInvalidPassword").show();
+        }
+      });
+      
+    }
+  }
+
   render(){
     let addChildBody = (
       <form>
@@ -91,6 +129,18 @@ class ParentModals extends React.Component{
 
     let changePasswordBody = (
       <form>
+        <p className='border border-danger rounded p-2 text-danger collapse'
+        style={{ textAlign : 'center' }} id='cpInvalidPassword'>
+          The password you provided is incorrect.
+        </p>
+        <p className='border border-danger rounded p-2 text-danger collapse'
+        style={{ textAlign : 'center' }} id='cpBlankPassword'>
+          The New Password or Confirm Password field is empty.
+        </p>
+        <p className='border border-danger rounded p-2 text-danger collapse'
+        style={{ textAlign : 'center' }} id='cpMismatchedPasswords'>
+          The New Password and Confirm Password fields must match.
+        </p>
         <div className='input-group'>
           <div className='input-group-prepend mb-3'>
             <span className='input-group-text'>Old Password</span>
@@ -117,7 +167,7 @@ class ParentModals extends React.Component{
         <AllowanceModal modalname='addChild' header='Add Child' modalbody={ addChildBody } onClick={ () => this.addChildHandler() }/>
         <AllowanceModal modalname='removeChild' header='Remove Child' modalbody={ removeChildBody } onClick={ () => this.removeChildHandler() }/>
         <AllowanceModal modalname='prCode' header='Parent Registration Code'  modalbody={ prBody } />
-        <AllowanceModal modalname='changePW' header='Change Password' modalbody={ changePasswordBody}/>
+        <AllowanceModal modalname='changePW' header='Change Password' modalbody={ changePasswordBody} onClick={ () => this.changePasswordHandler() }/>
       </div>
     );
   }

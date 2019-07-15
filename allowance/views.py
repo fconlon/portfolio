@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from allowance.models import *
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 from django.db.utils import IntegrityError
 from decimal import Decimal
 from json import dumps
@@ -99,3 +102,16 @@ def removeChild(request):
         return JsonResponse({})
 
     return JsonResponse({ 'success': True })
+
+def changePassword(request):
+    uname = request.user.username
+    pw = request.POST['old_password']
+    user = authenticate(username=uname, password=pw)
+    if user:
+        form = PasswordChangeForm(user, data=request.POST)
+        form.full_clean()
+        form.save()
+        update_session_auth_hash(request, user)
+        return JsonResponse({ 'success': True })
+    else:
+        return JsonResponse({})
