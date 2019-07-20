@@ -115,3 +115,7 @@ def changePassword(request):
         return JsonResponse({ 'success': True })
     else:
         return JsonResponse({})
+
+def registrationCode(request):
+    
+    return JsonResponse({})

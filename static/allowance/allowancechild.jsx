@@ -23,9 +23,17 @@ function Welcome(props) {
 
 function ChildHist(props){
   let uname = $('#child').data('user').userName;
+  //let balance;
+  //$.post()
   return (
-    <div>
-      <AllowanceHistTable child={uname} />
+    <div className='list-group' style={{ width: '60%', margin: 'auto' }}>
+      <div className="list-group-item bg-info" style={{ textAlign: 'center'}}>
+        Account Information
+      </div>
+      <div className="list-group-item">
+        <AllowanceHistTable child={uname} />
+      </div>
+      
     </div>
   )
 }

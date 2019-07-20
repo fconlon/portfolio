@@ -36,6 +36,10 @@ class ParentModals extends React.Component{
     });
   }
 
+  registrationCodeHandler(){
+
+  }
+
   changePasswordHandler(){
     let notBlank = true;
     let notMismatched = true;
@@ -67,6 +71,9 @@ class ParentModals extends React.Component{
           $("#changePWModal").modal('hide');
         }
         else {
+          $("#oldPW").val("");
+          $("#newPW").val("");
+          $("#confirmPW").val("");
           $("#cpInvalidPassword").show();
         }
       });
@@ -123,8 +130,15 @@ class ParentModals extends React.Component{
       </form>
     );
 
+    let regCode;
+    $.get('/allowance/registrationcode', function(data){
+      regCode = data.code;
+    });
+
     let prBody = (
-      "Placeholder"
+      <div id="#registrationCode">
+        { regCode }
+      </div>
     );
 
     let changePasswordBody = (

@@ -9,9 +9,10 @@ urlpatterns = [
     path('home/', views.userhome, name='home'),
     path('update/', views.updateBalance, name='update'),
     path('childhistory/', views.childHistory, name="childhistory"),
+    path('addchild/', views.addChild, name="addChild"),
     path('removechild/', views.removeChild, name="removechild"),
     path('changepassword/', views.changePassword, name="changepassword"),
-    path('addchild/', views.addChild, name="addChild"),
+    path('registrationcode/', views.registrationCode, name="registrationcode"),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
 ]
