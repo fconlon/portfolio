@@ -3,6 +3,12 @@ class ParentModals extends React.Component{
     super(props);
   }
 
+  componentDidMount(){
+    $.get('/allowance/registrationcode', function(data){
+      $("#registrationCode").html(data.uuid);
+    });
+  }
+
   addChildHandler() {
     let postInfo = {
       firstName: $("#firstName").val(),
@@ -34,10 +40,6 @@ class ParentModals extends React.Component{
         $("#removeChildFail").show();
       }
     });
-  }
-
-  registrationCodeHandler(){
-
   }
 
   changePasswordHandler(){
@@ -77,7 +79,6 @@ class ParentModals extends React.Component{
           $("#cpInvalidPassword").show();
         }
       });
-      
     }
   }
 
@@ -130,15 +131,12 @@ class ParentModals extends React.Component{
       </form>
     );
 
-    let regCode;
     $.get('/allowance/registrationcode', function(data){
-      regCode = data.code;
+      regCode = data.uuid;
     });
 
     let prBody = (
-      <div id="#registrationCode">
-        { regCode }
-      </div>
+      <div style={{ textAlign: 'center' }} id="registrationCode"></div>
     );
 
     let changePasswordBody = (

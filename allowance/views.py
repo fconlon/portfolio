@@ -8,6 +8,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.db.utils import IntegrityError
 from decimal import Decimal
 from json import dumps
+import uuid
 
 # Create your views here.
 def index(request):
@@ -117,5 +118,13 @@ def changePassword(request):
         return JsonResponse({})
 
 def registrationCode(request):
-    
-    return JsonResponse({})
+    try:
+        record = UserToRegistrationCode.objects.get(user=request.user.username)
+        if request.method == "GET":
+            code = record.code
+            return JsonResponse({ "uuid" : code })
+    except UserToRegistrationCode.DoesNotExist:
+        code = str(uuid.uuid4())
+        RegistrationCodeToUsers.objects.create(users=request.user.username, code=code)
+        UserToRegistrationCode.objects.create(user=request.user.username, code=code)
+        return JsonResponse({ "uuid" : code })
