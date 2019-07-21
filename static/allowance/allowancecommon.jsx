@@ -85,7 +85,7 @@ class AllowanceHistTable extends React.Component{
 
   render() {
     return (
-      <table id='hist' className='table table-striped table-bordered'>
+      <table id='hist' className='table table-striped table-bordered' style={{ width: '95%u'}}>
         <thead>
           <tr>
             <th>Reason</th>
