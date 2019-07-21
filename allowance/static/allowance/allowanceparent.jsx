@@ -3,6 +3,12 @@ class ParentModals extends React.Component{
     super(props);
   }
 
+  componentDidMount(){
+    $.get('/allowance/registrationcode', function(data){
+      $("#registrationCode").html(data.uuid);
+    });
+  }
+
   addChildHandler() {
     let postInfo = {
       firstName: $("#firstName").val(),
@@ -21,13 +27,68 @@ class ParentModals extends React.Component{
     });
   }
 
+  removeChildHandler(){
+    let postInfo = {
+      username: $("#rcUsername").val()
+    };
+    $.post("/allowance/removechild/", postInfo, function(data) {
+      if(data.success) {
+        $("#removeChildFail").hide();
+        $("#removeChildModal").modal('hide');
+      }
+      else {
+        $("#removeChildFail").show();
+      }
+    });
+  }
+
+  changePasswordHandler(){
+    let notBlank = true;
+    let notMismatched = true;
+    if($("#newPW").val() == '' || $("#confirmPW").val() == '') {
+      $("#cpBlankPassword").collapse('show');
+      $("#cpInvalidPassword").collapse('hide');
+      notBlank = false;
+    }
+    else {
+      $("#cpBlankPassword").collapse('hide');
+    }
+    if($("#newPW").val() != $("#confirmPW").val()) {
+      $("#cpMismatchedPasswords").collapse('show');
+      $("#cpInvalidPassword").collapse('hide');
+      notMismatched = false;
+    }
+    else {
+      $("#cpMismatchedPasswords").collapse('hide');
+    }
+    if(notBlank && notMismatched) {
+      let postInfo = {
+        old_password: $("#oldPW").val(),
+        new_password1: $("#newPW").val(),
+        new_password2: $("#confirmPW").val()
+      };
+      $.post("/allowance/changepassword/", postInfo, function(data) {
+        if(data.success) {
+          $("#cpInvalidPassword").hide();
+          $("#changePWModal").modal('hide');
+        }
+        else {
+          $("#oldPW").val('');
+          $("#newPW").val('');
+          $("#confirmPW").val('');
+          $("#cpInvalidPassword").show();
+        }
+      });
+    }
+  }
+
   render(){
     let addChildBody = (
       <form>
-      <p className='border border-danger rounded p-2 text-danger collapse'
-      style={{ textAlign : 'center' }} id='addChildFail'>
-        That username is taken. Please choose a different username.
-      </p>
+        <p className='border border-danger rounded p-2 text-danger collapse'
+        style={{ textAlign : 'center' }} id='addChildFail'>
+          That username is taken. Please choose a different username.
+        </p>
         <div className='input-group'>
           <div className='input-group-prepend mb-3'>
             <span className='input-group-text'>First Name</span>
@@ -57,6 +118,10 @@ class ParentModals extends React.Component{
 
     let removeChildBody = (
       <form>
+        <p className='border border-danger rounded p-2 text-danger collapse'
+        style={{ textAlign : 'center' }} id='removeChildFail'>
+          That username does not exist.
+        </p>
         <div className='input-group'>
           <div className='input-group-prepend mb-3'>
             <span className='input-group-text'>Username</span>
@@ -67,11 +132,23 @@ class ParentModals extends React.Component{
     );
 
     let prBody = (
-      "Placeholder"
+      <div style={{ textAlign: 'center' }} id="registrationCode"></div>
     );
 
     let changePasswordBody = (
       <form>
+        <p className='border border-danger rounded p-2 text-danger collapse'
+        style={{ textAlign : 'center' }} id='cpInvalidPassword'>
+          The password you provided is incorrect.
+        </p>
+        <p className='border border-danger rounded p-2 text-danger collapse'
+        style={{ textAlign : 'center' }} id='cpBlankPassword'>
+          The New Password or Confirm Password field is empty.
+        </p>
+        <p className='border border-danger rounded p-2 text-danger collapse'
+        style={{ textAlign : 'center' }} id='cpMismatchedPasswords'>
+          The New Password and Confirm Password fields must match.
+        </p>
         <div className='input-group'>
           <div className='input-group-prepend mb-3'>
             <span className='input-group-text'>Old Password</span>
@@ -96,9 +173,9 @@ class ParentModals extends React.Component{
     return (
       <div>
         <AllowanceModal modalname='addChild' header='Add Child' modalbody={ addChildBody } onClick={ () => this.addChildHandler() }/>
-        <AllowanceModal modalname='removeChild' header='Remove Child' modalbody={ removeChildBody } />
+        <AllowanceModal modalname='removeChild' header='Remove Child' modalbody={ removeChildBody } onClick={ () => this.removeChildHandler() }/>
         <AllowanceModal modalname='prCode' header='Parent Registration Code'  modalbody={ prBody } />
-        <AllowanceModal modalname='changePW' header='Change Password' modalbody={ changePasswordBody}/>
+        <AllowanceModal modalname='changePW' header='Change Password' modalbody={ changePasswordBody} onClick={ () => this.changePasswordHandler() }/>
       </div>
     );
   }
@@ -117,13 +194,13 @@ function ParentNavBar(props) {
         <NavModalTrigger modallabel='#changePWModal' itemlabel='Change Password' />
       </ul>
       <ul className='navbar-nav'>
-        <li className='nav-item'>
-          <a className='nav-link' href='/allowance/logout?next=/allowance/login'>Logout</a>
+        <li className='nav-item nav-link'>
+          <a style={{ color: 'black' }} href='/allowance/logout?next=/allowance/login'>Logout</a>
         </li>
       </ul>
     </div>
   );
-  let classes = 'navbar-dark bg-info';
+  let classes = 'navbar-inverse bg-info';
   return (
     <AllowanceNavBar classes={ classes } body={ navBody } />
   );
@@ -172,7 +249,7 @@ class ChildInfo extends React.Component {
         <div className="card-header p-0" id={ heading }>
           <h2 className="mb-0">
             <button className="btn btn-info btn-lg btn-block mb-0 shadow-none collapsed"
-                    type="button" data-toggle="collapse" data-target={ "#" + target }
+                    type="button" data-toggle="collapse" data-target={ "#" + target } style={{ color: 'black' }}
                     aria-expanded="false" aria-controls={ target } onClick={ this.props.onClick }>
               { name }
             </button>

@@ -10,7 +10,7 @@ function AllowanceModal(props) {
       <div className={ modalDialog } role="document">
         <div className="modal-content">
           <div className="modal-header bg-info">
-            <h5 className="modal-title text-white" id={ modalLabel }>{ props.header }</h5>
+            <h5 className="modal-title" style={{ fontWeight: 'bold' }} id={ modalLabel }>{ props.header }</h5>
             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -85,7 +85,7 @@ class AllowanceHistTable extends React.Component{
 
   render() {
     return (
-      <table id='hist' className='table table-striped table-bordered'>
+      <table id='hist' className='table table-striped table-bordered' style={{ width: '95%u'}}>
         <thead>
           <tr>
             <th>Reason</th>
