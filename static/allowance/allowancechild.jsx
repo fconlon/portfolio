@@ -8,7 +8,7 @@ function ChildNavBar(props){
       </ul>
     </div>
   );
-  let classes = 'navbar-dark bg-info';
+  let classes = 'navbar-light bg-info';
   return (
     <AllowanceNavBar classes={ classes } body={ navBody } />
   );
@@ -21,21 +21,43 @@ function Welcome(props) {
   );
 }
 
-function ChildHist(props){
-  let uname = $('#child').data('user').userName;
-  //let balance;
-  //$.post()
-  return (
-    <div className='list-group' style={{ width: '60%', margin: 'auto' }}>
-      <div className="list-group-item bg-info" style={{ textAlign: 'center'}}>
-        Account Information
+class ChildHist extends React.Component{
+  constructor(props){
+    super(props);
+  }
+
+  componentDidMount(){
+    $.get('/allowance/childbalance', function(data){
+      $("#childBalance").html("$" + data.balance);
+    });
+  }
+
+  render(){
+    let uname = $('#child').data('user').userName;
+    let navBody = (
+      <div>
+        <ul className="navbar-nav mr-auto">
+          <li className="navbar-item">Balance</li>
+        </ul>
+        <ul className="navbar-nav">
+          <li className="navbar-item" id="childBalance"></li>
+        </ul>
       </div>
-      <div className="list-group-item">
-        <AllowanceHistTable child={uname} />
+    )
+    return (
+      <div className='list-group' style={{ width: '60%', margin: 'auto' }}>
+        <div className="list-group-item bg-info" style={{ textAlign: 'center', fontWeight: 'bold'}}>
+          Account Information
+        </div>
+        <div className="list-group-item">
+          <AllowanceNavBar body={ navBody }/>
+        </div>
+        <div className="list-group-item">
+          <AllowanceHistTable child={uname} />
+        </div>
       </div>
-      
-    </div>
-  )
+    )
+  }
 }
 
 function ChildHome(props){

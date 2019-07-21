@@ -73,9 +73,9 @@ class ParentModals extends React.Component{
           $("#changePWModal").modal('hide');
         }
         else {
-          $("#oldPW").val("");
-          $("#newPW").val("");
-          $("#confirmPW").val("");
+          $("#oldPW").val('');
+          $("#newPW").val('');
+          $("#confirmPW").val('');
           $("#cpInvalidPassword").show();
         }
       });
@@ -130,10 +130,6 @@ class ParentModals extends React.Component{
         </div>
       </form>
     );
-
-    $.get('/allowance/registrationcode', function(data){
-      regCode = data.uuid;
-    });
 
     let prBody = (
       <div style={{ textAlign: 'center' }} id="registrationCode"></div>
@@ -204,7 +200,7 @@ function ParentNavBar(props) {
       </ul>
     </div>
   );
-  let classes = 'navbar-dark bg-info';
+  let classes = 'navbar-light bg-info';
   return (
     <AllowanceNavBar classes={ classes } body={ navBody } />
   );
@@ -253,7 +249,7 @@ class ChildInfo extends React.Component {
         <div className="card-header p-0" id={ heading }>
           <h2 className="mb-0">
             <button className="btn btn-info btn-lg btn-block mb-0 shadow-none collapsed"
-                    type="button" data-toggle="collapse" data-target={ "#" + target }
+                    type="button" data-toggle="collapse" data-target={ "#" + target } style={{ color: 'black' }}
                     aria-expanded="false" aria-controls={ target } onClick={ this.props.onClick }>
               { name }
             </button>

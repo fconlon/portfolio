@@ -128,3 +128,7 @@ def registrationCode(request):
         RegistrationCodeToUsers.objects.create(users=request.user.username, code=code)
         UserToRegistrationCode.objects.create(user=request.user.username, code=code)
         return JsonResponse({ "uuid" : code })
+
+def childbalance(request):
+    balance = request.user.allowanceuserinfo.balance
+    return JsonResponse({ "balance": balance })
