@@ -2,8 +2,8 @@ function ChildNavBar(props){
   let navBody = (
     <div>
       <ul className='navbar-nav ml-auto'>
-        <li className='nav-item'>
-          <a className='nav-link' href='/allowance/logout?next=/allowance/login'>Logout</a>
+        <li className='nav-item nav-link'>
+          <a style={{ color: 'black' }} href='/allowance/logout?next=/allowance/login'>Logout</a>
         </li>
       </ul>
     </div>

@@ -194,13 +194,13 @@ function ParentNavBar(props) {
         <NavModalTrigger modallabel='#changePWModal' itemlabel='Change Password' />
       </ul>
       <ul className='navbar-nav'>
-        <li className='nav-item'>
-          <a className='nav-link' href='/allowance/logout?next=/allowance/login'>Logout</a>
+        <li className='nav-item nav-link'>
+          <a style={{ color: 'black' }} href='/allowance/logout?next=/allowance/login'>Logout</a>
         </li>
       </ul>
     </div>
   );
-  let classes = 'navbar-light bg-info';
+  let classes = 'navbar-inverse bg-info';
   return (
     <AllowanceNavBar classes={ classes } body={ navBody } />
   );
