@@ -132,3 +132,15 @@ def registrationCode(request):
 def childbalance(request):
     balance = request.user.allowanceuserinfo.balance
     return JsonResponse({ "balance": balance })
+
+def userregistration(request):
+    if request.method == 'POST':
+        uname = request.POST["username"]
+        pw1 = request.POST["password1"]
+        pw2 = request.POST["password2"]
+        try:
+            User.objects.create(username=uname)
+        except IntegrityError:
+            return render(request, "allowance/register.html", { "existinguser": True })
+    return render(request, 'allowance/register.html')
+

@@ -13,7 +13,8 @@ urlpatterns = [
     path('removechild/', views.removeChild, name="removechild"),
     path('changepassword/', views.changePassword, name="changepassword"),
     path('registrationcode/', views.registrationCode, name="registrationcode"),
-    path('childbalance', views.childbalance, name='childbalance'),
+    path('childbalance/', views.childbalance, name='childbalance'),
+    path('userregistration/', views.userregistration, name="userregistration"),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
 ]

@@ -7,7 +7,7 @@
 <body>
   
   <div class='list-group' style='width: 400px; margin: auto; margin-top: 12%'>
-    <div class='list-group-item bg-info text-white'>Allowance User Login</div>
+    <div class='list-group-item bg-info'>Allowance User Login</div>
     <div class='list-group-item'>
       {% if form.errors %}
         <p class='border border-danger rounded p-2 text-danger'>
@@ -29,8 +29,8 @@
           </div>
           <input type="password" class='form-control' name="password" required="" id="id_password">
         </div>
-
-        <input type="submit" class='btn btn-info' value="login" style='float: right;'>
+        <a href="{% url 'allowance:userregistration' %}">Register</a>
+        <input type="submit" class='btn btn-info' value="Login" style='float: right; color: black'>
         <input type="hidden" name="next" value="{% url 'allowance:home' %}">
       </form>
     </div>
