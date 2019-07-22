@@ -84,12 +84,12 @@ def addChild(request):
 
     AllowanceUserInfo.objects.create(user=newChild, is_parent=False, balance=0.0)
 
-    existingChild = ParentToChildren.objects.filter(parent=request.user.username)[0].child
-    qs = ParentToChildren.objects.filter(child=existingChild)
+    registrationCode = UserToRegistrationCode.objects.get(user=request.user.username).code
+    parents = UserToRegistrationCode.objects.filter(code=registrationCode)
 
-    for record in qs:
-        ParentToChildren.objects.create(parent=record.parent, child=newChild)
-        u = User.objects.get(username=record.parent)
+    for record in parents:
+        ParentToChildren.objects.create(parent=record.user, child=newChild)
+        u = User.objects.get(username=record.user)
         ChildToParents.objects.create(child=childUname, parent=u)
 
     return JsonResponse({ 'success': True })
