@@ -9,6 +9,16 @@
   <div class='list-group' style='width:550px; margin: auto; margin-top: 12%'>
     <div class='list-group-item bg-info'>Account Registration</div>
     <div class='list-group-item'>
+      {% if badregcode %}
+      <p class='border border-danger rounded p-2 text-danger'>
+        Invalid registration code. {{regcode}}
+      </p>
+      {% endif %}
+      {% if passwordmismatch %}
+      <p class='border border-danger rounded p-2 text-danger'>
+        The password and confirm password do not match
+      </p>
+      {% endif %}
       {% if existinguser %}
       <p class='border border-danger rounded p-2 text-danger'>
         That username is already in use.
@@ -35,13 +45,13 @@
           <div class='input-group-prepend'>
             <span class='input-group-text'>First Name:</span>
           </div>
-          <input type="password" class='form-control' name="firstname" required="" id="id_password1">
+          <input type="text" class='form-control' name="firstname" required="" id="id_password1">
         </div>
         <div class='input-group mb-3'>
           <div class='input-group-prepend'>
             <span class='input-group-text'>Last Name:</span>
           </div>
-          <input type="password" class='form-control' name="lastname" required="" id="id_password1">
+          <input type="text" class='form-control' name="lastname" required="" id="id_password1">
         </div>
         <div class='input-group mb-3'>
           <div class='input-group-prepend'>

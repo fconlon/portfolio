@@ -125,7 +125,6 @@ def registrationCode(request):
             return JsonResponse({ "uuid" : code })
     except UserToRegistrationCode.DoesNotExist:
         code = str(uuid.uuid4())
-        RegistrationCodeToUsers.objects.create(users=request.user.username, code=code)
         UserToRegistrationCode.objects.create(user=request.user.username, code=code)
         return JsonResponse({ "uuid" : code })
 
@@ -138,8 +137,32 @@ def userregistration(request):
         uname = request.POST["username"]
         pw1 = request.POST["password1"]
         pw2 = request.POST["password2"]
+        fn = request.POST["firstname"]
+        ln = request.POST["lastname"]
+        if pw1 != pw2:
+            return render(request, "allowance/register.html", { "passwordmismatch": True})
         try:
-            User.objects.create(username=uname)
+            newUser = User.objects.create_user(username=uname, first_name=fn, last_name=ln, password=pw1)
+            AllowanceUserInfo.objects.create(user=newUser, is_parent=True, balance=0.0)
+
+            regCode = request.POST.get("regcode")
+
+            if regCode:
+                try:
+                    parent = UserToRegistrationCode.objects.filter(code=regCode)[0].user
+                    children = ParentToChildren.objects.filter(parent=parent)
+                    for childrecord in children:
+                        ParentToChildren.objects.create(parent=uname, child=childrecord.child)
+                        ChildToParents.objects.create(child=childrecord.child.username, parent=newUser)
+                    
+                    UserToRegistrationCode.objects.create(user=uname, code=regCode)
+                    return redirect("/allowance/login")
+                except IndexError:
+                    AllowanceUserInfo.objects.get(user=newUser).delete()
+                    newUser.delete()
+                    return render(request, 'allowance/register.html', { "badregcode": True, "regcode": regCode})
+
+
         except IntegrityError:
             return render(request, "allowance/register.html", { "existinguser": True })
     return render(request, 'allowance/register.html')

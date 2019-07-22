@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('diagnostics/', include('diagnostics.urls')),
     path('react/', include('react.urls')),
     path('titanic/', include('titanic.urls')),
     path('polls/', include('polls.urls')),

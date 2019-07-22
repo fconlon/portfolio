@@ -21,10 +21,6 @@ class History(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     transaction = models.DecimalField(max_digits=7, decimal_places=2)
 
-class RegistrationCodeToUsers(models.Model):
-    code = models.CharField(max_length=32, primary_key=True)
-    users = models.CharField(max_length=100)
-
 class UserToRegistrationCode(models.Model):
     user = models.CharField(max_length=25, primary_key=True)
     code = models.CharField(max_length=32)
