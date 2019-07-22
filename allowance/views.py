@@ -156,13 +156,12 @@ def userregistration(request):
                         ChildToParents.objects.create(child=childrecord.child.username, parent=newUser)
                     
                     UserToRegistrationCode.objects.create(user=uname, code=regCode)
-                    return redirect("/allowance/login")
                 except IndexError:
                     AllowanceUserInfo.objects.get(user=newUser).delete()
                     newUser.delete()
                     return render(request, 'allowance/register.html', { "badregcode": True, "regcode": regCode})
 
-
+            return redirect("/allowance/login")
         except IntegrityError:
             return render(request, "allowance/register.html", { "existinguser": True })
     return render(request, 'allowance/register.html')
