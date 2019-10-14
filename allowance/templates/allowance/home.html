@@ -1,3 +1,45 @@
-<h1>User Home Page</h1>
-<p>{{ user.first_name }}</p>
-<a href="{% url 'allowance:logout' %}">logout</a>
+{% load static %}
+<!DOCTYPE html>
+<head>
+  {% ifequal user.first_name|slice:'-1' 's' %}
+    <title>{{ user.first_name }}' Allowance Homepage</title>
+  {% else %}
+    <title>{{ user.first_name }}'s Allowance Homepage</title>
+  {% endifequal %}
+  <style>
+    table.dataTable thead .sorting, 
+    table.dataTable thead .sorting_asc, 
+    table.dataTable thead .sorting_desc {
+        background : none !important;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'datatables/datatables.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'datatables/dataTables.bootstrap4.min.css' %}">
+  <script type="text/javascript" src="{% static 'jquery/jquery-3.3.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'reactjs/react.development.js' %}"></script>
+  <script type="text/javascript" src="{% static 'reactjs/react-dom.development.js' %}"></script>
+  <script type="text/javascript" src="{% static 'reactjs/babel.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'datatables/datatables.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'datatables/jquery.dataTables.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'datatables/dataTables.bootstrap4.min.js' %}"></script>
+  <script type="text/babel" src="{% static 'allowance/allowancecommon.jsx' %}"></script>
+  {% if user.allowanceuserinfo.is_parent %}
+    <script type="text/babel" src="{% static 'allowance/allowanceparent.jsx' %}"></script>
+  {% else %}
+    <script type="text/babel" src="{% static 'allowance/allowancechild.jsx' %}"></script>
+  {% endif %}
+</head>
+<body>
+  {% if user.allowanceuserinfo.is_parent %}
+    <div id='parent' 
+         data-user='{{ userDict }}'
+         data-children='{{ childrenDict }}'
+    ></div>
+  {% else %}
+    <div id='child'
+         data-user='{{ userDict }}'
+    ></div>
+  {% endif %}
+</body>

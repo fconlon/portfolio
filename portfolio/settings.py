@@ -23,15 +23,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'xz$=j%aeqon*+8fx$5(q6=(#o52(p3glrl%5#9u09s3!2ei0cf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver', 'frankconlon.asuscomm.com', '129.118.162.93']
+ALLOWED_HOSTS = ['frankconlon.kicks-ass.org']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'diagnostics.apps.DiagnosticsConfig',
     'react.apps.ReactConfig',
     'titanic.apps.TitanicConfig',
     'polls.apps.PollsConfig',

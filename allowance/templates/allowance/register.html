@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+  <title>Allowance Registration</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+</head>
+<body>
+  
+  <div class='list-group' style='width:550px; margin: auto; margin-top: 12%'>
+    <div class='list-group-item bg-info'>Account Registration</div>
+    <div class='list-group-item'>
+      {% if badregcode %}
+      <p class='border border-danger rounded p-2 text-danger'>
+        Invalid registration code. {{regcode}}
+      </p>
+      {% endif %}
+      {% if passwordmismatch %}
+      <p class='border border-danger rounded p-2 text-danger'>
+        The password and confirm password do not match
+      </p>
+      {% endif %}
+      {% if existinguser %}
+      <p class='border border-danger rounded p-2 text-danger'>
+        That username is already in use.
+      </p>
+      {% endif %}
+      <form method="post" action="{% url 'allowance:userregistration' %}">
+        {% csrf_token %}
+        <p class='border rounded p-2'>
+            If your significant other has already created an account enter your registration code to link your accounts.
+        </p>
+        <div class='input-group mb-3'>
+          <div class='input-group-prepend'>
+            <span class='input-group-text'>Registration Code:</span>
+          </div>-
+          <input type="text" class='form-control' name="regcode" autofocus="" id="id_regcode">
+        </div>
+        <div class='input-group mb-3'>
+          <div class='input-group-prepend'>
+            <span class='input-group-text'>Username:</span>
+          </div>
+          <input type="text" class='form-control' name="username" autofocus="" required="" id="id_username">
+        </div>
+        <div class='input-group mb-3'>
+          <div class='input-group-prepend'>
+            <span class='input-group-text'>First Name:</span>
+          </div>
+          <input type="text" class='form-control' name="firstname" required="" id="id_password1">
+        </div>
+        <div class='input-group mb-3'>
+          <div class='input-group-prepend'>
+            <span class='input-group-text'>Last Name:</span>
+          </div>
+          <input type="text" class='form-control' name="lastname" required="" id="id_password1">
+        </div>
+        <div class='input-group mb-3'>
+          <div class='input-group-prepend'>
+            <span class='input-group-text'>Password:</span>
+          </div>
+          <input type="password" class='form-control' name="password1" required="" id="id_password1">
+        </div>
+        <div class='input-group mb-3'>
+          <div class='input-group-prepend'>
+            <span class='input-group-text'>Confirm Password:</span>
+          </div>
+          <input type="password" class='form-control' name="password2" required="" id="id_password2">
+        </div>
+        <input type="submit" class='btn btn-info' value="Register" style='float: right; color: black'>
+      </form>
+    </div>
+  </div>
+</body>
