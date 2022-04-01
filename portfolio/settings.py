@@ -25,7 +25,7 @@ SECRET_KEY = 'xz$=j%aeqon*+8fx$5(q6=(#o52(p3glrl%5#9u09s3!2ei0cf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['www.dgtlclassroom.com', 'dgtlclassroom.com', 'flconlon.com', 'localhost']
+ALLOWED_HOSTS = ['www.dgtlclassroom.com', 'dgtlclassroom.com', 'www.flconlon.com', 'flconlon.com', 'localhost']
 
 
 # Application definition
